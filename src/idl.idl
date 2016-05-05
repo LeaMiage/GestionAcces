@@ -1,0 +1,253 @@
+/************************************
+* Contrat IDL pour la gestion des entrées et sorties *
+************************************/
+
+module GestionEntreeSortie {
+
+    exception ErreurAuthentification {string message;};
+    exception CleInconnue {string message;};
+    exception PersonneInconnue {string message;};
+    exception ErreurEnvoi {string message;};
+    exception AutorisationInconnue {string message;};
+    exception EmpreinteInconnue {string message;};
+    exception JournalisationImpossible {string message;};
+    
+    struct Autorisation {
+        string heureDebut;
+        string heureFin;
+    };
+
+    struct AutorisationTemporaire {
+        string heureDebut;
+        string heureFin;
+        string jourDebut;
+        string jourFin;
+    };
+
+    struct AutorisationPermanente {
+        string heureDebut;
+        string heureFin;
+    };
+    
+    typedef sequence<AutorisationTemporaire> AutorisationsTemporaires;
+    
+    struct Collaborateur {
+        long idPersonne;
+        string nomP;
+        string prenomP;
+        string photoP;
+        string mdp;
+        AutorisationsTemporaires listeAutorisationsTemporaires;
+    };
+    
+	/* Structure servant au retour de la fonction authentifier personne */
+	struct IdentiteCollaborateur {
+		long idPersonne;
+        string nomP;
+        string prenomP;
+        string photoP;
+	};
+	
+    typedef sequence<Collaborateur> listeCollaborateurs;
+    
+    struct Empreinte {
+        long idPersonne;
+        string empreinte;
+    };
+    
+    typedef sequence<long> IdPortes;
+    
+    struct Zone {
+        long idZone;
+        string libelleZone;
+        IdPortes listeIdPortes;
+    };
+
+    struct EntreeJournal {
+        long idZone;
+        long idPorte;
+        string photoP;
+        string status;
+        string typeAcces;
+    };
+    
+    typedef sequence<EntreeJournal> listeEntreesJournal;
+    
+    interface Authentification {
+        void authentifierCompte(
+            in long idPersonne,
+            in string mdp,
+            in string cleAPI
+        ) raises(
+            ErreurAuthentification,
+            CleInconnue
+        );
+
+        IdentiteCollaborateur authentifierPersonne(
+            in string photoP,
+            in string cleAPI
+        ) raises(
+            ErreurAuthentification,
+            CleInconnue
+        );
+    };
+    interface GestionSalaries {
+        
+        IdentiteCollaborateur rechercherSalarie(
+            in long idPersonne,
+            in string cleAPI
+        ) raises(
+            PersonneInconnue,
+            CleInconnue
+        );
+
+        void verifierPersonne(
+            in long idPersonne,
+            in string cleAPI
+        ) raises(
+            PersonneInconnue,
+            CleInconnue
+        );
+    };
+    interface CreationCompte {
+        long creerCP(
+            in string nomP,
+            in string prenomP,
+            in string mdp,
+            in string cleAPI
+        ) raises(
+            CleInconnue,
+            PersonneInconnue
+        );
+
+        long creerCT(
+            in string nomP,
+            in string prenomP,
+            in string mdp,
+            in string cleAPI
+        ) raises(
+            CleInconnue,
+            PersonneInconnue
+        );
+    };
+
+    interface EnvoiDonneesCapteurs {
+        void accederZone(
+            in string empreinte,
+            in string photoP,
+            in string cleAPI
+        ) raises (
+            ErreurEnvoi,
+            CleInconnue
+        );
+
+        void sortirZone(
+            in string empreinte,
+            in string photoP,
+            in string cleAPI
+        ) raises (
+            ErreurEnvoi,
+            CleInconnue
+        );
+    };
+
+    interface GestionAutorisation {
+        void ajouterAutorisationPermanente(
+            in AutorisationPermanente ap,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+
+        void modifierAutorisationPermanente(
+            in AutorisationPermanente ap,
+            in AutorisationPermanente np,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+
+        void supprimerAutorisationPermanente(
+            in AutorisationPermanente ap,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+
+        void ajouterAutorisationTemporaire(
+            in AutorisationTemporaire at,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+
+        void modifierAutorisationTemporaire(
+            in AutorisationTemporaire at,
+            in AutorisationTemporaire nt,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+
+        void supprimerAutorisationTemporaire(
+            in AutorisationTemporaire at,
+            in string cleAPI
+        ) raises(
+            AutorisationInconnue,
+            CleInconnue
+        );
+    };
+    interface GestionEmpreinte {
+        void modifierEmpreinte(
+            in long idPersonne,
+            in string empreinte,
+            in string cleAPI
+        ) raises(
+            PersonneInconnue,
+            CleInconnue
+        );
+
+        void supprimerEmpreinte(
+            in long idPersonne,
+            in string cleAPI
+        ) raises(
+            PersonneInconnue,
+            CleInconnue
+        );
+    };
+    interface VerificationEmpreinte {
+        void verifierEmpreinte(
+            in long idPersonne,
+            in string empreinte,
+            in string cleAPI
+        ) raises(
+            EmpreinteInconnue,
+            CleInconnue
+        );
+    };
+    interface ConsultationJournal {
+        listeEntreesJournal consulterJournal(
+            in string cleAPI
+        ) raises(
+            CleInconnue
+        );
+    };
+    interface Journalisation {
+        void journaliser(
+            in long idZone,
+            in long idPorte,
+            in string photoP,
+            in string statut,
+            in string typeAcces,
+            in string cleAPI
+        ) raises(
+            JournalisationImpossible,
+            CleInconnue
+        );
+    };
+};
