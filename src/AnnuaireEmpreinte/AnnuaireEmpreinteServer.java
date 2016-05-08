@@ -54,10 +54,10 @@ public class AnnuaireEmpreinteServer {
 	        // Enregistrement de l'objet CORBA dans le service de noms (GestionEmpreinte)
 	        nameRoot.rebind(nameToRegister1,rootPOA.servant_to_reference(servantGestionEmpreinte));
 
-	        System.out.println("==> Nom '"+ nomServant1 + "' est enregistre dans le service de noms.");
+	        System.out.println("==> Nom '"+ nomServant1 + "' est enregistré dans le service de noms.");
 
 	        String IORServant1 = orb.object_to_string(rootPOA.servant_to_reference(servantGestionEmpreinte));
-	        System.out.println("L'objet possede la reference suivante :");
+	        System.out.println("L'objet possède la référence suivante :");
 	        System.out.println(IORServant1);
 
 	        
