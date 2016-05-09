@@ -1,11 +1,13 @@
-package Porte;
+package Journalisation;
 
 import org.omg.CosNaming.NamingContext;
 import org.omg.PortableServer.POA;
 import org.omg.PortableServer.POAHelper;
 
+import Porte.EnvoiDonneesCapteursImpl;
+import Porte.GestionAutorisationsImpl;
 
-public class PorteServer {
+public class JournalisationServer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -21,13 +23,13 @@ public class PorteServer {
 
 	        // Creation du servant
 	        //*********************
-	        EnvoiDonneesCapteursImpl servantEnvoiDonneesCapteurs = new EnvoiDonneesCapteursImpl();
+	        JournalisationImpl servantJournalisation = new JournalisationImpl();
 
-	        GestionAutorisationsImpl servantGestionAutorisations = new GestionAutorisationsImpl();
+	        GestionAutorisationsImpl servantConsultationJournal = new GestionAutorisationsImpl();
 	       
 	        // Activer le servant au sein du POA et recuperer son ID
-	        byte[] servantEnvoiDonneesCapteursId = rootPOA.activate_object(servantEnvoiDonneesCapteurs);
-	        byte[] servantCreationCompteId = rootPOA.activate_object(servantGestionAutorisations);
+	        byte[] servantEnvoiDonneesCapteursId = rootPOA.activate_object(servantJournalisation);
+	        byte[] servantCreationCompteId = rootPOA.activate_object(servantConsultationJournal);
 	        
 	        // Activer le POA manager
 	        rootPOA.the_POAManager().activate();
@@ -41,8 +43,8 @@ public class PorteServer {
 	        org.omg.CosNaming.NameComponent[] nameToRegister1 = new org.omg.CosNaming.NameComponent[1];
 	        org.omg.CosNaming.NameComponent[] nameToRegister2 = new org.omg.CosNaming.NameComponent[1];
 	        
-	        String nomServant1 = "EnvoiDonneesCapteurs";
-	        String nomServant2 = "GestionAutorisations";
+	        String nomServant1 = "Journalisation";
+	        String nomServant2 = "ConsultationJournal";
 	        
 	        nameToRegister1[0] = new org.omg.CosNaming.NameComponent(nomServant1,"");
 	        nameToRegister2[0] = new org.omg.CosNaming.NameComponent(nomServant2,"");
@@ -50,23 +52,23 @@ public class PorteServer {
 	        
 	        //**************************************************************************************
 	        // Enregistrement de l'objet CORBA dans le service de noms (GestionEmpreinte)
-	        nameRoot.rebind(nameToRegister1,rootPOA.servant_to_reference(servantEnvoiDonneesCapteurs));
+	        nameRoot.rebind(nameToRegister1,rootPOA.servant_to_reference(servantJournalisation));
 
 	        System.out.println("==> Nom '"+ nomServant1 + "' est enregistre dans le service de noms.");
 
-	        String IORServant1 = orb.object_to_string(rootPOA.servant_to_reference(servantEnvoiDonneesCapteurs));
+	        String IORServant1 = orb.object_to_string(rootPOA.servant_to_reference(servantJournalisation));
 	        System.out.println("L'objet possede la reference suivante :");
 	        System.out.println(IORServant1);
 
 	        
 	        //**************************************************************************************
 	        // Enregistrement de l'objet CORBA dans le service de noms (VerificationEmpreinte)
-	        nameRoot.rebind(nameToRegister2,rootPOA.servant_to_reference(servantGestionAutorisations));
+	        nameRoot.rebind(nameToRegister2,rootPOA.servant_to_reference(servantConsultationJournal));
 	        
 	        
 	        System.out.println("==> Nom '"+ nomServant2 + "' est enregistre dans le service de noms.");
 
-	        String IORServant2 = orb.object_to_string(rootPOA.servant_to_reference(servantGestionAutorisations));
+	        String IORServant2 = orb.object_to_string(rootPOA.servant_to_reference(servantConsultationJournal));
 	        System.out.println("L'objet possede la reference suivante :");
 	        System.out.println(IORServant2);
 	        
