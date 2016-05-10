@@ -1,6 +1,8 @@
 package GestionnaireComptes;
 
+import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.IdentiteCollaborateur;
+import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionnaireComptesClient {
 
@@ -29,7 +31,7 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
-	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "1234", ""));
+	        //System.out.println(creationCompte.creerCP("Chéoux", "Léa", "1234", "cleAPIrez"));
 	        
 			
 	        
@@ -50,9 +52,13 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
 	        
-	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(0, "");
+	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(1, "cleAPI");
 	        System.out.println(ic.idPersonne + " " + ic.nomP + " " + ic.prenomP); 
 	        
+		}catch (CleInconnue cleInconnue){
+			System.out.println(cleInconnue.message);
+		}catch (PersonneInconnue personneInconnue){
+			System.out.println(personneInconnue.message);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

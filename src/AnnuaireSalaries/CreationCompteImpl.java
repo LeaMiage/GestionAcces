@@ -6,6 +6,7 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
 
+import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.IdentiteCollaborateur;
@@ -16,35 +17,40 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 	@Override
 	public int creerCP(String nomP, String prenomP, String mdp, String cleAPI) throws CleInconnue, PersonneInconnue {
 		// TODO Auto-generated method stub
+		if (!cleAPI.equals("cleAPI")){
+			throw new CleInconnue("La clé API est invalide.");
+		}
 		
-			Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
-			
-			IdentiteCollaborateur collaborateur = new IdentiteCollaborateur(annuaire.size(), nomP, prenomP, "");
-			
-			annuaire.put(annuaire.size(), collaborateur);
-			
-			Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
-			
-			return collaborateur.idPersonne;
+		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
+		GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires = new GestionEntreeSortie.AutorisationTemporaire[10];
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp, listeAutorisationsTemporaires);
 		
+		annuaire.put(annuaire.size(), collaborateur);
+		
+		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
+		
+		return collaborateur.idPersonne;		
 	}
 
 	@Override
 	public int creerCT(String nomP, String prenomP, String mdp, String cleAPI) throws CleInconnue, PersonneInconnue {
 		// TODO Auto-generated method stub
 		
-					Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
-					
-					IdentiteCollaborateur collaborateur = new IdentiteCollaborateur(annuaire.size(), nomP, prenomP, "");
-					
-					annuaire.put(annuaire.size(), collaborateur);
-					
-					Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
-					
-					return collaborateur.idPersonne;
-			
-				
+		if (cleAPI==""){
+			throw new CleInconnue("La clé API est invalide.");
+		}
+		
+		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		
+		GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires = new GestionEntreeSortie.AutorisationTemporaire[10];
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp, listeAutorisationsTemporaires);
+		
+		annuaire.put(annuaire.size(), collaborateur);
+		
+		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
+		
+		return collaborateur.idPersonne;
 	}
 
 }
