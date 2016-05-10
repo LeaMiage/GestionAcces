@@ -1,5 +1,7 @@
 package GestionnaireComptes;
 
+import GestionEntreeSortie.IdentiteCollaborateur;
+
 public class GestionnaireComptesClient {
 
 	public static void main(String[] args) {
@@ -27,7 +29,8 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
-	        creationCompte.creerCP("", "", "", "");
+	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "1234", ""));
+	        
 			
 	        
 	        //*****************************************************//
@@ -47,7 +50,8 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
 	        
-	        gestionSalaries.verifierPersonne(0, "");
+	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(0, "");
+	        System.out.println(ic.idPersonne + " " + ic.nomP + " " + ic.prenomP); 
 	        
 		}catch (Exception e) {
 			e.printStackTrace();
