@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Hashtable;
 
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
 
@@ -19,12 +20,15 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 		
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		IdentiteCollaborateur collaborateur = (IdentiteCollaborateur) annuaire.get(idPersonne);
+		Collaborateur collaborateur = (Collaborateur) annuaire.get(idPersonne);
+		
 		if (collaborateur == null){
 			throw new PersonneInconnue("Le salarié numéro " + idPersonne + " n'existe pas.");
 		}
 		
-		return collaborateur;
+		IdentiteCollaborateur identiteCollaborateur = new IdentiteCollaborateur(collaborateur.idPersonne, collaborateur.nomP, collaborateur.prenomP, collaborateur.photoP);
+		
+		return identiteCollaborateur;
 	}
 
 	@Override
@@ -36,7 +40,8 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 		
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		IdentiteCollaborateur collaborateur = (IdentiteCollaborateur) annuaire.get(idPersonne);
+		Collaborateur collaborateur = (Collaborateur) annuaire.get(idPersonne);
+		
 		if (collaborateur == null){
 			throw new PersonneInconnue("Le salarié numéro " + idPersonne + " n'existe pas.");
 		}

@@ -36,12 +36,12 @@ public class GestionFichiers {
          
         catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
          
         catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
          
         finally {
@@ -49,7 +49,7 @@ public class GestionFichiers {
                 fs.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+            	System.out.println(e.getMessage());
             }
         }
 	}
@@ -70,17 +70,17 @@ public class GestionFichiers {
          
         catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
          
         catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
          
         catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+        	System.out.println(e.getMessage());
         }
          
         finally {
@@ -89,7 +89,7 @@ public class GestionFichiers {
             }
             catch (IOException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+            	System.out.println(e.getMessage());
             }
         }
         

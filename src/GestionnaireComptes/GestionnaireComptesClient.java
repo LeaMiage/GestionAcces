@@ -31,10 +31,12 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
+	        /*
 	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "lcheoux", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "tchevalier", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "bmovia", "cleAPI"));
-			
+			*/
+	        
 	        
 	        //*****************************************************//
 	        
@@ -53,7 +55,7 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
 	        
-	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(1, "cleAPI");
+	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(3, "cleAPI");
 	        System.out.println(ic.idPersonne + " " + ic.nomP + " " + ic.prenomP); 
 	        
 		}catch (CleInconnue cleInconnue){
