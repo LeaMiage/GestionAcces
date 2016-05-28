@@ -8,6 +8,11 @@ package GestionEntreeSortie;
 public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLEntity
 {
     /**
+     * Struct member idPersonne
+     */
+    public int idPersonne;
+
+    /**
      * Struct member heureDebut
      */
     public String heureDebut;
@@ -35,13 +40,15 @@ public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLE
 
     /**
      * Constructor with fields initialization
+     * @param idPersonne idPersonne struct member
      * @param heureDebut heureDebut struct member
      * @param heureFin heureFin struct member
      * @param jourDebut jourDebut struct member
      * @param jourFin jourFin struct member
      */
-    public AutorisationTemporaire(String heureDebut, String heureFin, String jourDebut, String jourFin)
+    public AutorisationTemporaire(int idPersonne, String heureDebut, String heureFin, String jourDebut, String jourFin)
     {
+        this.idPersonne = idPersonne;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.jourDebut = jourDebut;

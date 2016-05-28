@@ -73,14 +73,17 @@ public class AutorisationHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[2];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[3];
 
                 _members[0] = new org.omg.CORBA.StructMember();
-                _members[0].name = "heureDebut";
-                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[0].name = "idPersonne";
+                _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
                 _members[1] = new org.omg.CORBA.StructMember();
-                _members[1].name = "heureFin";
+                _members[1].name = "heureDebut";
                 _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[2] = new org.omg.CORBA.StructMember();
+                _members[2].name = "heureFin";
+                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _tc = orb.create_struct_tc(id(),"Autorisation",_members);
                 _working = false;
             }
@@ -108,6 +111,7 @@ public class AutorisationHelper
     {
         GestionEntreeSortie.Autorisation new_one = new GestionEntreeSortie.Autorisation();
 
+        new_one.idPersonne = istream.read_long();
         new_one.heureDebut = istream.read_string();
         new_one.heureFin = istream.read_string();
 
@@ -121,6 +125,7 @@ public class AutorisationHelper
      */
     public static void write(org.omg.CORBA.portable.OutputStream ostream, GestionEntreeSortie.Autorisation value)
     {
+        ostream.write_long(value.idPersonne);
         ostream.write_string(value.heureDebut);
         ostream.write_string(value.heureFin);
     }

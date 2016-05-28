@@ -73,7 +73,7 @@ public class CollaborateurHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[6];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[5];
 
                 _members[0] = new org.omg.CORBA.StructMember();
                 _members[0].name = "idPersonne";
@@ -90,9 +90,6 @@ public class CollaborateurHelper
                 _members[4] = new org.omg.CORBA.StructMember();
                 _members[4].name = "mdp";
                 _members[4].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
-                _members[5] = new org.omg.CORBA.StructMember();
-                _members[5].name = "listeAutorisationsTemporaires";
-                _members[5].type = GestionEntreeSortie.AutorisationsTemporairesHelper.type();
                 _tc = orb.create_struct_tc(id(),"Collaborateur",_members);
                 _working = false;
             }
@@ -125,7 +122,6 @@ public class CollaborateurHelper
         new_one.prenomP = istream.read_string();
         new_one.photoP = istream.read_string();
         new_one.mdp = istream.read_string();
-        new_one.listeAutorisationsTemporaires = GestionEntreeSortie.AutorisationsTemporairesHelper.read(istream);
 
         return new_one;
     }
@@ -142,7 +138,6 @@ public class CollaborateurHelper
         ostream.write_string(value.prenomP);
         ostream.write_string(value.photoP);
         ostream.write_string(value.mdp);
-        GestionEntreeSortie.AutorisationsTemporairesHelper.write(ostream,value.listeAutorisationsTemporaires);
     }
 
 }

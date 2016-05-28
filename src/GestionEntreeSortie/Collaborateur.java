@@ -33,11 +33,6 @@ public final class Collaborateur implements org.omg.CORBA.portable.IDLEntity
     public String mdp;
 
     /**
-     * Struct member listeAutorisationsTemporaires
-     */
-    public GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires;
-
-    /**
      * Default constructor
      */
     public Collaborateur()
@@ -50,16 +45,14 @@ public final class Collaborateur implements org.omg.CORBA.portable.IDLEntity
      * @param prenomP prenomP struct member
      * @param photoP photoP struct member
      * @param mdp mdp struct member
-     * @param listeAutorisationsTemporaires listeAutorisationsTemporaires struct member
      */
-    public Collaborateur(int idPersonne, String nomP, String prenomP, String photoP, String mdp, GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires)
+    public Collaborateur(int idPersonne, String nomP, String prenomP, String photoP, String mdp)
     {
         this.idPersonne = idPersonne;
         this.nomP = nomP;
         this.prenomP = prenomP;
         this.photoP = photoP;
         this.mdp = mdp;
-        this.listeAutorisationsTemporaires = listeAutorisationsTemporaires;
     }
 
 }
