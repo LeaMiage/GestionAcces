@@ -10,6 +10,7 @@ import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
+import GestionEntreeSortie.ErreurAuthentification;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneExistante;
 import GestionEntreeSortie.PersonneInconnue;
@@ -22,11 +23,16 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		if (!cleAPI.equals("cleAPI")){
 			throw new CleInconnue("La clé API est invalide.");
 		}
+		if (nomP.isEmpty() | prenomP.isEmpty() | mdp.isEmpty() | photoP.isEmpty()){
+			throw new ChampVide("Un des champs est vide.");
+		}
+		if (verifierPersonne(nomP, prenomP)){
+			throw new PersonneExistante("L'employé " + prenomP + " " + nomP + " est déjà présent dans l'annuaire.");
+		}
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires = new GestionEntreeSortie.AutorisationTemporaire[10];
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp, listeAutorisationsTemporaires);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp);
 		
 		annuaire.put(annuaire.size(), collaborateur);
 		
@@ -42,17 +48,38 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		if (cleAPI==""){
 			throw new CleInconnue("La clé API est invalide.");
 		}
+		if (nomP.isEmpty() | prenomP.isEmpty() | mdp.isEmpty() | photoP.isEmpty()){
+			throw new ChampVide("Un des champs est vide.");
+		}
+		if (verifierPersonne(nomP, prenomP)){
+			throw new PersonneExistante("L'employé " + prenomP + " " + nomP + " est déjà présent dans l'annuaire.");
+		}
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemporaires = new GestionEntreeSortie.AutorisationTemporaire[10];
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp, listeAutorisationsTemporaires);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp);
 		
 		annuaire.put(annuaire.size(), collaborateur);
 		
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
 		
 		return collaborateur.idPersonne;
+	}
+	
+	private static boolean verifierPersonne(String nomP, String prenomP){
+		Collaborateur collaborateur;
+		boolean trouve = false;
+		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		
+		Enumeration e = annuaire.elements();
+		
+		while (e.hasMoreElements() & !trouve){
+			collaborateur = (Collaborateur) e.nextElement();
+			if (collaborateur.nomP.equals(nomP) & collaborateur.prenomP.equals(prenomP)){
+				trouve = true;
+			}
+		}
+		return trouve;
 	}
 
 }

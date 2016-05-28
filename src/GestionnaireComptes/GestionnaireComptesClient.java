@@ -1,7 +1,9 @@
 package GestionnaireComptes;
 
+import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.IdentiteCollaborateur;
+import GestionEntreeSortie.PersonneExistante;
 import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionnaireComptesClient {
@@ -35,8 +37,10 @@ public class GestionnaireComptesClient {
 	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "lcheoux", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "tchevalier", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "bmovia", "cleAPI"));
+	        System.out.println(creationCompte.creerCP("Kristen", "Stewart", "kStew", "EqualsPhoto", "cleAPI"));
 			*/
-	        
+	        	        
+	        System.out.println(creationCompte.creerCP("", "toto", "t", "", "cleAPI"));
 	        
 	        //*****************************************************//
 	        
@@ -60,8 +64,12 @@ public class GestionnaireComptesClient {
 	        
 		}catch (CleInconnue cleInconnue){
 			System.out.println(cleInconnue.message);
+		}catch (ChampVide champVide) {
+			System.out.println(champVide.message);
 		}catch (PersonneInconnue personneInconnue){
 			System.out.println(personneInconnue.message);
+		}catch (PersonneExistante personneExistante){
+			System.out.println(personneExistante.message);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
