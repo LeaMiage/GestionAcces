@@ -15,11 +15,13 @@ module GestionEntreeSortie {
     exception ChampVide {string message;};
     
     struct Autorisation {
+		long idPersonne;
         string heureDebut;
         string heureFin;
     };
 
     struct AutorisationTemporaire {
+		long idPersonne;
         string heureDebut;
         string heureFin;
         string jourDebut;
@@ -27,11 +29,11 @@ module GestionEntreeSortie {
     };
 
     struct AutorisationPermanente {
+		long idPersonne;
         string heureDebut;
         string heureFin;
     };
     
-    typedef sequence<AutorisationTemporaire> AutorisationsTemporaires;
     
     struct Collaborateur {
         long idPersonne;
@@ -39,7 +41,6 @@ module GestionEntreeSortie {
         string prenomP;
         string photoP;
         string mdp;
-        AutorisationsTemporaires listeAutorisationsTemporaires;
     };
     
 	/* Structure servant au retour de la fonction authentifier personne */
