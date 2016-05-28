@@ -2,10 +2,13 @@ package Porte;
 
 import java.util.Hashtable;
 
+import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.GestionSalaries;
+import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutorisationPOA{
 
@@ -14,28 +17,69 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	@Override
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
 			throws AutorisationInconnue, CleInconnue {
-		// TODO Auto-generated method stub
+
 		if (!cleAPI.equals("cleAPI")){
 			throw new CleInconnue("La clé API est invalide.");
 		}
+
+		String [] args = {};
 		
-		
-		Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations.txt");
-		
-		
-				
+		GestionSalaries gestionSalaries = PorteClient.getServiceGestionSalaries(args);
+		try {
+			gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
 			
-		annuaireAutorisations.put(ap.heureDebut + "_" + ap.heureFin, ap);
+			/* Vérification autorisation */
+			
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations.txt");
+
+			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
+			
+			// Ajout si la clé n'existe pas déjà
+			annuaireAutorisations.putIfAbsent(ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin, ap);
+			
+		} catch (PersonneInconnue e) {
+			System.out.println("Erreur : Personne inconnue");
+		} catch (CleInconnue e) {
+			System.out.println("Erreur : clé inconnue");
+		}
 		
 		
 		
-		System.out.println("Test : ajouterAutorisationPermanente");
+		
 	}
 
 	@Override
 	public void modifierAutorisationPermanente(AutorisationPermanente ap, AutorisationPermanente np, String cleAPI)
 			throws AutorisationInconnue, CleInconnue {
-		// TODO Auto-generated method stub
+		
+
+		if (!cleAPI.equals("cleAPI")){
+			throw new CleInconnue("La clé API est invalide.");
+		}
+
+		String [] args = {};
+		
+		GestionSalaries gestionSalaries = PorteClient.getServiceGestionSalaries(args);
+		try {
+			gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
+			
+			/* Vérification autorisation */
+			
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations.txt");
+
+			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
+			
+			// Ajout si la clé n'existe pas déjà
+			annuaireAutorisations.putIfAbsent(ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin, ap);
+			
+		} catch (PersonneInconnue e) {
+			System.out.println("Erreur : Personne inconnue");
+		} catch (CleInconnue e) {
+			System.out.println("Erreur : clé inconnue");
+		}
+		
+		
+		
 		
 	}
 
