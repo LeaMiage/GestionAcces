@@ -66,7 +66,7 @@ public class GestionEmpreintePOATie extends GestionEmpreintePOA
      * Operation modifierEmpreinte
      */
     public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-        throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue, GestionEntreeSortie.ChampVide
     {
         _tie.modifierEmpreinte( idPersonne,  empreinte,  cleAPI);
     }

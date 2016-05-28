@@ -11,6 +11,6 @@ public interface VerificationEmpreinteOperations
      * Operation verifierEmpreinte
      */
     public void verifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-        throws GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.CleInconnue;
+        throws GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.CleInconnue, GestionEntreeSortie.ChampVide;
 
 }

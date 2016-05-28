@@ -66,6 +66,11 @@ public abstract class VerificationEmpreintePOA extends org.omg.PortableServer.Se
             _output = handler.createExceptionReply();
             GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.ChampVide _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ChampVideHelper.write(_output,_exception);
+        }
         return _output;
     }
 

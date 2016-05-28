@@ -65,19 +65,19 @@ public class CreationComptePOATie extends CreationComptePOA
     /**
      * Operation creerCP
      */
-    public int creerCP(String nomP, String prenomP, String mdp, String cleAPI)
-        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneInconnue
+    public int creerCP(String nomP, String prenomP, String mdp, String photoP, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneExistante, GestionEntreeSortie.ChampVide
     {
-        return _tie.creerCP( nomP,  prenomP,  mdp,  cleAPI);
+        return _tie.creerCP( nomP,  prenomP,  mdp,  photoP,  cleAPI);
     }
 
     /**
      * Operation creerCT
      */
-    public int creerCT(String nomP, String prenomP, String mdp, String cleAPI)
-        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneInconnue
+    public int creerCT(String nomP, String prenomP, String mdp, String photoP, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneExistante, GestionEntreeSortie.ChampVide
     {
-        return _tie.creerCT( nomP,  prenomP,  mdp,  cleAPI);
+        return _tie.creerCT( nomP,  prenomP,  mdp,  photoP,  cleAPI);
     }
 
 }

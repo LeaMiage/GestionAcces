@@ -51,10 +51,11 @@ public abstract class CreationComptePOA extends org.omg.PortableServer.Servant
         String arg1_in = _is.read_string();
         String arg2_in = _is.read_string();
         String arg3_in = _is.read_string();
+        String arg4_in = _is.read_string();
 
         try
         {
-            int _arg_result = creerCP(arg0_in, arg1_in, arg2_in, arg3_in);
+            int _arg_result = creerCP(arg0_in, arg1_in, arg2_in, arg3_in, arg4_in);
 
             _output = handler.createReply();
             _output.write_long(_arg_result);
@@ -65,10 +66,15 @@ public abstract class CreationComptePOA extends org.omg.PortableServer.Servant
             _output = handler.createExceptionReply();
             GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
         }
-        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        catch (GestionEntreeSortie.PersonneExistante _exception)
         {
             _output = handler.createExceptionReply();
-            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+            GestionEntreeSortie.PersonneExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.ChampVide _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ChampVideHelper.write(_output,_exception);
         }
         return _output;
     }
@@ -81,10 +87,11 @@ public abstract class CreationComptePOA extends org.omg.PortableServer.Servant
         String arg1_in = _is.read_string();
         String arg2_in = _is.read_string();
         String arg3_in = _is.read_string();
+        String arg4_in = _is.read_string();
 
         try
         {
-            int _arg_result = creerCT(arg0_in, arg1_in, arg2_in, arg3_in);
+            int _arg_result = creerCT(arg0_in, arg1_in, arg2_in, arg3_in, arg4_in);
 
             _output = handler.createReply();
             _output.write_long(_arg_result);
@@ -95,10 +102,15 @@ public abstract class CreationComptePOA extends org.omg.PortableServer.Servant
             _output = handler.createExceptionReply();
             GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
         }
-        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        catch (GestionEntreeSortie.PersonneExistante _exception)
         {
             _output = handler.createExceptionReply();
-            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+            GestionEntreeSortie.PersonneExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.ChampVide _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ChampVideHelper.write(_output,_exception);
         }
         return _output;
     }

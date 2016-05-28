@@ -23,8 +23,8 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation creerCP
      */
-    public int creerCP(String nomP, String prenomP, String mdp, String cleAPI)
-        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneInconnue
+    public int creerCP(String nomP, String prenomP, String mdp, String photoP, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneExistante, GestionEntreeSortie.ChampVide
     {
         while(true)
         {
@@ -37,6 +37,7 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(nomP);
                     _output.write_string(prenomP);
                     _output.write_string(mdp);
+                    _output.write_string(photoP);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
                     int _arg_ret = _input.read_long();
@@ -54,9 +55,14 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                         throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
                     }
 
-                    if (_exception_id.equals(GestionEntreeSortie.PersonneInconnueHelper.id()))
+                    if (_exception_id.equals(GestionEntreeSortie.PersonneExistanteHelper.id()))
                     {
-                        throw GestionEntreeSortie.PersonneInconnueHelper.read(_exception.getInputStream());
+                        throw GestionEntreeSortie.PersonneExistanteHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
                     }
 
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
@@ -74,7 +80,7 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.CreationCompteOperations _self = (GestionEntreeSortie.CreationCompteOperations) _so.servant;
                 try
                 {
-                    return _self.creerCP( nomP,  prenomP,  mdp,  cleAPI);
+                    return _self.creerCP( nomP,  prenomP,  mdp,  photoP,  cleAPI);
                 }
                 finally
                 {
@@ -87,8 +93,8 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation creerCT
      */
-    public int creerCT(String nomP, String prenomP, String mdp, String cleAPI)
-        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneInconnue
+    public int creerCT(String nomP, String prenomP, String mdp, String photoP, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue, GestionEntreeSortie.PersonneExistante, GestionEntreeSortie.ChampVide
     {
         while(true)
         {
@@ -101,6 +107,7 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(nomP);
                     _output.write_string(prenomP);
                     _output.write_string(mdp);
+                    _output.write_string(photoP);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
                     int _arg_ret = _input.read_long();
@@ -118,9 +125,14 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                         throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
                     }
 
-                    if (_exception_id.equals(GestionEntreeSortie.PersonneInconnueHelper.id()))
+                    if (_exception_id.equals(GestionEntreeSortie.PersonneExistanteHelper.id()))
                     {
-                        throw GestionEntreeSortie.PersonneInconnueHelper.read(_exception.getInputStream());
+                        throw GestionEntreeSortie.PersonneExistanteHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
                     }
 
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
@@ -138,7 +150,7 @@ public class _CreationCompteStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.CreationCompteOperations _self = (GestionEntreeSortie.CreationCompteOperations) _so.servant;
                 try
                 {
-                    return _self.creerCT( nomP,  prenomP,  mdp,  cleAPI);
+                    return _self.creerCT( nomP,  prenomP,  mdp,  photoP,  cleAPI);
                 }
                 finally
                 {

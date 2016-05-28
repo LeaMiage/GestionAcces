@@ -11,6 +11,8 @@ module GestionEntreeSortie {
     exception AutorisationInconnue {string message;};
     exception EmpreinteInconnue {string message;};
     exception JournalisationImpossible {string message;};
+    exception PersonneExistante {string message;};
+    exception ChampVide {string message;};
     
     struct Autorisation {
         string heureDebut;
@@ -114,20 +116,24 @@ module GestionEntreeSortie {
             in string nomP,
             in string prenomP,
             in string mdp,
+            in string photoP,
             in string cleAPI
         ) raises(
             CleInconnue,
-            PersonneInconnue
+            PersonneExistante,
+			ChampVide
         );
 
         long creerCT(
             in string nomP,
             in string prenomP,
             in string mdp,
+            in string photoP,
             in string cleAPI
         ) raises(
             CleInconnue,
-            PersonneInconnue
+            PersonneExistante,
+			ChampVide
         );
     };
 
@@ -209,7 +215,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             PersonneInconnue,
-            CleInconnue
+            CleInconnue,
+			ChampVide /* Utilisé pour l'empreinte */
         );
 
         void supprimerEmpreinte(
@@ -227,7 +234,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             EmpreinteInconnue,
-            CleInconnue
+            CleInconnue,
+			ChampVide /* Utilisé pour l'empreinte */
         );
     };
     interface ConsultationJournal {

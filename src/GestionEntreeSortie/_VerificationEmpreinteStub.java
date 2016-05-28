@@ -24,7 +24,7 @@ public class _VerificationEmpreinteStub extends org.omg.CORBA.portable.ObjectImp
      * Operation verifierEmpreinte
      */
     public void verifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-        throws GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.CleInconnue, GestionEntreeSortie.ChampVide
     {
         while(true)
         {
@@ -55,6 +55,11 @@ public class _VerificationEmpreinteStub extends org.omg.CORBA.portable.ObjectImp
                     if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))
                     {
                         throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
                     }
 
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);

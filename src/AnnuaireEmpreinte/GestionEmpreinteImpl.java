@@ -1,5 +1,6 @@
 package AnnuaireEmpreinte;
 
+import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.PersonneInconnue;
 
@@ -7,7 +8,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 
 	@Override
 	public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-			throws PersonneInconnue, CleInconnue {
+			throws PersonneInconnue, CleInconnue, ChampVide {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Test : modifierEmpreinte");

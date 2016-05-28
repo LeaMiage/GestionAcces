@@ -24,7 +24,7 @@ public class _GestionEmpreinteStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation modifierEmpreinte
      */
     public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-        throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue, GestionEntreeSortie.ChampVide
     {
         while(true)
         {
@@ -55,6 +55,11 @@ public class _GestionEmpreinteStub extends org.omg.CORBA.portable.ObjectImpl
                     if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))
                     {
                         throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
                     }
 
                     throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);

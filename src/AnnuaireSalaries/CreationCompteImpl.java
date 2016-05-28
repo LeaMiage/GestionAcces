@@ -7,15 +7,17 @@ import java.util.Hashtable;
 import java.util.Iterator;
 
 import GestionEntreeSortie.AutorisationTemporaire;
+import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.IdentiteCollaborateur;
+import GestionEntreeSortie.PersonneExistante;
 import GestionEntreeSortie.PersonneInconnue;
 
 public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 
 	@Override
-	public int creerCP(String nomP, String prenomP, String mdp, String cleAPI) throws CleInconnue, PersonneInconnue {
+	public int creerCP(String nomP, String prenomP, String mdp, String photoP, String cleAPI) throws CleInconnue, PersonneExistante, ChampVide {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals("cleAPI")){
 			throw new CleInconnue("La clé API est invalide.");
@@ -34,7 +36,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 	}
 
 	@Override
-	public int creerCT(String nomP, String prenomP, String mdp, String cleAPI) throws CleInconnue, PersonneInconnue {
+	public int creerCT(String nomP, String prenomP, String mdp, String photoP, String cleAPI) throws CleInconnue, PersonneExistante, ChampVide {
 		// TODO Auto-generated method stub
 		
 		if (cleAPI==""){
