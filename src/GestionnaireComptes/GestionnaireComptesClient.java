@@ -33,11 +33,11 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
-	        
+	        /*
 	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "photoLea", "lcheoux", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "photoTheo", "tchevalier", "cleAPI"));
 	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "photoBastien", "bmovia", "cleAPI"));			
-	        
+	        */
 	        
 	        //*****************************************************//
 	        
@@ -56,8 +56,27 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
 	        
-	        IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(3, "cleAPI");
+	        /*IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(3, "cleAPI");
 	        System.out.println(ic.idPersonne + " " + ic.nomP + " " + ic.prenomP); 
+	        */
+	        //*****************************************************//
+	        
+	        // Nom de l'objet CORBA
+	        String idObj3 = "GestionEmpreinte";
+	        
+	        // Construction du nom a rechercher
+	        org.omg.CosNaming.NameComponent[] nameToFind3 = new org.omg.CosNaming.NameComponent[1];
+	        nameToFind3[0] = new org.omg.CosNaming.NameComponent(idObj3,"");
+	        
+	        // Recherche aupres du naming service
+	        org.omg.CORBA.Object distantGestionEmpreinte = nameRoot.resolve(nameToFind3);
+	        System.out.println("Objet '" + idObj3 + "' trouve aupres du service de noms. IOR de l'objet :");
+	        System.out.println(orb.object_to_string(distantGestionEmpreinte));
+        
+	        // Casting des objets CORBA
+	        GestionEntreeSortie.GestionEmpreinte gestionEmpreinte = GestionEntreeSortie.GestionEmpreinteHelper.narrow(distantGestionEmpreinte);
+	        
+	        gestionEmpreinte.modifierEmpreinte(0, "empreinte", "cleAPI");
 	        
 		}catch (CleInconnue cleInconnue){
 			System.out.println(cleInconnue.message);
@@ -65,8 +84,6 @@ public class GestionnaireComptesClient {
 			System.out.println(champVide.message);
 		}catch (PersonneInconnue personneInconnue){
 			System.out.println(personneInconnue.message);
-		}catch (PersonneExistante personneExistante){
-			System.out.println(personneExistante.message);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
