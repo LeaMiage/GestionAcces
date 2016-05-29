@@ -33,14 +33,11 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
-	        /*
-	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "lcheoux", "cleAPI"));
-	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "tchevalier", "cleAPI"));
-	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "bmovia", "cleAPI"));
-	        System.out.println(creationCompte.creerCP("Kristen", "Stewart", "kStew", "EqualsPhoto", "cleAPI"));
-			*/
-	        	        
-	        System.out.println(creationCompte.creerCP("", "toto", "t", "", "cleAPI"));
+	        
+	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "photoLea", "lcheoux", "cleAPI"));
+	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "photoTheo", "tchevalier", "cleAPI"));
+	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "photoBastien", "bmovia", "cleAPI"));			
+	        
 	        
 	        //*****************************************************//
 	        

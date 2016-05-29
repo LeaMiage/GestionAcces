@@ -32,7 +32,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		
 		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, mdp, photoP);
 		
 		annuaire.put(annuaire.size(), collaborateur);
 		
@@ -57,7 +57,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		
 		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
 		
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, "", mdp);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, mdp, photoP);
 		
 		annuaire.put(annuaire.size(), collaborateur);
 		
