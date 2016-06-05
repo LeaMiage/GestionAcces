@@ -1,7 +1,9 @@
 package EquipementPorte;
 
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.EnvoiDonneesCapteurs;
+import GestionEntreeSortie.ErreurEnvoi;
 
 public class EquipementPorteClient {
 
@@ -13,7 +15,7 @@ public class EquipementPorteClient {
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "envoiDonneesCapteurs";
+	        String idObj = "EnvoiDonneesCapteurs";
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -39,5 +41,39 @@ public class EquipementPorteClient {
 		
 		return null;
 	}
+	
+	
+	
+
+	public static void main(String[] args) {
+		
+		System.out.println("Test d'accès aux zones");
+		
+		EnvoiDonneesCapteurs envoiDonnees = getServiceEnvoiDonneesCapteurs(args);
+		
+		System.out.println("EnvoiDonneesCapteurs récupéré");
+		
+		try{
+			
+			System.out.println("Tentative d'accès à la zone");
+			envoiDonnees.accederZone("empreinte", "photoLea", "cleAPI");
+			System.out.println("Accès réussi");
+			
+		} catch (CleInconnue e) {
+			System.out.println("cle inconnue inconnue");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ErreurEnvoi e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 }

@@ -20,17 +20,24 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
 			throws AutorisationInconnue, CleInconnue {
 
+		
+		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
+		
 		if (!cleAPI.equals("cleAPI")){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
 		String [] args = {};
 		
+		System.out.println("Contact de GestionSalaries");
+		
 		GestionSalaries gestionSalaries = PorteClient.getServiceGestionSalaries(args);
 		try {
 			gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
 			
-			/* Vérification autorisation */
+			System.out.println("Personne vérifiée");
+			
+			// Vérification autorisation 
 			
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
 
@@ -41,11 +48,13 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			Helpers.GestionFichiers.ecrireFichier("src/Porte/BD_Autorisations_Perm.txt", annuaireAutorisations);
 			
+			System.out.println("Autorisation permanente ajoutée");
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
+			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
+		} catch (PersonneInconnue e) {
+			System.out.println("Erreur : Personne inconnue");
 		}
 		
 	}

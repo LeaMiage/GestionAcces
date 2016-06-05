@@ -3,6 +3,8 @@ package Administration;
 import org.omg.CORBA.ORBPackage.InvalidName;
 
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.AutorisationInconnue;
+import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.ConsultationJournal;
 import GestionEntreeSortie.GestionAutorisation;
@@ -21,7 +23,7 @@ public class AdministrationClient {
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "gestionAutorisations";
+	        String idObj = "GestionAutorisations";
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -83,6 +85,39 @@ public class AdministrationClient {
 		return null;
 	}
 
+	
+
+	public static void main(String[] args) {
+		
+		// Main de l'admin
+		
+		System.out.println("Test Admin");
+		
+		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args);
+		
+		System.out.println("Gestion autorisation récupéré");
+		
+		
+		try {
+			System.out.println("Tentative d'ajout d'autorisation");
+			AutorisationPermanente ap = new AutorisationPermanente(0,"08h00","18h00");
+			gestionAutorisation.ajouterAutorisationPermanente(ap,"cleAPI");
+			System.out.println("Ajout d'autorisation réussie");
+		} catch (AutorisationInconnue e) {
+			System.out.println("Autorisation inconnue");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CleInconnue e) {
+			System.out.println("cle inconnue inconnue");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
 	
 	
 	

@@ -90,7 +90,7 @@ public class PorteClient {
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "journalisation";
+	        String idObj = "Journalisation";
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -125,7 +125,7 @@ public class PorteClient {
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "verificationEmpreinte";
+	        String idObj = "VerificationEmpreinte";
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
