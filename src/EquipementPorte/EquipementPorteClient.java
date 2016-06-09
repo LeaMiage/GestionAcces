@@ -60,7 +60,7 @@ public class EquipementPorteClient {
 			System.out.println("Accès réussi");
 			
 		} catch (CleInconnue e) {
-			System.out.println("cle inconnue inconnue");
+			System.out.println("Erreur : clé inconnue");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ErreurEnvoi e) {

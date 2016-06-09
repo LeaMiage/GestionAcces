@@ -38,6 +38,9 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			verificationEmpreinte.verifierEmpreinte(ic.idPersonne, empreinte, cleAPI);
 			System.out.println("Empreinte valide");
 			
+			
+			// AJOUTER vérification des autorisations
+			
 			System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
 			
 			journalisation.journaliser(0, 0, photoP, "Autorisé", "Entrée", cleAPI);
