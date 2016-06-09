@@ -35,7 +35,7 @@ public class GestionnaireEmpreinteClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.Authentification authentification = GestionEntreeSortie.AuthentificationHelper.narrow(distantAuthentification);
 	        	        
-	        System.out.println(authentification.authentifierPersonne("photoLea", "cleAPI"));
+	        System.out.println(authentification.authentifierPersonne("photoLea", Utils.Utils.cleApi));
 	        
 	        //*****************************************************//
 	        
@@ -53,8 +53,8 @@ public class GestionnaireEmpreinteClient {
         
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionEmpreinte gestionEmpreinte = GestionEntreeSortie.GestionEmpreinteHelper.narrow(distantGestionEmpreinte);
-	        //gestionEmpreinte.modifierEmpreinte(7, "empreinteLea", "cleAPI");
-	        gestionEmpreinte.supprimerEmpreinte(7, "cleAPI");
+	        //gestionEmpreinte.modifierEmpreinte(7, "empreinteLea", Utils.Utils.cleApi);
+	        gestionEmpreinte.supprimerEmpreinte(7, Utils.Utils.cleApi);
 	        
 		}catch (CleInconnue cleInconnue){
 			System.out.println(cleInconnue.message);

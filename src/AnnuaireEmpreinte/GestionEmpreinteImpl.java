@@ -16,7 +16,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 			throws CleInconnue, ChampVide {
 		// TODO Auto-generated method stub
 		
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
@@ -37,7 +37,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 	public void supprimerEmpreinte(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
 		
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		

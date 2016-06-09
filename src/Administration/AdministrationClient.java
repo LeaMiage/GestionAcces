@@ -153,7 +153,7 @@ public class AdministrationClient {
 
 			try {
 				System.out.println("Tentative d'ajout d'autorisation");
-				gestionAutorisation.ajouterAutorisationPermanente(ap,"cleAPI");
+				gestionAutorisation.ajouterAutorisationPermanente(ap,Utils.Utils.cleApi);
 				System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
 			} catch (AutorisationInconnue e) {
 				System.out.println("Erreur : Autorisation inconnue");
@@ -186,7 +186,7 @@ public void modifierAutorisationPermanente(long idZone, AutorisationPermanente a
 		
 		try {
 			System.out.println("Tentative de modification d'autorisation");
-			gestionAutorisation.modifierAutorisationPermanente(ap, np,"cleAPI");
+			gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
 			System.out.println("Modification d'autorisation réussie");
 		} catch (AutorisationInconnue e) {
 			System.out.println("Erreur : Autorisation inconnue");
@@ -218,7 +218,7 @@ public void supprimerAutorisationPermanente(long idZone, AutorisationPermanente 
 
 		try {
 			System.out.println("Tentative de suppression d'autorisation");
-			gestionAutorisation.supprimerAutorisationPermanente(ap,"cleAPI");
+			gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
 			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
 		} catch (AutorisationInconnue e) {
 			System.out.println("Erreur : Autorisation inconnue");
@@ -254,7 +254,7 @@ public void ajouterAutorisationTemporaire(long idZone, AutorisationTemporaire at
 
 		try {
 			System.out.println("Tentative d'ajout d'autorisation");
-			gestionAutorisation.ajouterAutorisationTemporaire(at,"cleAPI");
+			gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
 			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
 		} catch (AutorisationInconnue e) {
 			System.out.println("Erreur : Autorisation inconnue");
@@ -287,7 +287,7 @@ for(int i=0;i<z.listeIdPortes.length;i++)
 	
 	try {
 		System.out.println("Tentative de modification d'autorisation");
-		gestionAutorisation.modifierAutorisationTemporaire(at, at_new,"cleAPI");
+		gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
 		System.out.println("Modification d'autorisation réussie");
 	} catch (AutorisationInconnue e) {
 		System.out.println("Erreur : Autorisation inconnue");
@@ -319,7 +319,7 @@ for(int i=0;i<z.listeIdPortes.length;i++)
 
 	try {
 		System.out.println("Tentative de suppression d'autorisation");
-		gestionAutorisation.supprimerAutorisationTemporaire(at,"cleAPI");
+		gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
 		System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
 	} catch (AutorisationInconnue e) {
 		System.out.println("Erreur : Autorisation inconnue");

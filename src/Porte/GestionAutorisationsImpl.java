@@ -23,7 +23,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
 		
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
@@ -70,7 +70,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			throws AutorisationInconnue, CleInconnue {
 		
 
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
@@ -113,7 +113,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			throws AutorisationInconnue, CleInconnue {
 
 
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
@@ -155,7 +155,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			throws AutorisationInconnue, CleInconnue {
 		
 
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
@@ -189,7 +189,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	public void modifierAutorisationTemporaire(AutorisationTemporaire at, AutorisationTemporaire nt, String cleAPI)
 			throws AutorisationInconnue, CleInconnue {
 
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 
@@ -228,7 +228,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			throws AutorisationInconnue, CleInconnue {
 
 
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 

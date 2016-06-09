@@ -14,7 +14,7 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 	@Override
 	public IdentiteCollaborateur rechercherSalarie(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		
@@ -34,7 +34,7 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 	@Override
 	public void verifierPersonne(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		

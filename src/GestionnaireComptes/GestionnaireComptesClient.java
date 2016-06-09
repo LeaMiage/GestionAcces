@@ -34,9 +34,9 @@ public class GestionnaireComptesClient {
 	        GestionEntreeSortie.CreationCompte creationCompte = GestionEntreeSortie.CreationCompteHelper.narrow(distantCreationCompte);
 	        
 	        /*
-	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "photoLea", "lcheoux", "cleAPI"));
-	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "photoTheo", "tchevalier", "cleAPI"));
-	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "photoBastien", "bmovia", "cleAPI"));			
+	        System.out.println(creationCompte.creerCP("Chéoux", "Léa", "photoLea", "lcheoux", Utils.Utils.cleApi));
+	        System.out.println(creationCompte.creerCP("Chevalier", "Théo", "photoTheo", "tchevalier", Utils.Utils.cleApi));
+	        System.out.println(creationCompte.creerCP("Movia", "Bastien", "photoBastien", "bmovia", Utils.Utils.cleApi));			
 	        */
 	        
 	        //*****************************************************//
@@ -56,7 +56,7 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
 	        
-	        /*IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(3, "cleAPI");
+	        /*IdentiteCollaborateur ic = gestionSalaries.rechercherSalarie(3, Utils.Utils.cleApi);
 	        System.out.println(ic.idPersonne + " " + ic.nomP + " " + ic.prenomP); 
 	        */
 	        //*****************************************************//
@@ -76,7 +76,7 @@ public class GestionnaireComptesClient {
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionEmpreinte gestionEmpreinte = GestionEntreeSortie.GestionEmpreinteHelper.narrow(distantGestionEmpreinte);
 	        
-	        gestionEmpreinte.modifierEmpreinte(0, "empreinte", "cleAPI");
+	        gestionEmpreinte.modifierEmpreinte(0, "empreinte", Utils.Utils.cleApi);
 	        
 		}catch (CleInconnue cleInconnue){
 			System.out.println(cleInconnue.message);

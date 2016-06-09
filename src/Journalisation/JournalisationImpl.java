@@ -13,7 +13,7 @@ public class JournalisationImpl extends GestionEntreeSortie.JournalisationPOA{
 	public void journaliser(int idZone, int idPorte, String photoP, String statut, String typeAcces, String cleAPI)
 			throws JournalisationImpossible, CleInconnue {
 		// TODO Auto-generated method stub
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		

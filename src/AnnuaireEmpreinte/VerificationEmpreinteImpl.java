@@ -15,7 +15,7 @@ public class VerificationEmpreinteImpl extends GestionEntreeSortie.VerificationE
 			throws EmpreinteInconnue, CleInconnue, ChampVide {
 		// TODO Auto-generated method stub
 		
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		

@@ -20,7 +20,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 	@Override
 	public int creerCP(String nomP, String prenomP, String mdp, String photoP, String cleAPI) throws CleInconnue, PersonneExistante, ChampVide {
 		// TODO Auto-generated method stub
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		if (nomP.isEmpty() | prenomP.isEmpty() | mdp.isEmpty() | photoP.isEmpty()){

@@ -19,7 +19,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 		
 		System.out.println("Demande d'accès à une zone");
 		
-		if (!cleAPI.equals("cleAPI")){
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		

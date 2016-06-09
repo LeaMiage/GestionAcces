@@ -56,7 +56,7 @@ public class EquipementPorteClient {
 		try{
 			
 			System.out.println("Tentative d'accès à la zone");
-			envoiDonnees.accederZone("empreinte", "photoLea", "cleAPI");
+			envoiDonnees.accederZone("empreinte", "photoLea", Utils.Utils.cleApi);
 			System.out.println("Accès réussi");
 			
 		} catch (CleInconnue e) {
