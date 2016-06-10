@@ -22,8 +22,8 @@ module GestionEntreeSortie {
 
     struct AutorisationTemporaire {
 		long idPersonne;
-        long dateDebut;
-        long dateFin;
+        double dateDebut;
+        double dateFin;
     };
 
     struct AutorisationPermanente {
