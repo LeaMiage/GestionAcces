@@ -169,7 +169,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Temp.txt");
 
-			String idAutorisation = at.idPersonne + "_" + at.heureDebut + "_" + at.heureFin + "_" + at.jourDebut + "_" + at.jourFin;
+			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
 			// Ajout si la clé n'existe pas déjà
 			annuaireAutorisations.putIfAbsent(idAutorisation, at);
@@ -203,7 +203,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
 
-			String idAutorisation = at.idPersonne + "_" + at.heureDebut + "_" + at.heureFin + "_" + at.jourDebut + "_" + at.jourFin;
+			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
 			// Suppression de l'ancienne autorisation si elle existe
 			if (annuaireAutorisations.containsKey(idAutorisation))
@@ -242,7 +242,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
 
-			String idAutorisation = at.idPersonne + "_" + at.heureDebut + "_" + at.heureFin + "_" + at.jourDebut + "_" + at.jourFin;
+			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
 			// Suppression de l'ancienne autorisation si elle existe
 			if (annuaireAutorisations.containsKey(idAutorisation))
