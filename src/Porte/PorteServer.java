@@ -42,8 +42,8 @@ public class PorteServer {
 	        org.omg.CosNaming.NameComponent[] nameToRegister1 = new org.omg.CosNaming.NameComponent[1];
 	        org.omg.CosNaming.NameComponent[] nameToRegister2 = new org.omg.CosNaming.NameComponent[1];
 	        
-	        String nomServant1 = "EnvoiDonneesCapteurs_ " + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
-	        String nomServant2 = "GestionAutorisations_ " + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
+	        String nomServant1 = "EnvoiDonneesCapteurs_" + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
+	        String nomServant2 = "GestionAutorisations_" + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
 	        
 	        nameToRegister1[0] = new org.omg.CosNaming.NameComponent(nomServant1,"");
 	        nameToRegister2[0] = new org.omg.CosNaming.NameComponent(nomServant2,"");
