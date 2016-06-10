@@ -1,5 +1,11 @@
 package Administration;
 
+import java.security.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -331,100 +337,6 @@ public class AdministrationClient {
 	
 	
 	}
-	/*
-	public void gestionZones(){
-		
-
-		Scanner sc = new Scanner(System.in);
-		String str = "1";
-		
-		
-		while(!str.equals("0"))
-		{
-			System.out.println("Menu de gestion des zones. Veuillez choisir l'action à réaliser. (0 pour quitter)");
-			System.out.println("1. Ajouter une zone\n2. Supprimer une zone\n3. Afficher le nombre de zones\n"
-					+ "4. ");
-			
-			str = sc.nextLine();
-			
-			switch (str){
-			case "1":				
-				System.out.println("Ajout de la zone " + ajouterZone() + " effectué");
-				
-				break;
-			case "2":
-				System.out.println("Entrez le numéro de la zone à supprimer");
-				sc= new Scanner(System.in);
-				str=sc.nextLine();
-				
-				if(listeZones.containsKey(Long.parseLong(str)))
-					supprimerZone(Long.parseLong(str));
-				else
-					System.out.println("Erreur : cette zone n'existe pas");
-				break;
-				
-			case "3":
-				System.out.println("Nombre de zones actuel : " + getNbZones());
-				
-				break;
-				
-			case "0":
-				str="0";
-				break;
-				
-			default:
-				break;
-			}
-			
-
-			
-			
-		}
-	}
-
-	public void gestionPortes(){
-
-
-		Scanner sc = new Scanner(System.in);
-		String str = "1";
-		
-		
-		while(!str.equals("0"))
-		{
-			System.out.println("Menu de gestion des portes. Veuillez choisir l'action à réaliser. (0 pour quitter)");
-
-			System.out.println("1. Ajouter une porte\n2. Supprimer une porte\n3. \n"
-								+ "4. ");
-			str = sc.nextLine();
-			switch (str){
-			case "1":
-				System.out.println("Entrez le numéro de la zone où ajouter la porte");
-				sc= new Scanner(System.in);
-				str=sc.nextLine();
-		
-				break;
-				
-				
-			case "2":
-				
-				break;
-				
-			case "3":
-
-				break;
-				
-			case "0":
-				str="0";
-				break;
-				
-			default:
-				break;
-			}
-			
-
-		}
-		}
-	*/
 
 	public void gestionAutorisationsPermanentes(){
 		
@@ -456,10 +368,10 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'heure de début de l'autorisation");
+				System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
 				hdeb = sc.nextLine();
 				
-				System.out.println("Entrez l'heure de fin de l'autorisation");
+				System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
 				hfin = sc.nextLine();
 				
 				
@@ -467,9 +379,7 @@ public class AdministrationClient {
 				
 				
 				ajouterAutorisationPermanente(numZone,ap);
-				
-				
-				
+
 				break;
 				
 				
@@ -485,16 +395,16 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'ancienne heure de début de l'autorisation");
+				System.out.println("Entrez l'ancienne heure de début de l'autorisation (au format hh:mm)");
 				hdeb = sc.nextLine();
 				
-				System.out.println("Entrez l'ancienne heure de fin de l'autorisation");
+				System.out.println("Entrez l'ancienne heure de fin de l'autorisation (au format hh:mm)");
 				hfin = sc.nextLine();
 				
-				System.out.println("Entrez la nouvelle heure de début de l'autorisation");
+				System.out.println("Entrez la nouvelle heure de début de l'autorisation (au format hh:mm)");
 				hdeb_new = sc.nextLine();
 				
-				System.out.println("Entrez la nouvelle heure de fin de l'autorisation");
+				System.out.println("Entrez la nouvelle heure de fin de l'autorisation (au format hh:mm)");
 				hfin_new = sc.nextLine();
 				
 
@@ -520,10 +430,10 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'heure de début de l'autorisation");
+				System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
 				hdeb = sc.nextLine();
 				
-				System.out.println("Entrez l'heure de fin de l'autorisation");
+				System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
 				hfin = sc.nextLine();
 				
 				
@@ -542,11 +452,14 @@ public class AdministrationClient {
 		}
 	}
 	
-	public void gestionAutorisationsTemporaires(){
+	public void gestionAutorisationsTemporaires() throws ParseException{
 		
 
 		int numZone, idPersonne;
-		String hdeb, hfin, hdeb_new, hfin_new, datedeb, datefin, datedeb_new, datefin_new;
+		DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+		Calendar c = Calendar.getInstance();
+		String res;
+		long timestamp_deb, timestamp_fin, timestamp_deb_new, timestamp_fin_new;
 		AutorisationTemporaire at, at_new;
 		
 		Scanner sc = new Scanner(System.in);
@@ -573,25 +486,20 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'heure de début de l'autorisation");
-				hdeb = sc.nextLine();
+				System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+			    c.setTime(df.parse(res));
+			    timestamp_deb = c.getTimeInMillis();
 				
-				System.out.println("Entrez l'heure de fin de l'autorisation");
-				hfin = sc.nextLine();
-				
-				System.out.println("Entrez la date de début de l'autorisation");
-				datedeb = sc.nextLine();
-				
-				System.out.println("Entrez la date de fin de l'autorisation");
-				datefin = sc.nextLine();
-				
-				at = new AutorisationTemporaire(idPersonne,hdeb,hfin,datedeb,datefin);
-				
-				
+				System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_fin = c.getTimeInMillis();
+
+				at = new AutorisationTemporaire(idPersonne, timestamp_deb, timestamp_fin);
+
 				ajouterAutorisationTemporaire(numZone,at);
-				
-				
-				
+
 				break;
 				
 				
@@ -607,33 +515,29 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'ancienne heure de début de l'autorisation");
-				hdeb = sc.nextLine();
+				System.out.println("Entrez l'ancienne date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_deb = c.getTimeInMillis();
 				
-				System.out.println("Entrez l'ancienne heure de fin de l'autorisation");
-				hfin = sc.nextLine();
+				System.out.println("Entrez l'ancienne date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_fin = c.getTimeInMillis();
 				
-				System.out.println("Entrez l'ancienne date de début de l'autorisation");
-				datedeb = sc.nextLine();
+				System.out.println("Entrez la nouvelle date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+			    c.setTime(df.parse(res));
+			    timestamp_deb_new = c.getTimeInMillis();
 				
-				System.out.println("Entrez l'ancienne date de fin de l'autorisation");
-				datefin = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle heure de début de l'autorisation");
-				hdeb_new = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle heure de fin de l'autorisation");
-				hfin_new = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle date de début de l'autorisation");
-				datedeb_new = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle date de fin de l'autorisation");
-				datefin_new = sc.nextLine();
-				
+				System.out.println("Entrez la nouvelle date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_fin_new = c.getTimeInMillis();
 
-				at = new AutorisationTemporaire(idPersonne,hdeb,hfin,datedeb,datefin);
-				at_new = new AutorisationTemporaire(idPersonne,hdeb_new,hfin_new,datedeb_new,datefin_new);
+
+				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
+				at_new = new AutorisationTemporaire(idPersonne,timestamp_deb_new,timestamp_fin_new);
 				
 				modifierAutorisationTemporaire(numZone,at,at_new);
 				
@@ -642,7 +546,6 @@ public class AdministrationClient {
 				break;
 				
 			case "3":
-
 
 				System.out.println("Suppression d'une autorisation temporaire");
 				
@@ -654,19 +557,17 @@ public class AdministrationClient {
 				str=sc.nextLine();
 				numZone = Integer.parseInt(str);
 				
-				System.out.println("Entrez l'heure de début de l'autorisation");
-				hdeb = sc.nextLine();
+				System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_deb = c.getTimeInMillis();
 				
-				System.out.println("Entrez l'heure de fin de l'autorisation");
-				hfin = sc.nextLine();
-				
-				System.out.println("Entrez la date de début de l'autorisation");
-				datedeb = sc.nextLine();
-				
-				System.out.println("Entrez la date de fin de l'autorisation");
-				datefin = sc.nextLine();
-				
-				at = new AutorisationTemporaire(idPersonne,hdeb,hfin,datedeb,datefin);
+				System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+				res = sc.nextLine();
+				c.setTime(df.parse(res));
+			    timestamp_fin = c.getTimeInMillis();
+
+				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
 				
 				
 				supprimerAutorisationTemporaire(numZone,at);
@@ -704,7 +605,12 @@ public class AdministrationClient {
 				
 				break;
 			case "2":
-				gestionAutorisationsTemporaires();
+				try {
+					gestionAutorisationsTemporaires();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 				break;
 

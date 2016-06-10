@@ -15,12 +15,12 @@ public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLE
     /**
      * Struct member dateDebut
      */
-    public int dateDebut;
+    public double dateDebut;
 
     /**
      * Struct member dateFin
      */
-    public int dateFin;
+    public double dateFin;
 
     /**
      * Default constructor
@@ -34,7 +34,7 @@ public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLE
      * @param dateDebut dateDebut struct member
      * @param dateFin dateFin struct member
      */
-    public AutorisationTemporaire(int idPersonne, int dateDebut, int dateFin)
+    public AutorisationTemporaire(int idPersonne, double dateDebut, double dateFin)
     {
         this.idPersonne = idPersonne;
         this.dateDebut = dateDebut;

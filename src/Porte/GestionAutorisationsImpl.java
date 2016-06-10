@@ -12,8 +12,18 @@ import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutorisationPOA{
 
+	private int idZone;
+	private int idPorte;
+	private String locationBD;
 	
 	
+	public GestionAutorisationsImpl(int idZone, int idPorte) {
+		this.idZone=idZone;
+		this.idPorte=idPorte;
+		this.locationBD="src/Porte/BD_Autorisations_" + idZone + "_" + idPorte + "_Perm.txt";
+	}
+
+
 	/********Autorisations Permanentes*********/
 	
 	@Override
@@ -39,14 +49,14 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			// Vérification autorisation 
 			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBD);
 
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
 			// Ajout si la clé n'existe pas déjà
 			annuaireAutorisations.putIfAbsent(idAutorisation, ap);
 			
-			Helpers.GestionFichiers.ecrireFichier("src/Porte/BD_Autorisations_Perm.txt", annuaireAutorisations);
+			Helpers.GestionFichiers.ecrireFichier(locationBD, annuaireAutorisations);
 			
 			System.out.println("Autorisation permanente ajoutée");
 			
@@ -82,7 +92,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			/* Vérification autorisation */
 			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBD);
 			
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
@@ -125,7 +135,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			/* Vérification autorisation */
 			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBD);
 
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
@@ -135,7 +145,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			else
 				throw new AutorisationInconnue("L'autorisation à supprimer est inconnue.");
 
-			Helpers.GestionFichiers.ecrireFichier("src/Porte/BD_Autorisations_Perm.txt", annuaireAutorisations);
+			Helpers.GestionFichiers.ecrireFichier(locationBD, annuaireAutorisations);
 			
 			
 		} catch (PersonneInconnue e) {
@@ -201,7 +211,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			/* Vérification autorisation */
 			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBD);
 
 			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
@@ -240,7 +250,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			/* Vérification autorisation */
 			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBD);
 
 			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
