@@ -166,171 +166,171 @@ public class AdministrationClient {
 		
 	}
 	
-public void modifierAutorisationPermanente(long idZone, AutorisationPermanente ap, AutorisationPermanente np){
-		
-
-	String [] args = {};
-	long idPorte = 0;
+	public void modifierAutorisationPermanente(long idZone, AutorisationPermanente ap, AutorisationPermanente np){
+			
 	
-	Zone z = listeZones.get(idZone);
+		String [] args = {};
+		long idPorte = 0;
+		
+		Zone z = listeZones.get(idZone);
+		
+		for(int i=0;i<z.listeIdPortes.length;i++)
+		{
 	
-	for(int i=0;i<z.listeIdPortes.length;i++)
-	{
-
-		idPorte = z.listeIdPortes[i];
+			idPorte = z.listeIdPortes[i];
+			
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
+			
+			System.out.println("Gestion autorisation récupéré");
+			
+			
+			try {
+				System.out.println("Tentative de modification d'autorisation");
+				gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
+				System.out.println("Modification d'autorisation réussie");
+			} catch (AutorisationInconnue e) {
+				System.out.println("Erreur : Autorisation inconnue");
+			} catch (CleInconnue e) {
+				System.out.println("Erreur : Cle inconnue");
+			}
+			
+		}
+	}
+	
+	
+	public void supprimerAutorisationPermanente(long idZone, AutorisationPermanente ap){
 		
-		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
+		String [] args = {};
+		long idPorte = 0;
 		
-		System.out.println("Gestion autorisation récupéré");
+		Zone z = listeZones.get(idZone);
 		
-		
-		try {
-			System.out.println("Tentative de modification d'autorisation");
-			gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
-			System.out.println("Modification d'autorisation réussie");
-		} catch (AutorisationInconnue e) {
-			System.out.println("Erreur : Autorisation inconnue");
-		} catch (CleInconnue e) {
-			System.out.println("Erreur : Cle inconnue");
+		for(int i=0;i<z.listeIdPortes.length;i++)
+		{
+	
+			idPorte = z.listeIdPortes[i];
+			
+	
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			
+			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
+			
+	
+			try {
+				System.out.println("Tentative de suppression d'autorisation");
+				gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
+				System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
+			} catch (AutorisationInconnue e) {
+				System.out.println("Erreur : Autorisation inconnue");
+			} catch (CleInconnue e) {
+				System.out.println("Erreur : Cle inconnue");
+			}
+			
 		}
 		
+		
 	}
-}
-
-
-public void supprimerAutorisationPermanente(long idZone, AutorisationPermanente ap){
-	
-	String [] args = {};
-	long idPorte = 0;
-	
-	Zone z = listeZones.get(idZone);
-	
-	for(int i=0;i<z.listeIdPortes.length;i++)
-	{
-
-		idPorte = z.listeIdPortes[i];
 		
-
-		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+	
+	
+	
+	public void ajouterAutorisationTemporaire(long idZone, AutorisationTemporaire at){
 		
-		System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
+		String [] args = {};
+		long idPorte = 0;
 		
-
-		try {
-			System.out.println("Tentative de suppression d'autorisation");
-			gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
-			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
-		} catch (AutorisationInconnue e) {
-			System.out.println("Erreur : Autorisation inconnue");
-		} catch (CleInconnue e) {
-			System.out.println("Erreur : Cle inconnue");
+		Zone z = listeZones.get(idZone);
+		
+		for(int i=0;i<z.listeIdPortes.length;i++)
+		{
+	
+			idPorte = z.listeIdPortes[i];
+			
+	
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			
+			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
+			
+	
+			try {
+				System.out.println("Tentative d'ajout d'autorisation");
+				gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
+				System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
+			} catch (AutorisationInconnue e) {
+				System.out.println("Erreur : Autorisation inconnue");
+			} catch (CleInconnue e) {
+				System.out.println("Erreur : Cle inconnue");
+			}
+			
 		}
 		
+		
 	}
 	
-	
-}
-	
-
-
-
-public void ajouterAutorisationTemporaire(long idZone, AutorisationTemporaire at){
-	
-	String [] args = {};
-	long idPorte = 0;
-	
-	Zone z = listeZones.get(idZone);
-	
-	for(int i=0;i<z.listeIdPortes.length;i++)
-	{
-
-		idPorte = z.listeIdPortes[i];
+	public void modifierAutorisationTemporaire(long idZone, AutorisationTemporaire at, AutorisationTemporaire at_new){
 		
-
-		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+	
+		String [] args = {};
+		long idPorte = 0;
 		
-		System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
+		Zone z = listeZones.get(idZone);
 		
-
-		try {
-			System.out.println("Tentative d'ajout d'autorisation");
-			gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
-			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
-		} catch (AutorisationInconnue e) {
-			System.out.println("Erreur : Autorisation inconnue");
-		} catch (CleInconnue e) {
-			System.out.println("Erreur : Cle inconnue");
+		for(int i=0;i<z.listeIdPortes.length;i++)
+		{
+		
+			idPorte = z.listeIdPortes[i];
+			
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
+			
+			System.out.println("Gestion autorisation récupéré");
+			
+			
+			try {
+				System.out.println("Tentative de modification d'autorisation");
+				gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
+				System.out.println("Modification d'autorisation réussie");
+			} catch (AutorisationInconnue e) {
+				System.out.println("Erreur : Autorisation inconnue");
+			} catch (CleInconnue e) {
+				System.out.println("Erreur : Cle inconnue");
+			}
+			
 		}
+	}
+
+
+	public void supprimerAutorisationTemporaire(long idZone, AutorisationTemporaire at){
+	
+		String [] args = {};
+		long idPorte = 0;
 		
+		Zone z = listeZones.get(idZone);
+		
+		for(int i=0;i<z.listeIdPortes.length;i++)
+		{
+		
+			idPorte = z.listeIdPortes[i];
+			
+		
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			
+			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
+			
+		
+			try {
+				System.out.println("Tentative de suppression d'autorisation");
+				gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
+				System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
+			} catch (AutorisationInconnue e) {
+				System.out.println("Erreur : Autorisation inconnue");
+			} catch (CleInconnue e) {
+				System.out.println("Erreur : Cle inconnue");
+			}
+			
+		}
+	
+	
 	}
-	
-	
-}
-
-public void modifierAutorisationTemporaire(long idZone, AutorisationTemporaire at, AutorisationTemporaire at_new){
-	
-
-String [] args = {};
-long idPorte = 0;
-
-Zone z = listeZones.get(idZone);
-
-for(int i=0;i<z.listeIdPortes.length;i++)
-{
-
-	idPorte = z.listeIdPortes[i];
-	
-	GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
-	
-	System.out.println("Gestion autorisation récupéré");
-	
-	
-	try {
-		System.out.println("Tentative de modification d'autorisation");
-		gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
-		System.out.println("Modification d'autorisation réussie");
-	} catch (AutorisationInconnue e) {
-		System.out.println("Erreur : Autorisation inconnue");
-	} catch (CleInconnue e) {
-		System.out.println("Erreur : Cle inconnue");
-	}
-	
-}
-}
-
-
-public void supprimerAutorisationTemporaire(long idZone, AutorisationTemporaire at){
-
-String [] args = {};
-long idPorte = 0;
-
-Zone z = listeZones.get(idZone);
-
-for(int i=0;i<z.listeIdPortes.length;i++)
-{
-
-	idPorte = z.listeIdPortes[i];
-	
-
-	GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
-	
-	System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
-	
-
-	try {
-		System.out.println("Tentative de suppression d'autorisation");
-		gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
-		System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
-	} catch (AutorisationInconnue e) {
-		System.out.println("Erreur : Autorisation inconnue");
-	} catch (CleInconnue e) {
-		System.out.println("Erreur : Cle inconnue");
-	}
-	
-}
-
-
-}
 	/*
 	public void gestionZones(){
 		
