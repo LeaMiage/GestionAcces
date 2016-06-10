@@ -28,16 +28,16 @@ import GestionEntreeSortie.Zone;
 
 public class AdministrationClient {
 
-	private long nbZones;
+	private int nbZones;
 	
-	private long nbPortes;
+	private int nbPortes;
 	
-	Hashtable<Long,Zone> listeZones= new Hashtable<Long, Zone>();
+	Hashtable<Integer,Zone> listeZones= new Hashtable<Integer, Zone>();
 	
 	public AdministrationClient(){
 		nbZones=0;
 		nbPortes=0;
-		Hashtable<Long, Zone> listeZones = new Hashtable<Long, Zone>();
+		Hashtable<Integer, Zone> listeZones = new Hashtable<Integer, Zone>();
 		initialisation();
 		
 	}
@@ -45,9 +45,9 @@ public class AdministrationClient {
 	// Création des zones et affectation des portes
 	public void initialisation(){
 
-		listeZones.put((long) 1, new Zone(1,"Zone 1",new int[] {1,2}));
-		listeZones.put((long) 2, new Zone(2,"Zone 2",new int[] {3,4}));
-		listeZones.put((long) 3, new Zone(3,"Zone 3",new int[] {5,6}));
+		listeZones.put(1, new Zone(1,"Zone 1",new int[] {1,2}));
+		listeZones.put(2, new Zone(2,"Zone 2",new int[] {3,4}));
+		listeZones.put(3, new Zone(3,"Zone 3",new int[] {5,6}));
 
 
 		
@@ -56,7 +56,7 @@ public class AdministrationClient {
 		System.out.println("Création des zones et affectation des portes effectué");		
 	}
 	
-	public static GestionAutorisation getServiceGestionAutorisations(String args[], long idPorte){
+	public static GestionAutorisation getServiceGestionAutorisations(String args[], int idPorte){
 		
 		try {
 			// Intialisation de l'orb
@@ -128,21 +128,21 @@ public class AdministrationClient {
 
 
 
-	public long getNbZones() {
+	public int getNbZones() {
 		return nbZones;
 	}
 
 
-	public void setNbZones(long nbZones) {
+	public void setNbZones(int nbZones) {
 		this.nbZones = nbZones;
 	}
 	
 	
 
-	public void ajouterAutorisationPermanente(long idZone, AutorisationPermanente ap){
+	public void ajouterAutorisationPermanente(int idZone, AutorisationPermanente ap){
 		
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
@@ -172,11 +172,11 @@ public class AdministrationClient {
 		
 	}
 	
-	public void modifierAutorisationPermanente(long idZone, AutorisationPermanente ap, AutorisationPermanente np){
+	public void modifierAutorisationPermanente(int idZone, AutorisationPermanente ap, AutorisationPermanente np){
 			
 	
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
@@ -204,10 +204,10 @@ public class AdministrationClient {
 	}
 	
 	
-	public void supprimerAutorisationPermanente(long idZone, AutorisationPermanente ap){
+	public void supprimerAutorisationPermanente(int idZone, AutorisationPermanente ap){
 		
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
@@ -240,10 +240,10 @@ public class AdministrationClient {
 	
 	
 	
-	public void ajouterAutorisationTemporaire(long idZone, AutorisationTemporaire at){
+	public void ajouterAutorisationTemporaire(int idZone, AutorisationTemporaire at){
 		
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
@@ -273,11 +273,11 @@ public class AdministrationClient {
 		
 	}
 	
-	public void modifierAutorisationTemporaire(long idZone, AutorisationTemporaire at, AutorisationTemporaire at_new){
+	public void modifierAutorisationTemporaire(int idZone, AutorisationTemporaire at, AutorisationTemporaire at_new){
 		
 	
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
@@ -305,10 +305,10 @@ public class AdministrationClient {
 	}
 
 
-	public void supprimerAutorisationTemporaire(long idZone, AutorisationTemporaire at){
+	public void supprimerAutorisationTemporaire(int idZone, AutorisationTemporaire at){
 	
 		String [] args = {};
-		long idPorte = 0;
+		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
 		
