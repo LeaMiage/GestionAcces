@@ -7,15 +7,17 @@ import GestionEntreeSortie.ErreurEnvoi;
 
 public class EquipementPorteClient {
 
+	private int idZone;
+	private int idPorte;
+	
+	public static EnvoiDonneesCapteurs getServiceEnvoiDonneesCapteurs(String args[], int idZone, int idPorte){
 
-	public static EnvoiDonneesCapteurs getServiceEnvoiDonneesCapteurs(String args[]){
-		
 		try {
 			// Intialisation de l'orb
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "EnvoiDonneesCapteurs";
+	        String idObj = "EnvoiDonneesCapteurs_" + idZone + "_" + idPorte;
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -47,17 +49,19 @@ public class EquipementPorteClient {
 
 	public static void main(String[] args) {
 		
+		String msg;
+		
 		System.out.println("Test d'accès aux zones");
 		
-		EnvoiDonneesCapteurs envoiDonnees = getServiceEnvoiDonneesCapteurs(args);
+		EnvoiDonneesCapteurs envoiDonnees = getServiceEnvoiDonneesCapteurs(args, Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 		
 		System.out.println("EnvoiDonneesCapteurs récupéré");
 		
 		try{
 			
 			System.out.println("Tentative d'accès à la zone");
-			envoiDonnees.accederZone("empreinte", "photoLea", Utils.Utils.cleApi);
-			System.out.println("Accès réussi");
+			msg = envoiDonnees.accederZone("empreinte", "photoLea", Utils.Utils.cleApi);
+			System.out.println("Accès réussi. " + msg);
 			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");

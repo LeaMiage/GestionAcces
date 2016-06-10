@@ -12,8 +12,15 @@ import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutorisationPOA{
 
-	
-	
+	private int idZone;
+	private int idPorte;
+		
+	public GestionAutorisationsImpl(int idZone, int idPorte) {
+		this.idZone=idZone;
+		this.idPorte=idPorte;
+	}
+
+
 	/********Autorisations Permanentes*********/
 	
 	@Override

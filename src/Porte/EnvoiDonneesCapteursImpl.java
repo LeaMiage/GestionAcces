@@ -21,6 +21,14 @@ import GestionEntreeSortie.VerificationEmpreinte;
 
 public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCapteursPOA{
 
+	private int idZone;
+	private int idPorte;
+	
+	public EnvoiDonneesCapteursImpl(int idZone, int idPorte) {
+		this.idZone=idZone;
+		this.idPorte=idPorte;
+	}
+
 	@Override
 	public String accederZone(String empreinte, String photoP, String cleAPI) throws ErreurEnvoi, CleInconnue {
 		

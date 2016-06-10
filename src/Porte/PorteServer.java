@@ -7,6 +7,7 @@ import org.omg.PortableServer.POAHelper;
 
 public class PorteServer {
 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
@@ -21,9 +22,9 @@ public class PorteServer {
 
 	        // Creation du servant
 	        //*********************
-	        EnvoiDonneesCapteursImpl servantEnvoiDonneesCapteurs = new EnvoiDonneesCapteursImpl();
+	        EnvoiDonneesCapteursImpl servantEnvoiDonneesCapteurs = new EnvoiDonneesCapteursImpl(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 
-	        GestionAutorisationsImpl servantGestionAutorisations = new GestionAutorisationsImpl();
+	        GestionAutorisationsImpl servantGestionAutorisations = new GestionAutorisationsImpl(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
 	       
 	        // Activer le servant au sein du POA et recuperer son ID
 	        byte[] servantEnvoiDonneesCapteursId = rootPOA.activate_object(servantEnvoiDonneesCapteurs);
@@ -41,8 +42,8 @@ public class PorteServer {
 	        org.omg.CosNaming.NameComponent[] nameToRegister1 = new org.omg.CosNaming.NameComponent[1];
 	        org.omg.CosNaming.NameComponent[] nameToRegister2 = new org.omg.CosNaming.NameComponent[1];
 	        
-	        String nomServant1 = "EnvoiDonneesCapteurs";
-	        String nomServant2 = "GestionAutorisations";
+	        String nomServant1 = "EnvoiDonneesCapteurs_ " + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
+	        String nomServant2 = "GestionAutorisations_ " + Integer.parseInt(args[0]) + "_" + Integer.parseInt(args[1]);
 	        
 	        nameToRegister1[0] = new org.omg.CosNaming.NameComponent(nomServant1,"");
 	        nameToRegister2[0] = new org.omg.CosNaming.NameComponent(nomServant2,"");

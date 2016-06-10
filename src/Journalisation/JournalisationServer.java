@@ -25,7 +25,7 @@ public class JournalisationServer {
 	        //*********************
 	        JournalisationImpl servantJournalisation = new JournalisationImpl();
 
-	        GestionAutorisationsImpl servantConsultationJournal = new GestionAutorisationsImpl();
+	        ConsultationJournalImpl servantConsultationJournal = new ConsultationJournalImpl();
 	       
 	        // Activer le servant au sein du POA et recuperer son ID
 	        byte[] servantEnvoiDonneesCapteursId = rootPOA.activate_object(servantJournalisation);
