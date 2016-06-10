@@ -15,7 +15,7 @@ import GestionEntreeSortie.VerificationEmpreinte;
 public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCapteursPOA{
 
 	@Override
-	public void accederZone(String empreinte, String photoP, String cleAPI) throws ErreurEnvoi, CleInconnue {
+	public String accederZone(String empreinte, String photoP, String cleAPI) throws ErreurEnvoi, CleInconnue {
 		
 		System.out.println("Demande d'accès à une zone");
 		
@@ -24,6 +24,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 		}
 		
 		String [] args = {};
+		String msg = "";
 		
 		System.out.println("Contact de Authentification, VérificationEmpreinte et Journalisation");
 		
@@ -46,7 +47,8 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			journalisation.journaliser(0, 0, photoP, "Autorisé", "Entrée", cleAPI);
 			System.out.println("Journalisation effectuée");
 			
-			
+			msg = "Bienvenue " + ic.prenomP + " " + ic.nomP;
+
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		} catch (ErreurAuthentification e) {
@@ -58,11 +60,13 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 		} catch (JournalisationImpossible e) {
 			System.out.println("Erreur : Journalisation impossible");
 		}
+		return msg;
 	}
 
 	@Override
-	public void sortirZone(String empreinte, String photoP, String cleAPI) throws ErreurEnvoi, CleInconnue {
+	public String sortirZone(String empreinte, String photoP, String cleAPI) throws ErreurEnvoi, CleInconnue {
 		// TODO Auto-generated method stub
+		return "TODO";
 		
 	}
 
