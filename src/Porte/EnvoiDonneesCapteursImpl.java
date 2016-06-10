@@ -1,6 +1,13 @@
 package Porte;
 
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
+
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.AutorisationPermanente;
+import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.EmpreinteInconnue;
@@ -40,14 +47,56 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			System.out.println("Empreinte valide");
 			
 			
-			// AJOUTER vérification des autorisations
+			// Vérification des autorisations
+			Date date      = new Date();
+			long timestamp = date.getTime();
+			int heures     = date.getHours();
+			int minutes    = date.getMinutes();
+			boolean trouve = false;
 			
-			System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
-			
-			journalisation.journaliser(0, 0, photoP, "Autorisé", "Entrée", cleAPI);
+			Hashtable annuaireAP = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+		    Set<String> keys     = annuaireAP.keySet();
+		    Iterator<String> itr = keys.iterator();
+		    
+		    while (itr.hasNext() && ! trouve) {
+		       String str = itr.next();
+		       AutorisationPermanente autorisation = (AutorisationPermanente) annuaireAP.get(str);
+		       
+		       String[] exploded = autorisation.heureDebut.split(":");
+		       int heures_autorisation  = Integer.parseInt(exploded[0]);
+		       int minutes_autorisation = Integer.parseInt(exploded[1]);
+		       
+		       if (autorisation.idPersonne == ic.idPersonne && heures >= heures_autorisation
+		       && minutes >= minutes_autorisation) {
+		    	   trouve = true;
+		       }
+		    }
+
+			Hashtable annuaireAT = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Temp.txt");
+		    Set<String> keys2     = annuaireAT.keySet();
+		    Iterator<String> itr2 = keys2.iterator();
+		    
+		    while (itr2.hasNext() && ! trouve) {
+			       String str = itr2.next();
+			       AutorisationTemporaire autorisation = (AutorisationTemporaire) annuaireAT.get(str);
+			       
+			       if (autorisation.idPersonne == ic.idPersonne && timestamp >= autorisation.dateDebut
+			       && timestamp < autorisation.dateFin) {
+			    	   trouve = true;
+			       }
+			}
+
+		    if (trouve) {
+				System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
+				
+				journalisation.journaliser(0, 0, photoP, "Autorisé", "Entrée", cleAPI);
+				msg = "Bienvenue " + ic.prenomP + " " + ic.nomP;
+		    } else {
+		    	journalisation.journaliser(0, 0, photoP, "Refusé", "Entrée", cleAPI);
+		    	msg = "Autorisation refusée";
+		    }
 			System.out.println("Journalisation effectuée");
 			
-			msg = "Bienvenue " + ic.prenomP + " " + ic.nomP;
 
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
