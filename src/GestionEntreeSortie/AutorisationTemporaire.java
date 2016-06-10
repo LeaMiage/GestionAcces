@@ -13,24 +13,14 @@ public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLE
     public int idPersonne;
 
     /**
-     * Struct member heureDebut
+     * Struct member dateDebut
      */
-    public String heureDebut;
+    public int dateDebut;
 
     /**
-     * Struct member heureFin
+     * Struct member dateFin
      */
-    public String heureFin;
-
-    /**
-     * Struct member jourDebut
-     */
-    public String jourDebut;
-
-    /**
-     * Struct member jourFin
-     */
-    public String jourFin;
+    public int dateFin;
 
     /**
      * Default constructor
@@ -41,18 +31,14 @@ public final class AutorisationTemporaire implements org.omg.CORBA.portable.IDLE
     /**
      * Constructor with fields initialization
      * @param idPersonne idPersonne struct member
-     * @param heureDebut heureDebut struct member
-     * @param heureFin heureFin struct member
-     * @param jourDebut jourDebut struct member
-     * @param jourFin jourFin struct member
+     * @param dateDebut dateDebut struct member
+     * @param dateFin dateFin struct member
      */
-    public AutorisationTemporaire(int idPersonne, String heureDebut, String heureFin, String jourDebut, String jourFin)
+    public AutorisationTemporaire(int idPersonne, int dateDebut, int dateFin)
     {
         this.idPersonne = idPersonne;
-        this.heureDebut = heureDebut;
-        this.heureFin = heureFin;
-        this.jourDebut = jourDebut;
-        this.jourFin = jourFin;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 
 }

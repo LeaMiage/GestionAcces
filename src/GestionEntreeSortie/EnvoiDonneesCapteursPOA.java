@@ -53,9 +53,10 @@ public abstract class EnvoiDonneesCapteursPOA extends org.omg.PortableServer.Ser
 
         try
         {
-            accederZone(arg0_in, arg1_in, arg2_in);
+            String _arg_result = accederZone(arg0_in, arg1_in, arg2_in);
 
             _output = handler.createReply();
+            _output.write_string(_arg_result);
 
         }
         catch (GestionEntreeSortie.ErreurEnvoi _exception)
@@ -81,9 +82,10 @@ public abstract class EnvoiDonneesCapteursPOA extends org.omg.PortableServer.Ser
 
         try
         {
-            sortirZone(arg0_in, arg1_in, arg2_in);
+            String _arg_result = sortirZone(arg0_in, arg1_in, arg2_in);
 
             _output = handler.createReply();
+            _output.write_string(_arg_result);
 
         }
         catch (GestionEntreeSortie.ErreurEnvoi _exception)

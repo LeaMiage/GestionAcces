@@ -23,7 +23,7 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation accederZone
      */
-    public void accederZone(String empreinte, String photoP, String cleAPI)
+    public String accederZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue
     {
         while(true)
@@ -38,7 +38,8 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(photoP);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
-                    return;
+                    String _arg_ret = _input.read_string();
+                    return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
                 {
@@ -72,8 +73,7 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.EnvoiDonneesCapteursOperations _self = (GestionEntreeSortie.EnvoiDonneesCapteursOperations) _so.servant;
                 try
                 {
-                    _self.accederZone( empreinte,  photoP,  cleAPI);
-                    return;
+                    return _self.accederZone( empreinte,  photoP,  cleAPI);
                 }
                 finally
                 {
@@ -86,7 +86,7 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation sortirZone
      */
-    public void sortirZone(String empreinte, String photoP, String cleAPI)
+    public String sortirZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue
     {
         while(true)
@@ -101,7 +101,8 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(photoP);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
-                    return;
+                    String _arg_ret = _input.read_string();
+                    return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
                 {
@@ -135,8 +136,7 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.EnvoiDonneesCapteursOperations _self = (GestionEntreeSortie.EnvoiDonneesCapteursOperations) _so.servant;
                 try
                 {
-                    _self.sortirZone( empreinte,  photoP,  cleAPI);
-                    return;
+                    return _self.sortirZone( empreinte,  photoP,  cleAPI);
                 }
                 finally
                 {

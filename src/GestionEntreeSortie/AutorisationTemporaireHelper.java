@@ -73,23 +73,17 @@ public class AutorisationTemporaireHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[5];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[3];
 
                 _members[0] = new org.omg.CORBA.StructMember();
                 _members[0].name = "idPersonne";
                 _members[0].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
                 _members[1] = new org.omg.CORBA.StructMember();
-                _members[1].name = "heureDebut";
-                _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[1].name = "dateDebut";
+                _members[1].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
                 _members[2] = new org.omg.CORBA.StructMember();
-                _members[2].name = "heureFin";
-                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
-                _members[3] = new org.omg.CORBA.StructMember();
-                _members[3].name = "jourDebut";
-                _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
-                _members[4] = new org.omg.CORBA.StructMember();
-                _members[4].name = "jourFin";
-                _members[4].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[2].name = "dateFin";
+                _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_long);
                 _tc = orb.create_struct_tc(id(),"AutorisationTemporaire",_members);
                 _working = false;
             }
@@ -118,10 +112,8 @@ public class AutorisationTemporaireHelper
         GestionEntreeSortie.AutorisationTemporaire new_one = new GestionEntreeSortie.AutorisationTemporaire();
 
         new_one.idPersonne = istream.read_long();
-        new_one.heureDebut = istream.read_string();
-        new_one.heureFin = istream.read_string();
-        new_one.jourDebut = istream.read_string();
-        new_one.jourFin = istream.read_string();
+        new_one.dateDebut = istream.read_long();
+        new_one.dateFin = istream.read_long();
 
         return new_one;
     }
@@ -134,10 +126,8 @@ public class AutorisationTemporaireHelper
     public static void write(org.omg.CORBA.portable.OutputStream ostream, GestionEntreeSortie.AutorisationTemporaire value)
     {
         ostream.write_long(value.idPersonne);
-        ostream.write_string(value.heureDebut);
-        ostream.write_string(value.heureFin);
-        ostream.write_string(value.jourDebut);
-        ostream.write_string(value.jourFin);
+        ostream.write_long(value.dateDebut);
+        ostream.write_long(value.dateFin);
     }
 
 }

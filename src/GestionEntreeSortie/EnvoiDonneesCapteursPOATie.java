@@ -65,19 +65,19 @@ public class EnvoiDonneesCapteursPOATie extends EnvoiDonneesCapteursPOA
     /**
      * Operation accederZone
      */
-    public void accederZone(String empreinte, String photoP, String cleAPI)
+    public String accederZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue
     {
-        _tie.accederZone( empreinte,  photoP,  cleAPI);
+        return _tie.accederZone( empreinte,  photoP,  cleAPI);
     }
 
     /**
      * Operation sortirZone
      */
-    public void sortirZone(String empreinte, String photoP, String cleAPI)
+    public String sortirZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue
     {
-        _tie.sortirZone( empreinte,  photoP,  cleAPI);
+        return _tie.sortirZone( empreinte,  photoP,  cleAPI);
     }
 
 }

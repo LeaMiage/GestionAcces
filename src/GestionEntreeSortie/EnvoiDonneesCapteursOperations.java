@@ -10,13 +10,13 @@ public interface EnvoiDonneesCapteursOperations
     /**
      * Operation accederZone
      */
-    public void accederZone(String empreinte, String photoP, String cleAPI)
+    public String accederZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue;
 
     /**
      * Operation sortirZone
      */
-    public void sortirZone(String empreinte, String photoP, String cleAPI)
+    public String sortirZone(String empreinte, String photoP, String cleAPI)
         throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue;
 
 }
