@@ -32,9 +32,7 @@ public class GestionnaireEmpreinteClient {
 	
 	        // Recherche aupres du naming service
 	        org.omg.CORBA.Object distantAuthentification = nameRoot.resolve(nameToFind);
-	        System.out.println("Objet '" + idObj + "' trouve aupres du service de noms. IOR de l'objet :");
-	        System.out.println(orb.object_to_string(distantAuthentification));
-	        
+	        	        
 	        // Casting des objets CORBA
 	        Authentification authentification = GestionEntreeSortie.AuthentificationHelper.narrow(distantAuthentification);
 	        return authentification;
@@ -63,8 +61,6 @@ public class GestionnaireEmpreinteClient {
 	        
 	        // Recherche aupres du naming service
 	        org.omg.CORBA.Object distantGestionEmpreinte = nameRoot.resolve(nameToFind2);
-	        System.out.println("Objet '" + idObj2 + "' trouve aupres du service de noms. IOR de l'objet :");
-	        System.out.println(orb.object_to_string(distantGestionEmpreinte));
         
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionEmpreinte gestionEmpreinte = GestionEntreeSortie.GestionEmpreinteHelper.narrow(distantGestionEmpreinte);
@@ -89,19 +85,6 @@ public class GestionnaireEmpreinteClient {
 		
 		GestionEmpreinte gestionEmpreinte = GestionnaireEmpreinteClient.getServiceGestionEmpreinte(args);
 		gestionEmpreinte.modifierEmpreinte(idPersonne, empreinte, Utils.Utils.cleApi);
-	}
-	
-	public void authentifierPersonne(String photoP){
-		String [] args = {};
-		
-		Authentification authentification = GestionnaireEmpreinteClient.getServiceAuthentification(args);
-		try {
-			authentification.authentifierPersonne(photoP, Utils.Utils.cleApi);
-		} catch (ErreurAuthentification erreurAuthentification){
-			System.out.println(erreurAuthentification.message);
-		} catch (CleInconnue cleInconnue){
-			System.out.println(cleInconnue.message);
-		} 
 	}
 	
 	public void authentifierCompte(int idPersonne, String mdp) throws ErreurAuthentification, CleInconnue{
@@ -140,26 +123,26 @@ public class GestionnaireEmpreinteClient {
 				System.out.println("Entrez votre mot de passe");
 				str=sc.nextLine();
 				mdp = str;
-				
+				System.out.println("\n");
 				try {
 					authentifierCompte(idPersonne, mdp);
+					menuGestionnaireEmpreinte(idPersonne);
 				} catch (ErreurAuthentification erreurAuthentification) {
 					System.out.println(erreurAuthentification.message);
 					str = "1";
 				} catch (CleInconnue cleInconnue) {
 					System.out.println(cleInconnue.message);
 					str = "0";
-				}
-				
-				menuGestionnaireEmpreinte(idPersonne);
-				
+				}				
 				break;
 				
 			default:
 				System.out.println(str);
 				break;
 			}
+			
 		}
+		System.out.println("\nA bientôt");
 	}
 
 	public void menuGestionnaireEmpreinte(int idPersonne) {
@@ -184,6 +167,7 @@ public class GestionnaireEmpreinteClient {
 				System.out.println("Ajout d'une nouvelle empreinte");
 				System.out.println("Veuillez déposer votre empreinte");
 				empreinte=sc.nextLine();
+				System.out.println("\n");
 
 				try {
 					modifierEmpreinte(idPersonne, empreinte);
@@ -238,7 +222,8 @@ public class GestionnaireEmpreinteClient {
 	}
 
 	public static void main(String[] args) {
-		
+		GestionnaireEmpreinteClient gestionnaireEmpreinte = new GestionnaireEmpreinteClient();
+		gestionnaireEmpreinte.menuPrincipal();
 	}
 
 }
