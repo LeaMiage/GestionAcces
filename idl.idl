@@ -22,10 +22,8 @@ module GestionEntreeSortie {
 
     struct AutorisationTemporaire {
 		long idPersonne;
-        string heureDebut;
-        string heureFin;
-        string jourDebut;
-        string jourFin;
+        long dateDebut;
+        long dateFin;
     };
 
     struct AutorisationPermanente {
@@ -139,7 +137,7 @@ module GestionEntreeSortie {
     };
 
     interface EnvoiDonneesCapteurs {
-        void accederZone(
+        string accederZone(
             in string empreinte,
             in string photoP,
             in string cleAPI
@@ -148,7 +146,7 @@ module GestionEntreeSortie {
             CleInconnue
         );
 
-        void sortirZone(
+        string sortirZone(
             in string empreinte,
             in string photoP,
             in string cleAPI
