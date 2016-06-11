@@ -3,6 +3,7 @@ package Porte;
 import java.util.Hashtable;
 
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
@@ -25,11 +26,12 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	}
 
 
-	/********Autorisations Permanentes*********/
+	/********Autorisations Permanentes
+	 * @throws PersonneInconnue *********/
 	
 	@Override
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante {
 
 		
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
@@ -57,8 +59,11 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
-			// Ajout si la clé n'existe pas déjà
-			annuaireAutorisations.putIfAbsent(idAutorisation, ap);
+			// Ajout si l'autorisation n'existe pas déjà
+			if (annuaireAutorisations.containsKey(idAutorisation))
+				throw new AutorisationExistante("Erreur : l'autorisation existe déjà\n");
+			
+			annuaireAutorisations.put(idAutorisation, ap);
 			
 			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
 			
@@ -67,8 +72,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
+
 		}
 		
 	}
@@ -81,7 +85,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	*/
 	@Override
 	public void modifierAutorisationPermanente(AutorisationPermanente ap, AutorisationPermanente np, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws AutorisationInconnue, CleInconnue, AutorisationExistante, PersonneInconnue {
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){

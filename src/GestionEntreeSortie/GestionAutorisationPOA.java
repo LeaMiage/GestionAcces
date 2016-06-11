@@ -70,6 +70,16 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.AutorisationExistante _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.AutorisationExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();
@@ -98,6 +108,16 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.AutorisationExistante _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.AutorisationExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();
@@ -125,6 +145,11 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();
@@ -151,6 +176,16 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
         {
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.AutorisationExistante _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.AutorisationExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
         }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
@@ -180,6 +215,16 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.AutorisationExistante _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.AutorisationExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();
@@ -206,6 +251,11 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
         {
             _output = handler.createExceptionReply();
             GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.PersonneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
         }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {

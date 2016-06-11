@@ -14,6 +14,7 @@ import java.util.Vector;
 import org.omg.CORBA.ORBPackage.InvalidName;
 
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
@@ -25,6 +26,7 @@ import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
 import GestionEntreeSortie.Zone;
+import GestionEntreeSortie.ZoneInconnue;
 
 public class AdministrationClient {
 
@@ -139,12 +141,15 @@ public class AdministrationClient {
 	
 	
 
-	public void ajouterAutorisationPermanente(int idZone, AutorisationPermanente ap){
+	public void ajouterAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -162,9 +167,13 @@ public class AdministrationClient {
 				gestionAutorisation.ajouterAutorisationPermanente(ap,Utils.Utils.cleApi);
 				System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
 			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
+				System.out.println(e.message);
 			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
+				System.out.println(e.message);
+			} catch (AutorisationExistante e) {
+				System.out.println(e.message);
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
@@ -172,13 +181,16 @@ public class AdministrationClient {
 		
 	}
 	
-	public void modifierAutorisationPermanente(int idZone, AutorisationPermanente ap, AutorisationPermanente np){
+	public void modifierAutorisationPermanente(int idZone, AutorisationPermanente ap, AutorisationPermanente np) throws ZoneInconnue{
 			
 	
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -198,18 +210,25 @@ public class AdministrationClient {
 				System.out.println("Erreur : Autorisation inconnue");
 			} catch (CleInconnue e) {
 				System.out.println("Erreur : Cle inconnue");
+			} catch (AutorisationExistante e) {
+				System.out.println(e.message);
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
 	}
 	
 	
-	public void supprimerAutorisationPermanente(int idZone, AutorisationPermanente ap){
+	public void supprimerAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -230,6 +249,8 @@ public class AdministrationClient {
 				System.out.println("Erreur : Autorisation inconnue");
 			} catch (CleInconnue e) {
 				System.out.println("Erreur : Cle inconnue");
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
@@ -240,12 +261,15 @@ public class AdministrationClient {
 	
 	
 	
-	public void ajouterAutorisationTemporaire(int idZone, AutorisationTemporaire at){
+	public void ajouterAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -266,6 +290,10 @@ public class AdministrationClient {
 				System.out.println("Erreur : Autorisation inconnue");
 			} catch (CleInconnue e) {
 				System.out.println("Erreur : Cle inconnue");
+			} catch (AutorisationExistante e) {
+				System.out.println(e.message);
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
@@ -273,13 +301,16 @@ public class AdministrationClient {
 		
 	}
 	
-	public void modifierAutorisationTemporaire(int idZone, AutorisationTemporaire at, AutorisationTemporaire at_new){
+	public void modifierAutorisationTemporaire(int idZone, AutorisationTemporaire at, AutorisationTemporaire at_new) throws ZoneInconnue{
 		
 	
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -299,18 +330,25 @@ public class AdministrationClient {
 				System.out.println("Erreur : Autorisation inconnue");
 			} catch (CleInconnue e) {
 				System.out.println("Erreur : Cle inconnue");
+			} catch (AutorisationExistante e) {
+				System.out.println(e.message);
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
 	}
 
 
-	public void supprimerAutorisationTemporaire(int idZone, AutorisationTemporaire at){
+	public void supprimerAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue{
 	
 		String [] args = {};
 		int idPorte = 0;
 		
 		Zone z = listeZones.get(idZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 		
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
@@ -331,6 +369,8 @@ public class AdministrationClient {
 				System.out.println("Erreur : Autorisation inconnue");
 			} catch (CleInconnue e) {
 				System.out.println("Erreur : Cle inconnue");
+			} catch (PersonneInconnue e) {
+				System.out.println(e.message);
 			}
 			
 		}
@@ -378,7 +418,11 @@ public class AdministrationClient {
 				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 				
 				
-				ajouterAutorisationPermanente(numZone,ap);
+				try {
+					ajouterAutorisationPermanente(numZone,ap);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 
 				break;
 				
@@ -411,7 +455,11 @@ public class AdministrationClient {
 				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 				ap_new = new AutorisationPermanente(idPersonne,hdeb_new,hfin_new);
 				
-				modifierAutorisationPermanente(numZone,ap,ap_new);
+				try {
+					modifierAutorisationPermanente(numZone,ap,ap_new);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 				
 				
 				
@@ -440,7 +488,11 @@ public class AdministrationClient {
 				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 				
 				
-				supprimerAutorisationPermanente(numZone,ap);
+				try {
+					supprimerAutorisationPermanente(numZone,ap);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 				
 				
 				break;
@@ -498,7 +550,11 @@ public class AdministrationClient {
 
 				at = new AutorisationTemporaire(idPersonne, timestamp_deb, timestamp_fin);
 
-				ajouterAutorisationTemporaire(numZone,at);
+				try {
+					ajouterAutorisationTemporaire(numZone,at);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 
 				break;
 				
@@ -539,7 +595,11 @@ public class AdministrationClient {
 				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
 				at_new = new AutorisationTemporaire(idPersonne,timestamp_deb_new,timestamp_fin_new);
 				
-				modifierAutorisationTemporaire(numZone,at,at_new);
+				try {
+					modifierAutorisationTemporaire(numZone,at,at_new);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 				
 				
 				
@@ -570,7 +630,11 @@ public class AdministrationClient {
 				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
 				
 				
-				supprimerAutorisationTemporaire(numZone,at);
+				try {
+					supprimerAutorisationTemporaire(numZone,at);
+				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				}
 				
 				
 				break;

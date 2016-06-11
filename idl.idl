@@ -14,6 +14,8 @@ module GestionEntreeSortie {
     exception PersonneExistante {string message;};
     exception ChampVide {string message;};
     exception EmpreinteExistante {string message;};
+    exception ZoneInconnue {string message;};
+    exception AutorisationExistante {string message;};
     
     struct AutorisationTemporaire {
 		long idPersonne;
@@ -158,6 +160,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            AutorisationExistante,
+            PersonneInconnue,
             CleInconnue
         );
 
@@ -167,6 +171,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            AutorisationExistante, 
+            PersonneInconnue,
             CleInconnue
         );
 
@@ -175,6 +181,7 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            PersonneInconnue,
             CleInconnue
         );
 
@@ -183,6 +190,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            AutorisationExistante,
+            PersonneInconnue,
             CleInconnue
         );
 
@@ -192,6 +201,8 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            AutorisationExistante,
+            PersonneInconnue,
             CleInconnue
         );
 
@@ -200,6 +211,7 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
+            PersonneInconnue,
             CleInconnue
         );
     };
