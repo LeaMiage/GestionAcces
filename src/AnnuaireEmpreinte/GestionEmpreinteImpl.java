@@ -6,6 +6,7 @@ import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.Empreinte;
+import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
 
@@ -14,11 +15,21 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 	@Override
 	public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
 			throws CleInconnue, ChampVide {
+		String [] args = {};
 		// TODO Auto-generated method stub
 		
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
+		
+		GestionSalaries gestionSalarie = GestionEmpreinteImpl.getGestionSalaries(args);
+		
+		/*try{
+			gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
+		} catch (PersonneInconnue personneInconnue) {
+			throw new PersonneInconnue("L'employé n'existe pas dans l'annuaire des salariés.");
+		}*/
+		
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
 				
 		if (empreinte.isEmpty()){
@@ -36,10 +47,20 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 	@Override
 	public void supprimerEmpreinte(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
+		String [] args = {};
 		
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
+		
+		GestionSalaries gestionSalarie = GestionEmpreinteImpl.getGestionSalaries(args);
+		
+		try{
+			gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
+		} catch (PersonneInconnue personneInconnue) {
+			throw new PersonneInconnue("L'employé n'existe pas dans l'annuaire des salariés.");
+		}
+		
 		
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
 		
@@ -52,6 +73,37 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 		
 		System.out.println("Test : supprimerEmpreinte");
+	}
+	
+	public static GestionSalaries getGestionSalaries(String args[]){
+		try {
+			// Intialisation de l'orb
+			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
+
+			// Nom de l'objet CORBA
+	        String idObj2 = "GestionSalaries";
+	        
+	        // Construction du nom a rechercher
+	        org.omg.CosNaming.NameComponent[] nameToFind2 = new org.omg.CosNaming.NameComponent[1];
+	        nameToFind2[0] = new org.omg.CosNaming.NameComponent(idObj2,"");
+	        
+	        // Recuperation du naming service
+	        org.omg.CosNaming.NamingContext nameRoot =
+	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+
+	        
+	        // Recherche aupres du naming service
+	        org.omg.CORBA.Object distantGestionSalaries = nameRoot.resolve(nameToFind2);
+        
+	        // Casting des objets CORBA
+	        GestionEntreeSortie.GestionSalaries gestionSalaries = GestionEntreeSortie.GestionSalariesHelper.narrow(distantGestionSalaries);
+	        
+	        return gestionSalaries;
+	        
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
