@@ -127,10 +127,13 @@ public class GestionnaireComptesClient {
 		IdentiteCollaborateur identite = gestionSalarie.rechercherSalarie(idPersonne, Utils.Utils.cleApi);
 		return identite;
 	}	
-	public void verifierPersonne(int idPersonne) throws PersonneInconnue, CleInconnue{
+	//type = 1 pour temporaire
+	public int verifierPersonne(int idPersonne) throws PersonneInconnue, CleInconnue{
 		String [] args = {};
+		int type = -1;
 		GestionSalaries gestionSalarie = GestionnaireComptesClient.getGestionSalaries(args);
-		gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
+		type = gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
+		return type;
 	}
 	public void supprimerEmpreinte(int idPersonne) throws PersonneInconnue, CleInconnue{
 		String [] args = {};
@@ -203,9 +206,15 @@ public class GestionnaireComptesClient {
 					idPersonne = Integer.parseInt(str);
 					System.out.println("\n");
 					try {
-						supprimerEmpreinte(idPersonne);
-						System.out.println("L'empreinte a bien été supprimée.");
-						str="1";
+						int type = verifierPersonne(idPersonne);
+						if (type == 1) {
+							supprimerEmpreinte(idPersonne);
+							System.out.println("L'empreinte a bien été supprimée.");	
+							str="1";
+						} else {
+							System.out.println("Impossible de supprimer l'empreinte d'un collaborateur permanent.");
+							str="2";
+						}
 					} catch (PersonneInconnue personneInconnue) {
 						System.out.println(personneInconnue.message);
 						str="2";

@@ -16,7 +16,7 @@ public interface GestionSalariesOperations
     /**
      * Operation verifierPersonne
      */
-    public void verifierPersonne(int idPersonne, String cleAPI)
+    public int verifierPersonne(int idPersonne, String cleAPI)
         throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue;
 
 }

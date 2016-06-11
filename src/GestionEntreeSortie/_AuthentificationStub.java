@@ -23,7 +23,7 @@ public class _AuthentificationStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation authentifierCompte
      */
-    public void authentifierCompte(int idPersonne, String mdp, String cleAPI)
+    public int authentifierCompte(int idPersonne, String mdp, String cleAPI)
         throws GestionEntreeSortie.ErreurAuthentification, GestionEntreeSortie.CleInconnue
     {
         while(true)
@@ -38,7 +38,8 @@ public class _AuthentificationStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(mdp);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
-                    return;
+                    int _arg_ret = _input.read_long();
+                    return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
                 {
@@ -72,8 +73,7 @@ public class _AuthentificationStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.AuthentificationOperations _self = (GestionEntreeSortie.AuthentificationOperations) _so.servant;
                 try
                 {
-                    _self.authentifierCompte( idPersonne,  mdp,  cleAPI);
-                    return;
+                    return _self.authentifierCompte( idPersonne,  mdp,  cleAPI);
                 }
                 finally
                 {

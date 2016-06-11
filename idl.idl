@@ -13,13 +13,8 @@ module GestionEntreeSortie {
     exception JournalisationImpossible {string message;};
     exception PersonneExistante {string message;};
     exception ChampVide {string message;};
+    exception EmpreinteExistante {string message;};
     
-    struct Autorisation {
-		long idPersonne;
-        string heureDebut;
-        string heureFin;
-    };
-
     struct AutorisationTemporaire {
 		long idPersonne;
         double dateDebut;
@@ -75,7 +70,7 @@ module GestionEntreeSortie {
     typedef sequence<EntreeJournal> listeEntreesJournal;
     
     interface Authentification {
-        void authentifierCompte(
+        long authentifierCompte(
             in long idPersonne,
             in string mdp,
             in string cleAPI
@@ -102,13 +97,14 @@ module GestionEntreeSortie {
             CleInconnue
         );
 
-        void verifierPersonne(
+        long verifierPersonne(
             in long idPersonne,
             in string cleAPI
         ) raises(
             PersonneInconnue,
             CleInconnue
         );
+
     };
     interface CreationCompte {
         long creerCP(
@@ -208,6 +204,16 @@ module GestionEntreeSortie {
         );
     };
     interface GestionEmpreinte {
+        void ajouterEmpreinte(
+            in long idPersonne,
+            in string empreinte,
+            in string cleAPI
+        ) raises(
+            EmpreinteExistante,
+            CleInconnue,
+			ChampVide /* Utilisé pour l'empreinte */
+        );
+        
         void modifierEmpreinte(
             in long idPersonne,
             in string empreinte,

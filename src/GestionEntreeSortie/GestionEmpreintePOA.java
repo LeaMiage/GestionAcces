@@ -33,7 +33,9 @@ public abstract class GestionEmpreintePOA extends org.omg.PortableServer.Servant
             final org.omg.CORBA.portable.ResponseHandler handler)
     {
 
-        if (opName.equals("modifierEmpreinte")) {
+        if (opName.equals("ajouterEmpreinte")) {
+                return _invoke_ajouterEmpreinte(_is, handler);
+        } else if (opName.equals("modifierEmpreinte")) {
                 return _invoke_modifierEmpreinte(_is, handler);
         } else if (opName.equals("supprimerEmpreinte")) {
                 return _invoke_supprimerEmpreinte(_is, handler);
@@ -43,6 +45,39 @@ public abstract class GestionEmpreintePOA extends org.omg.PortableServer.Servant
     }
 
     // helper methods
+    private org.omg.CORBA.portable.OutputStream _invoke_ajouterEmpreinte(
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler) {
+        org.omg.CORBA.portable.OutputStream _output;
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
+        String arg2_in = _is.read_string();
+
+        try
+        {
+            ajouterEmpreinte(arg0_in, arg1_in, arg2_in);
+
+            _output = handler.createReply();
+
+        }
+        catch (GestionEntreeSortie.EmpreinteExistante _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.EmpreinteExistanteHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.CleInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.ChampVide _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ChampVideHelper.write(_output,_exception);
+        }
+        return _output;
+    }
+
     private org.omg.CORBA.portable.OutputStream _invoke_modifierEmpreinte(
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler) {

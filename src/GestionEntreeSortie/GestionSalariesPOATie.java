@@ -74,10 +74,10 @@ public class GestionSalariesPOATie extends GestionSalariesPOA
     /**
      * Operation verifierPersonne
      */
-    public void verifierPersonne(int idPersonne, String cleAPI)
+    public int verifierPersonne(int idPersonne, String cleAPI)
         throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
     {
-        _tie.verifierPersonne( idPersonne,  cleAPI);
+        return _tie.verifierPersonne( idPersonne,  cleAPI);
     }
 
 }

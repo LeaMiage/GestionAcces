@@ -80,9 +80,10 @@ public abstract class GestionSalariesPOA extends org.omg.PortableServer.Servant
 
         try
         {
-            verifierPersonne(arg0_in, arg1_in);
+            int _arg_result = verifierPersonne(arg0_in, arg1_in);
 
             _output = handler.createReply();
+            _output.write_long(_arg_result);
 
         }
         catch (GestionEntreeSortie.PersonneInconnue _exception)

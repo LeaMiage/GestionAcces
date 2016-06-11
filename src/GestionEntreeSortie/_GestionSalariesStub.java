@@ -85,7 +85,7 @@ public class _GestionSalariesStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation verifierPersonne
      */
-    public void verifierPersonne(int idPersonne, String cleAPI)
+    public int verifierPersonne(int idPersonne, String cleAPI)
         throws GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
     {
         while(true)
@@ -99,7 +99,8 @@ public class _GestionSalariesStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_long(idPersonne);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
-                    return;
+                    int _arg_ret = _input.read_long();
+                    return _arg_ret;
                 }
                 catch(org.omg.CORBA.portable.RemarshalException _exception)
                 {
@@ -133,8 +134,7 @@ public class _GestionSalariesStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.GestionSalariesOperations _self = (GestionEntreeSortie.GestionSalariesOperations) _so.servant;
                 try
                 {
-                    _self.verifierPersonne( idPersonne,  cleAPI);
-                    return;
+                    return _self.verifierPersonne( idPersonne,  cleAPI);
                 }
                 finally
                 {

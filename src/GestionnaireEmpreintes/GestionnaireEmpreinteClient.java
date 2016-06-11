@@ -5,6 +5,7 @@ import java.util.Scanner;
 import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.EmpreinteExistante;
 import GestionEntreeSortie.ErreurAuthentification;
 import GestionEntreeSortie.GestionAutorisation;
 import GestionEntreeSortie.GestionEmpreinte;
@@ -87,12 +88,21 @@ public class GestionnaireEmpreinteClient {
 		gestionEmpreinte.modifierEmpreinte(idPersonne, empreinte, Utils.Utils.cleApi);
 	}
 	
-	public void authentifierCompte(int idPersonne, String mdp) throws ErreurAuthentification, CleInconnue{
+	public void ajouterEmpreinte(int idPersonne, String empreinte) throws CleInconnue, ChampVide, EmpreinteExistante{
 		String [] args = {};
 		
+		GestionEmpreinte gestionEmpreinte = GestionnaireEmpreinteClient.getServiceGestionEmpreinte(args);
+		gestionEmpreinte.ajouterEmpreinte(idPersonne, empreinte, Utils.Utils.cleApi);
+	}
+	
+	//retourne 1 pour temporaire
+	public int authentifierCompte(int idPersonne, String mdp) throws ErreurAuthentification, CleInconnue{
+		String [] args = {};
+		int type = -1;
 		Authentification authentification = GestionnaireEmpreinteClient.getServiceAuthentification(args);
-		authentification.authentifierCompte(idPersonne, mdp, Utils.Utils.cleApi);
+		type = authentification.authentifierCompte(idPersonne, mdp, Utils.Utils.cleApi);
 		
+		return type;
 	}
 	
 	public void menuPrincipal() {
@@ -125,8 +135,20 @@ public class GestionnaireEmpreinteClient {
 				mdp = str;
 				System.out.println("\n");
 				try {
-					authentifierCompte(idPersonne, mdp);
-					menuGestionnaireEmpreinte(idPersonne);
+					int type = authentifierCompte(idPersonne, mdp);
+					switch (type) {
+					case 0:
+						//permanent
+						menuCollaborateurPermanent(idPersonne);
+						break;
+					case 1:
+						//temporaire
+						menuCollaborateurTemporaire(idPersonne);
+						break;
+
+					default:
+						break;
+					}
 				} catch (ErreurAuthentification erreurAuthentification) {
 					System.out.println(erreurAuthentification.message);
 					str = "1";
@@ -145,7 +167,7 @@ public class GestionnaireEmpreinteClient {
 		System.out.println("\nA bientôt");
 	}
 
-	public void menuGestionnaireEmpreinte(int idPersonne) {
+	public void menuCollaborateurPermanent(int idPersonne) {
 		
 		String empreinte;
 		
@@ -156,9 +178,9 @@ public class GestionnaireEmpreinteClient {
 		while(!str.equals("0"))
 		{
 			
-			System.out.println("Bienvenue sur le menu Gestionnaire des Empreintes. Veuillez choisir l'action à réaliser. (0 pour quitter)");
+			System.out.println("Bienvenue sur le menu Gestionnaire des Empreintes (Collaborateur Permanent). Veuillez choisir l'action à réaliser. (0 pour quitter)");
 			
-			System.out.println("1. Ajouter votre empreinte.\n2. Modifier votre empreinte.\n3. Supprimer votre empreinte.");
+			System.out.println("1. Ajouter votre empreinte.\n2. Modifier votre empreinte.");
 			
 			str = sc.nextLine();
 			
@@ -168,19 +190,20 @@ public class GestionnaireEmpreinteClient {
 				System.out.println("Veuillez déposer votre empreinte");
 				empreinte=sc.nextLine();
 				System.out.println("\n");
-
+				
 				try {
-					modifierEmpreinte(idPersonne, empreinte);
-				}  catch (PersonneInconnue personneInconnue){
-					System.out.println(personneInconnue.message);
-				} catch (CleInconnue cleInconnue){
+					ajouterEmpreinte(idPersonne, empreinte);
+					System.out.println("Votre emrpeinte a bien été ajoutée.");
+				}  catch (CleInconnue cleInconnue){
 					System.out.println(cleInconnue.message);
 					str="0";
 				} catch (ChampVide champVide) {
 					System.out.println(champVide.message);
 					str="1";
-				}
-				
+				} catch (EmpreinteExistante empreinteExistante) {
+					System.out.println(empreinteExistante.message);
+					str="1";
+				}				
 				break;
 				
 			case "2":
@@ -190,6 +213,7 @@ public class GestionnaireEmpreinteClient {
 
 				try {
 					modifierEmpreinte(idPersonne, empreinte);
+					System.out.println("Votre emrpeinte a bien été modifiée.");
 				}  catch (PersonneInconnue personneInconnue){
 					System.out.println(personneInconnue.message);
 				} catch (CleInconnue cleInconnue){
@@ -201,19 +225,52 @@ public class GestionnaireEmpreinteClient {
 				}
 				
 				break;
-			case "3":
-				System.out.println("Suppression de l'empreinte");
+			default:
+				System.out.println(str);
+				break;
+			}
+		}
+	}
+	
+	public void menuCollaborateurTemporaire(int idPersonne) {
+		
+		String empreinte;
+		
 
+		Scanner sc = new Scanner(System.in);
+		String str = "1";
+		
+		while(!str.equals("0"))
+		{
+			
+			System.out.println("Bienvenue sur le menu Gestionnaire des Empreintes (Collaborateur Temporaire). Veuillez choisir l'action à réaliser. (0 pour quitter)");
+			
+			System.out.println("1. Ajouter votre empreinte.");
+			
+			str = sc.nextLine();
+			
+			switch (str){
+			case "1":
+				System.out.println("Ajout d'une nouvelle empreinte");
+				System.out.println("Veuillez déposer votre empreinte");
+				empreinte=sc.nextLine();
+				System.out.println("\n");
+				
 				try {
-					supprimerEmrpeinte(idPersonne);
-				}  catch (PersonneInconnue personneInconnue){
-					System.out.println(personneInconnue.message);
-				} catch (CleInconnue cleInconnue){
+					ajouterEmpreinte(idPersonne, empreinte);
+					System.out.println("Votre emrpeinte a bien été ajoutée.");
+				}  catch (CleInconnue cleInconnue){
 					System.out.println(cleInconnue.message);
 					str="0";
-				}
-				
+				} catch (ChampVide champVide) {
+					System.out.println(champVide.message);
+					str="1";
+				} catch (EmpreinteExistante empreinteExistante) {
+					System.out.println(empreinteExistante.message);
+					str="1";
+				}				
 				break;
+				
 			default:
 				System.out.println(str);
 				break;

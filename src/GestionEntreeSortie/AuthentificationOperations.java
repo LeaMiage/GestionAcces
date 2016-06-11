@@ -10,7 +10,7 @@ public interface AuthentificationOperations
     /**
      * Operation authentifierCompte
      */
-    public void authentifierCompte(int idPersonne, String mdp, String cleAPI)
+    public int authentifierCompte(int idPersonne, String mdp, String cleAPI)
         throws GestionEntreeSortie.ErreurAuthentification, GestionEntreeSortie.CleInconnue;
 
     /**

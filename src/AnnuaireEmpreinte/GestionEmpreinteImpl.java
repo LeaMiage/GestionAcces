@@ -6,6 +6,7 @@ import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.Empreinte;
+import GestionEntreeSortie.EmpreinteExistante;
 import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
@@ -14,24 +15,19 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 
 	@Override
 	public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)
-			throws CleInconnue, ChampVide {
+			throws PersonneInconnue, CleInconnue, ChampVide {
 		String [] args = {};
 		// TODO Auto-generated method stub
 		
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
-		
-		GestionSalaries gestionSalarie = GestionEmpreinteImpl.getGestionSalaries(args);
-		
-		/*try{
-			gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
-		} catch (PersonneInconnue personneInconnue) {
-			throw new PersonneInconnue("L'employé n'existe pas dans l'annuaire des salariés.");
-		}*/
-		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
 				
+		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
+		
+		if (!annuaire.containsKey(idPersonne)){
+			throw new PersonneInconnue("L'employé numéro "+idPersonne+" ne possède aucune empreinte. Veuillez lui en ajouter une.");
+		}
 		if (empreinte.isEmpty()){
 			throw new ChampVide("L'empreinte doit être renseignée.");
 		}
@@ -54,13 +50,6 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		}
 		
 		GestionSalaries gestionSalarie = GestionEmpreinteImpl.getGestionSalaries(args);
-		
-		try{
-			gestionSalarie.verifierPersonne(idPersonne, Utils.Utils.cleApi);
-		} catch (PersonneInconnue personneInconnue) {
-			throw new PersonneInconnue("L'employé n'existe pas dans l'annuaire des salariés.");
-		}
-		
 		
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
 		
@@ -104,6 +93,34 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public void ajouterEmpreinte(int idPersonne, String empreinte, String cleAPI)
+			throws EmpreinteExistante, CleInconnue, ChampVide {
+		// TODO Auto-generated method stub
+		String [] args = {};
+		
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
+		}
+				
+		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
+				
+		if (annuaire.containsKey(idPersonne)){
+			throw new EmpreinteExistante("Une empreinte existe déjà pour l'employé numéro "+idPersonne+". Impossible de la modifier.");
+		}
+		if (empreinte.isEmpty()){
+			throw new ChampVide("L'empreinte doit être renseignée.");
+		}
+		
+		Empreinte empreintePersonne = new Empreinte(idPersonne, empreinte);
+		annuaire.put(idPersonne, empreinte);
+		
+		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
+		
+		System.out.println("Test : modifierEmpreinte");
+		
 	}
 
 }

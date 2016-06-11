@@ -30,13 +30,14 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 			throw new PersonneExistante("L'employé " + prenomP + " " + nomP + " est déjà présent dans l'annuaire.");
 		}
 		
-		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
+		Hashtable<Integer, Collaborateur> annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, mdp, photoP);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size()+annuaireTemp.size(), nomP, prenomP, photoP, mdp);
 		
-		annuaire.put(annuaire.size(), collaborateur);
+		annuaire.put(annuaire.size()+annuaireTemp.size(), collaborateur);
 		
-		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
+		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt", annuaire);
 		
 		return collaborateur.idPersonne;		
 	}
@@ -55,13 +56,14 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 			throw new PersonneExistante("L'employé " + prenomP + " " + nomP + " est déjà présent dans l'annuaire.");
 		}
 		
-		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
+		Hashtable<Integer, Collaborateur> annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
 		
-		Collaborateur collaborateur = new Collaborateur(annuaire.size(), nomP, prenomP, mdp, photoP);
+		Collaborateur collaborateur = new Collaborateur(annuaire.size()+annuairePerm.size(), nomP, prenomP, photoP, mdp);
 		
-		annuaire.put(annuaire.size(), collaborateur);
+		annuaire.put(annuaire.size()+annuairePerm.size(), collaborateur);
 		
-		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries.txt", annuaire);
+		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt", annuaire);
 		
 		return collaborateur.idPersonne;
 	}
@@ -69,9 +71,19 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 	private static boolean verifierPersonne(String nomP, String prenomP){
 		Collaborateur collaborateur;
 		boolean trouve = false;
-		Hashtable<Integer, Collaborateur> annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable<Integer, Collaborateur> annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		
-		Enumeration e = annuaire.elements();
+		Enumeration e = annuaireTemp.elements();
+		
+		while (e.hasMoreElements() & !trouve){
+			collaborateur = (Collaborateur) e.nextElement();
+			if (collaborateur.nomP.equals(nomP) & collaborateur.prenomP.equals(prenomP)){
+				trouve = true;
+			}
+		}
+		Hashtable<Integer, Collaborateur> annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
+		
+		e = annuairePerm.elements();
 		
 		while (e.hasMoreElements() & !trouve){
 			collaborateur = (Collaborateur) e.nextElement();

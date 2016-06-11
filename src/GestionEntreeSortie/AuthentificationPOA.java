@@ -53,9 +53,10 @@ public abstract class AuthentificationPOA extends org.omg.PortableServer.Servant
 
         try
         {
-            authentifierCompte(arg0_in, arg1_in, arg2_in);
+            int _arg_result = authentifierCompte(arg0_in, arg1_in, arg2_in);
 
             _output = handler.createReply();
+            _output.write_long(_arg_result);
 
         }
         catch (GestionEntreeSortie.ErreurAuthentification _exception)

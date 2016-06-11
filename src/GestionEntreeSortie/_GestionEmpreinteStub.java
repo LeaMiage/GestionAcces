@@ -21,6 +21,74 @@ public class _GestionEmpreinteStub extends org.omg.CORBA.portable.ObjectImpl
     private final static Class _opsClass = GestionEntreeSortie.GestionEmpreinteOperations.class;
 
     /**
+     * Operation ajouterEmpreinte
+     */
+    public void ajouterEmpreinte(int idPersonne, String empreinte, String cleAPI)
+        throws GestionEntreeSortie.EmpreinteExistante, GestionEntreeSortie.CleInconnue, GestionEntreeSortie.ChampVide
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("ajouterEmpreinte",true);
+                    _output.write_long(idPersonne);
+                    _output.write_string(empreinte);
+                    _output.write_string(cleAPI);
+                    _input = this._invoke(_output);
+                    return;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    if (_exception_id.equals(GestionEntreeSortie.EmpreinteExistanteHelper.id()))
+                    {
+                        throw GestionEntreeSortie.EmpreinteExistanteHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
+                    }
+
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("ajouterEmpreinte",_opsClass);
+                if (_so == null)
+                   continue;
+                GestionEntreeSortie.GestionEmpreinteOperations _self = (GestionEntreeSortie.GestionEmpreinteOperations) _so.servant;
+                try
+                {
+                    _self.ajouterEmpreinte( idPersonne,  empreinte,  cleAPI);
+                    return;
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
      * Operation modifierEmpreinte
      */
     public void modifierEmpreinte(int idPersonne, String empreinte, String cleAPI)

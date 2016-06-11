@@ -17,27 +17,40 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 	}
 
 	@Override
-	public void authentifierCompte(int idPersonne, String mdp, String cleAPI)
+	//retourne 1 pour temporaire
+	public int authentifierCompte(int idPersonne, String mdp, String cleAPI)
 			throws ErreurAuthentification, CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Collaborateur collaborateur = null;
 		
-		Collaborateur collaborateur = (Collaborateur) annuaire.get(idPersonne);
-
-		if (collaborateur == null){
+		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
+		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
+		
+		Collaborateur collaborateurTemp = (Collaborateur) annuaireTemp.get(idPersonne);
+		Collaborateur collaborateurPerm = (Collaborateur) annuairePerm.get(idPersonne);
+		
+		if (collaborateurTemp == null && collaborateurPerm == null){
 			throw new ErreurAuthentification("Le salarié numéro " + idPersonne + " n'existe pas.");
-		} else {
-			if (!collaborateur.mdp.equals(mdp)){
-				throw new ErreurAuthentification("Mot de passe incorrect.");
-			}
 		}
-
-		System.out.println("Test : authentifierCompte");
 		
+		if (collaborateurTemp == null){
+			collaborateur = collaborateurPerm;
+		} else {
+			collaborateur = collaborateurTemp;
+		}
+		if (!collaborateur.mdp.equals(mdp)){
+			throw new ErreurAuthentification("Mot de passe incorrect.");
+		}
+		System.out.println("Test : authentifierCompte");
+		if (collaborateurTemp == null){
+			return 0;
+		} else {
+			return 1;
+		}		
 	}
 
 	@Override
@@ -52,11 +65,22 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 			throw new CleInconnue("La clé API est invalide.");
 		}
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
+		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		
-		System.out.println(annuaire.size());
+		System.out.println(annuairePerm.size());
+		System.out.println(annuaireTemp.size());
 		
-		Enumeration e = annuaire.elements();
+		Enumeration e = annuairePerm.elements();
+		
+		while (e.hasMoreElements() & !trouve){
+			collaborateur = (Collaborateur) e.nextElement();
+			if (collaborateur.photoP.equals(photoP)){
+				trouve = true;
+			}
+		}
+		
+		e = annuaireTemp.elements();
 		
 		while (e.hasMoreElements() & !trouve){
 			collaborateur = (Collaborateur) e.nextElement();

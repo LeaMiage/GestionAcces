@@ -65,10 +65,10 @@ public class AuthentificationPOATie extends AuthentificationPOA
     /**
      * Operation authentifierCompte
      */
-    public void authentifierCompte(int idPersonne, String mdp, String cleAPI)
+    public int authentifierCompte(int idPersonne, String mdp, String cleAPI)
         throws GestionEntreeSortie.ErreurAuthentification, GestionEntreeSortie.CleInconnue
     {
-        _tie.authentifierCompte( idPersonne,  mdp,  cleAPI);
+        return _tie.authentifierCompte( idPersonne,  mdp,  cleAPI);
     }
 
     /**

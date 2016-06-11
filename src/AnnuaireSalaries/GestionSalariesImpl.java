@@ -17,13 +17,22 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
+		Collaborateur collaborateur = null;
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
+		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
 		
-		Collaborateur collaborateur = (Collaborateur) annuaire.get(idPersonne);
+		Collaborateur collaborateurTemp = (Collaborateur) annuaireTemp.get(idPersonne);
+		Collaborateur collaborateurPerm = (Collaborateur) annuairePerm.get(idPersonne);
 		
-		if (collaborateur == null){
+		if (collaborateurTemp == null && collaborateurPerm == null){
 			throw new PersonneInconnue("Le salarié numéro " + idPersonne + " n'existe pas.");
+		}
+		
+		if (collaborateurTemp == null){
+			collaborateur = collaborateurPerm;
+		} else {
+			collaborateur = collaborateurTemp;
 		}
 		
 		IdentiteCollaborateur identiteCollaborateur = new IdentiteCollaborateur(collaborateur.idPersonne, collaborateur.nomP, collaborateur.prenomP, collaborateur.photoP);
@@ -32,19 +41,25 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 	}
 
 	@Override
-	public void verifierPersonne(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
+	//retourne 1 pour temporaire
+	public int verifierPersonne(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("La clé API est invalide.");
 		}
+		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
+		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
 		
-		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries.txt");
+		Collaborateur collaborateurTemp = (Collaborateur) annuaireTemp.get(idPersonne);
+		Collaborateur collaborateurPerm = (Collaborateur) annuairePerm.get(idPersonne);
 		
-		Collaborateur collaborateur = (Collaborateur) annuaire.get(idPersonne);
-		
-		if (collaborateur == null){
+		if (collaborateurTemp == null && collaborateurPerm == null){
 			throw new PersonneInconnue("Le salarié numéro " + idPersonne + " n'existe pas.");
 		}
+		if (collaborateurTemp == null){
+			return 0;
+		} else {
+			return 1;
+		}
 	}
-
 }
