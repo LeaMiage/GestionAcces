@@ -56,14 +56,14 @@ public class AdministrationClient {
 		System.out.println("Création des zones et affectation des portes effectué");		
 	}
 	
-	public static GestionAutorisation getServiceGestionAutorisations(String args[], int idPorte){
+	public static GestionAutorisation getServiceGestionAutorisations(String args[], int idZone, int idPorte){
 		
 		try {
 			// Intialisation de l'orb
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "GestionAutorisations" + idPorte;
+	        String idObj = "GestionAutorisations_" + idZone + "_" + idPorte;
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -152,7 +152,7 @@ public class AdministrationClient {
 			idPorte = z.listeIdPortes[i];
 			
 
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
@@ -185,7 +185,7 @@ public class AdministrationClient {
 	
 			idPorte = z.listeIdPortes[i];
 			
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation récupéré");
 			
@@ -217,7 +217,7 @@ public class AdministrationClient {
 			idPorte = z.listeIdPortes[i];
 			
 	
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
@@ -253,7 +253,7 @@ public class AdministrationClient {
 			idPorte = z.listeIdPortes[i];
 			
 	
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
@@ -286,7 +286,7 @@ public class AdministrationClient {
 		
 			idPorte = z.listeIdPortes[i];
 			
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation récupéré");
 			
@@ -318,7 +318,7 @@ public class AdministrationClient {
 			idPorte = z.listeIdPortes[i];
 			
 		
-			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idPorte);
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
@@ -608,8 +608,7 @@ public class AdministrationClient {
 				try {
 					gestionAutorisationsTemporaires();
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					System.out.println("Erreur : format non respecté\n");
 				}
 				
 				break;
