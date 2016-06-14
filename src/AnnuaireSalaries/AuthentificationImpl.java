@@ -22,7 +22,7 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 			throws ErreurAuthentification, CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		
 		Collaborateur collaborateur = null;
@@ -62,7 +62,7 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 		
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		
 		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");

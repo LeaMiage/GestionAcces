@@ -13,7 +13,7 @@ public class ConsultationJournalImpl extends ConsultationJournalPOA{
 	public EntreeJournal[] consulterJournal(String cleAPI) throws CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		int i = 0;
 		

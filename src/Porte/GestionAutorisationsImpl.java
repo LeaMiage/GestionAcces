@@ -37,7 +37,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
 		
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};
@@ -89,7 +89,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};
@@ -132,7 +132,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};
@@ -174,7 +174,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};
@@ -208,7 +208,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			throws AutorisationInconnue, CleInconnue {
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};
@@ -247,7 +247,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 
 		String [] args = {};

@@ -21,7 +21,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 	public int creerCP(String nomP, String prenomP, String mdp, String photoP, String cleAPI) throws CleInconnue, PersonneExistante, ChampVide {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		if (nomP.isEmpty() | prenomP.isEmpty() | mdp.isEmpty() | photoP.isEmpty()){
 			throw new ChampVide("Un des champs est vide.");
@@ -47,7 +47,7 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		// TODO Auto-generated method stub
 		
 		if (cleAPI==""){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		if (nomP.isEmpty() | prenomP.isEmpty() | mdp.isEmpty() | photoP.isEmpty()){
 			throw new ChampVide("Un des champs est vide.");

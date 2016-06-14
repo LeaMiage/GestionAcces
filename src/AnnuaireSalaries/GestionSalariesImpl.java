@@ -15,7 +15,7 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 	public IdentiteCollaborateur rechercherSalarie(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		Collaborateur collaborateur = null;
 		
@@ -45,7 +45,7 @@ public class GestionSalariesImpl extends GestionEntreeSortie.GestionSalariesPOA{
 	public int verifierPersonne(int idPersonne, String cleAPI) throws PersonneInconnue, CleInconnue {
 		// TODO Auto-generated method stub
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
-			throw new CleInconnue("La clé API est invalide.");
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");

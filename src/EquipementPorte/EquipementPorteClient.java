@@ -107,7 +107,7 @@ public class EquipementPorteClient {
 		while(!str.equals("0"))
 		{
 
-		System.out.println("Bienvenue sur le menu Porte. Veuillez choisir l'action à réaliser. (0 pour quitter)");
+		System.out.println("Bienvenue sur le menu Porte"+ idPorte + " de la zone " + idZone + ". Veuillez choisir l'action à réaliser. (0 pour quitter)");
 		
 		System.out.println("1. Entrer dans la zone\n2. Sortir de la zone\n");
 		
