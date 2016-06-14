@@ -4,9 +4,13 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 import GestionEntreeSortie.Authentification;
+import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.EmpreinteInconnue;
 import GestionEntreeSortie.EnvoiDonneesCapteurs;
+import GestionEntreeSortie.ErreurAuthentification;
 import GestionEntreeSortie.ErreurEnvoi;
+import GestionEntreeSortie.NonAutorise;
 
 public class EquipementPorteClient {
 
@@ -75,7 +79,7 @@ public class EquipementPorteClient {
 		
 		try{
 			
-			msg = envoiDonnees.accederZone(empreinte, photo, Utils.Utils.cleApi);
+			msg = envoiDonnees.accederZone("empreinteLéa", "photoLéa", Utils.Utils.cleApi);
 			
 			System.out.println("Non, en fait tu passeras pas, va chier boloss.\n");
 			
@@ -85,14 +89,18 @@ public class EquipementPorteClient {
 			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (ErreurEnvoi e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Erreur : erreur d'envoi");
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		} catch (ErreurAuthentification e) {
+			System.out.println("Accès refusé : Photo non reconnue");
+		} catch (EmpreinteInconnue e) {
+			System.out.println("Accès refusé : Empreinte non reconnue");
+		} catch (ChampVide e) {
+			System.out.println("Erreur : Champ vide détecté");
+		} catch (NonAutorise e) {
+			System.out.println("Accès refusé : Vous n'avez pas l'autorisation d'accéder à cette zone");
 		}
 		
 		
