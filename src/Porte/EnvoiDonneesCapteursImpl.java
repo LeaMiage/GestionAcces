@@ -138,10 +138,10 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 		    	 if (trouve) {
 						System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
 						
-						journalisation.journaliser(0, 0, photoP, "Autorisé", "Entrée", cleAPI);
+						journalisation.journaliser(idZone, idPorte, photoP, "Autorisé", "Entrée", cleAPI);
 						msg = "Bienvenue " + ic.prenomP + " " + ic.nomP;
 				    } else {   	
-				    	journalisation.journaliser(0, 0, photoP, "Refusé", "Entrée", cleAPI);
+				    	journalisation.journaliser(idZone, idPorte, photoP, "Refusé", "Entrée", cleAPI);
 				    	msg = "Accès refusé";
 				    	throw new NonAutorise("Accès refusé : vous n'avez pas l'autorisation d'accéder à cette zone");
 				    }

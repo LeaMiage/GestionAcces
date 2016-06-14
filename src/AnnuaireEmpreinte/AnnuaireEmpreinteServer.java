@@ -28,8 +28,8 @@ public class AnnuaireEmpreinteServer {
 	        VerificationEmpreinteImpl servantVerificationEmpreinte = new VerificationEmpreinteImpl();
 	       
 	        // Activer le servant au sein du POA et recuperer son ID
-	        byte[] servantAuthentificationId = rootPOA.activate_object(servantGestionEmpreinte);
-	        byte[] servantCreationCompteId = rootPOA.activate_object(servantVerificationEmpreinte);
+	        byte[] servantGestionEmpreinteId = rootPOA.activate_object(servantGestionEmpreinte);
+	        byte[] servantVerificationEmpreinteId = rootPOA.activate_object(servantVerificationEmpreinte);
 	        
 	        // Activer le POA manager
 	        rootPOA.the_POAManager().activate();

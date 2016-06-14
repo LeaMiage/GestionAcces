@@ -21,6 +21,7 @@ import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.ConsultationJournal;
+import GestionEntreeSortie.EntreeJournal;
 import GestionEntreeSortie.GestionAutorisation;
 import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.IdentiteCollaborateur;
@@ -100,7 +101,7 @@ public class AdministrationClient {
 			org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init(args,null);
 
 	        // Nom de l'objet CORBA
-	        String idObj = "consultationJournal";
+	        String idObj = "ConsultationJournal";
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
@@ -646,6 +647,32 @@ public class AdministrationClient {
 		}
 		
 	}
+	
+	private void consultationJournal() {
+		
+		String [] args = {};
+		
+		ConsultationJournal consultationJournal = getServiceConsultationJournal(args);
+		System.out.println("ConsultationJournal récupéré");
+		
+		try {
+			EntreeJournal[] journal = consultationJournal.consulterJournal(Utils.Utils.cleApi);
+			
+			System.out.println("Consultation du journal :\n");
+			System.out.println("IDZONE\tIDPORTE\tPHOTO\tSTATUT\tTYPE\n");
+			for(int i=0;i<journal.length;i++)
+			{
+				System.out.println(journal[i].idZone + "\t" + journal[i].idPorte + "\t" + journal[i].photoP + "\t" + journal[i].status + "\t" + journal[i].typeAcces);
+			}
+			
+		} catch (CleInconnue e) {
+			System.out.println(e.message);
+		}
+		
+		
+		
+		
+	}
 		
 	public void menuAdmin() {
 		
@@ -659,7 +686,7 @@ public class AdministrationClient {
 			
 			System.out.println("Bienvenue sur le menu Administrateur. Veuillez choisir l'action à réaliser. (0 pour quitter)");
 			
-			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n");
+			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal");
 			
 			str = sc.nextLine();
 			
@@ -677,6 +704,8 @@ public class AdministrationClient {
 				
 				break;
 
+			case "3":
+				consultationJournal();
 				
 			default:
 				System.out.println(str);
@@ -690,7 +719,8 @@ public class AdministrationClient {
 	}
 
 	
-	
+
+
 	public static void main(String[] args) {
 		
 		AdministrationClient admin = new AdministrationClient();
