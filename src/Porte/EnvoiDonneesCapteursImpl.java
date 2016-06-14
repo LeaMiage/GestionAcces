@@ -62,7 +62,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			int minutes    = date.getMinutes();
 			boolean trouve = false;
 			
-			Hashtable annuaireAP = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Perm.txt");
+			Hashtable annuaireAP = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Perm.txt");
 		    Set<String> keys     = annuaireAP.keySet();
 		    Iterator<String> itr = keys.iterator();
 		    
@@ -80,7 +80,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 		       }
 		    }
 
-			Hashtable annuaireAT = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Autorisations_Temp.txt");
+			Hashtable annuaireAT = Helpers.GestionFichiers.lireFichier("src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Temp.txt");
 		    Set<String> keys2     = annuaireAT.keySet();
 		    Iterator<String> itr2 = keys2.iterator();
 		    
