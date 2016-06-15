@@ -73,7 +73,7 @@ public class EntreeJournalHelper
                     return org.omg.CORBA.ORB.init().create_recursive_tc(id());
                 _working = true;
                 org.omg.CORBA.ORB orb = org.omg.CORBA.ORB.init();
-                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[5];
+                org.omg.CORBA.StructMember []_members = new org.omg.CORBA.StructMember[6];
 
                 _members[0] = new org.omg.CORBA.StructMember();
                 _members[0].name = "idZone";
@@ -85,11 +85,14 @@ public class EntreeJournalHelper
                 _members[2].name = "photoP";
                 _members[2].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[3] = new org.omg.CORBA.StructMember();
-                _members[3].name = "status";
+                _members[3].name = "statut";
                 _members[3].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
                 _members[4] = new org.omg.CORBA.StructMember();
                 _members[4].name = "typeAcces";
                 _members[4].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_string);
+                _members[5] = new org.omg.CORBA.StructMember();
+                _members[5].name = "dateAcces";
+                _members[5].type = orb.get_primitive_tc(org.omg.CORBA.TCKind.tk_double);
                 _tc = orb.create_struct_tc(id(),"EntreeJournal",_members);
                 _working = false;
             }
@@ -120,8 +123,9 @@ public class EntreeJournalHelper
         new_one.idZone = istream.read_long();
         new_one.idPorte = istream.read_long();
         new_one.photoP = istream.read_string();
-        new_one.status = istream.read_string();
+        new_one.statut = istream.read_string();
         new_one.typeAcces = istream.read_string();
+        new_one.dateAcces = istream.read_double();
 
         return new_one;
     }
@@ -136,8 +140,9 @@ public class EntreeJournalHelper
         ostream.write_long(value.idZone);
         ostream.write_long(value.idPorte);
         ostream.write_string(value.photoP);
-        ostream.write_string(value.status);
+        ostream.write_string(value.statut);
         ostream.write_string(value.typeAcces);
+        ostream.write_double(value.dateAcces);
     }
 
 }

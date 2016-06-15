@@ -79,13 +79,13 @@ public class EquipementPorteClient {
 		
 		try{
 			
-			msg = envoiDonnees.accederZone("empreinteLéa", "photoLéa", Utils.Utils.cleApi);
+			msg = envoiDonnees.accederZone(empreinte, photo, Utils.Utils.cleApi);
 			
 			System.out.println("Non, en fait tu passeras pas, va chier boloss.\n");
 			
 			Thread.sleep(5000);
 			
-			System.out.println("C'est bon je deeeeeeeeeeeec, entre, viens on est biens.");
+			System.out.println("C'est bon je deeeeeeeeeeeec, entre, viens on est bien.\n\n");
 			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
@@ -115,7 +115,7 @@ public class EquipementPorteClient {
 		while(!str.equals("0"))
 		{
 
-		System.out.println("Bienvenue sur le menu Porte"+ idPorte + " de la zone " + idZone + ". Veuillez choisir l'action à réaliser. (0 pour quitter)");
+		System.out.println("Bienvenue sur le menu Porte "+ idPorte + " de la zone " + idZone + ". Veuillez choisir l'action à réaliser. (0 pour quitter)");
 		
 		System.out.println("1. Entrer dans la zone\n2. Sortir de la zone\n");
 		

@@ -23,7 +23,7 @@ public class _JournalisationStub extends org.omg.CORBA.portable.ObjectImpl
     /**
      * Operation journaliser
      */
-    public void journaliser(int idZone, int idPorte, String photoP, String statut, String typeAcces, String cleAPI)
+    public void journaliser(int idZone, int idPorte, String photoP, String statut, String typeAcces, double dateAcces, String cleAPI)
         throws GestionEntreeSortie.JournalisationImpossible, GestionEntreeSortie.CleInconnue
     {
         while(true)
@@ -39,6 +39,7 @@ public class _JournalisationStub extends org.omg.CORBA.portable.ObjectImpl
                     _output.write_string(photoP);
                     _output.write_string(statut);
                     _output.write_string(typeAcces);
+                    _output.write_double(dateAcces);
                     _output.write_string(cleAPI);
                     _input = this._invoke(_output);
                     return;
@@ -75,7 +76,7 @@ public class _JournalisationStub extends org.omg.CORBA.portable.ObjectImpl
                 GestionEntreeSortie.JournalisationOperations _self = (GestionEntreeSortie.JournalisationOperations) _so.servant;
                 try
                 {
-                    _self.journaliser( idZone,  idPorte,  photoP,  statut,  typeAcces,  cleAPI);
+                    _self.journaliser( idZone,  idPorte,  photoP,  statut,  typeAcces,  dateAcces,  cleAPI);
                     return;
                 }
                 finally

@@ -23,14 +23,19 @@ public final class EntreeJournal implements org.omg.CORBA.portable.IDLEntity
     public String photoP;
 
     /**
-     * Struct member status
+     * Struct member statut
      */
-    public String status;
+    public String statut;
 
     /**
      * Struct member typeAcces
      */
     public String typeAcces;
+
+    /**
+     * Struct member dateAcces
+     */
+    public double dateAcces;
 
     /**
      * Default constructor
@@ -43,16 +48,18 @@ public final class EntreeJournal implements org.omg.CORBA.portable.IDLEntity
      * @param idZone idZone struct member
      * @param idPorte idPorte struct member
      * @param photoP photoP struct member
-     * @param status status struct member
+     * @param statut statut struct member
      * @param typeAcces typeAcces struct member
+     * @param dateAcces dateAcces struct member
      */
-    public EntreeJournal(int idZone, int idPorte, String photoP, String status, String typeAcces)
+    public EntreeJournal(int idZone, int idPorte, String photoP, String statut, String typeAcces, double dateAcces)
     {
         this.idZone = idZone;
         this.idPorte = idPorte;
         this.photoP = photoP;
-        this.status = status;
+        this.statut = statut;
         this.typeAcces = typeAcces;
+        this.dateAcces = dateAcces;
     }
 
 }

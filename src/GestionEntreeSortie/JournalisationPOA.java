@@ -50,11 +50,12 @@ public abstract class JournalisationPOA extends org.omg.PortableServer.Servant
         String arg2_in = _is.read_string();
         String arg3_in = _is.read_string();
         String arg4_in = _is.read_string();
-        String arg5_in = _is.read_string();
+        double arg5_in = _is.read_double();
+        String arg6_in = _is.read_string();
 
         try
         {
-            journaliser(arg0_in, arg1_in, arg2_in, arg3_in, arg4_in, arg5_in);
+            journaliser(arg0_in, arg1_in, arg2_in, arg3_in, arg4_in, arg5_in, arg6_in);
 
             _output = handler.createReply();
 

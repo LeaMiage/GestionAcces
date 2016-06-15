@@ -66,8 +66,9 @@ module GestionEntreeSortie {
         long idZone;
         long idPorte;
         string photoP;
-        string status;
+        string statut;
         string typeAcces;
+        double dateAcces;
     };
     
     typedef sequence<EntreeJournal> listeEntreesJournal;
@@ -274,6 +275,7 @@ module GestionEntreeSortie {
             in string photoP,
             in string statut,
             in string typeAcces,
+            in double dateAcces,
             in string cleAPI
         ) raises(
             JournalisationImpossible,

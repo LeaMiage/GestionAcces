@@ -659,10 +659,12 @@ public class AdministrationClient {
 			EntreeJournal[] journal = consultationJournal.consulterJournal(Utils.Utils.cleApi);
 			
 			System.out.println("Consultation du journal :\n");
-			System.out.println("IDZONE\tIDPORTE\tPHOTO\tSTATUT\tTYPE\n");
+			System.out.println(String.format("%10s", "IDZONE") + String.format("%10s", "IDPORTE") + String.format("%10s", "PHOTO") + String.format("%10s", "STATUT") + String.format("%10s", "TYPE") + " " + String.format("%10s", "DATE"));
 			for(int i=0;i<journal.length;i++)
-			{
-				System.out.println(journal[i].idZone + "\t" + journal[i].idPorte + "\t" + journal[i].photoP + "\t" + journal[i].status + "\t" + journal[i].typeAcces);
+			{	
+				//System.out.println(String.format("%4d", journal[i].idZone));
+				Date date = new Date((long) journal[i].dateAcces);
+				System.out.println(String.format("%10d", journal[i].idZone) + String.format("%10d", journal[i].idPorte) + String.format("%10s", journal[i].photoP) + String.format("%10s", journal[i].statut) + String.format("%10s", journal[i].typeAcces) + "\t" + String.format("%30s", date.toString()));
 			}
 			
 		} catch (CleInconnue e) {
@@ -684,7 +686,7 @@ public class AdministrationClient {
 		while(!str.equals("0"))
 		{
 			
-			System.out.println("Bienvenue sur le menu Administrateur. Veuillez choisir l'action à réaliser. (0 pour quitter)");
+			System.out.println("\nBienvenue sur le menu Administrateur. Veuillez choisir l'action à réaliser. (0 pour quitter)\n");
 			
 			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal");
 			
@@ -708,7 +710,7 @@ public class AdministrationClient {
 				consultationJournal();
 				
 			default:
-				System.out.println(str);
+				
 				break;
 			}
 			

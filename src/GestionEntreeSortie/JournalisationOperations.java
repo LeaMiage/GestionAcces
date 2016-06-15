@@ -10,7 +10,7 @@ public interface JournalisationOperations
     /**
      * Operation journaliser
      */
-    public void journaliser(int idZone, int idPorte, String photoP, String statut, String typeAcces, String cleAPI)
+    public void journaliser(int idZone, int idPorte, String photoP, String statut, String typeAcces, double dateAcces, String cleAPI)
         throws GestionEntreeSortie.JournalisationImpossible, GestionEntreeSortie.CleInconnue;
 
 }
