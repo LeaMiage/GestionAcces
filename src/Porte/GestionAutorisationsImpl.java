@@ -1,5 +1,6 @@
 package Porte;
 
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 import GestionEntreeSortie.Authentification;
@@ -8,8 +9,10 @@ import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.EntreeJournal;
 import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.PersonneInconnue;
+import GestionEntreeSortie.ZoneInconnue;
 
 public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutorisationPOA{
 
@@ -276,6 +279,56 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		}
+		
+	}
+
+
+	@Override
+	public AutorisationPermanente[] listeAutorisationsPerm(int idZone, String cleAPI) throws ZoneInconnue, CleInconnue {
+
+
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
+		}
+		
+		Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDPerm);
+		
+		
+		AutorisationPermanente[] listeAP = new AutorisationPermanente[annuaireAutorisations.size()];
+		
+		Enumeration e = annuaireAutorisations.elements();
+		int i=0;
+		while (e.hasMoreElements()){
+			listeAP[i] = (AutorisationPermanente) e.nextElement();
+			i++;
+		}
+		
+		return listeAP;
+		
+		
+	}
+
+
+	@Override
+	public AutorisationTemporaire[] listeAutorisationsTemp(int idZone, String cleAPI) throws ZoneInconnue, CleInconnue {
+
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
+		}
+		
+		Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDTemp);
+		
+		
+		AutorisationTemporaire[] listeAT = new AutorisationTemporaire[annuaireAutorisations.size()];
+		
+		Enumeration e = annuaireAutorisations.elements();
+		int i=0;
+		while (e.hasMoreElements()){
+			listeAT[i] = (AutorisationTemporaire) e.nextElement();
+			i++;
+		}
+		
+		return listeAT;
 		
 	}
 

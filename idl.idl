@@ -23,13 +23,15 @@ module GestionEntreeSortie {
         double dateDebut;
         double dateFin;
     };
-
+	typedef sequence<AutorisationTemporaire> listeAutorisationsTemporaires;
+	
     struct AutorisationPermanente {
 		long idPersonne;
         string heureDebut;
         string heureFin;
     };
-    
+    typedef sequence<AutorisationPermanente> listeAutorisationsPermanentes;
+	
     
     struct Collaborateur {
         long idPersonne;
@@ -220,6 +222,23 @@ module GestionEntreeSortie {
             PersonneInconnue,
             CleInconnue
         );
+        
+        listeAutorisationsPermanentes listeAutorisationsPerm(
+            in long idZone,
+            in string cleAPI
+        ) raises(
+            ZoneInconnue,
+            CleInconnue
+        );
+        
+        listeAutorisationsTemporaires listeAutorisationsTemp(
+            in long idZone,
+            in string cleAPI
+        ) raises(
+            ZoneInconnue,
+            CleInconnue
+        );
+        
     };
     interface GestionEmpreinte {
         void ajouterEmpreinte(

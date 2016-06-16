@@ -43,4 +43,16 @@ public interface GestionAutorisationOperations
     public void supprimerAutorisationTemporaire(GestionEntreeSortie.AutorisationTemporaire at, String cleAPI)
         throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue;
 
+    /**
+     * Operation listeAutorisationsPerm
+     */
+    public GestionEntreeSortie.AutorisationPermanente[] listeAutorisationsPerm(int idZone, String cleAPI)
+        throws GestionEntreeSortie.ZoneInconnue, GestionEntreeSortie.CleInconnue;
+
+    /**
+     * Operation listeAutorisationsTemp
+     */
+    public GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemp(int idZone, String cleAPI)
+        throws GestionEntreeSortie.ZoneInconnue, GestionEntreeSortie.CleInconnue;
+
 }

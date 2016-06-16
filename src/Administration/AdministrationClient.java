@@ -659,12 +659,67 @@ public class AdministrationClient {
 			EntreeJournal[] journal = consultationJournal.consulterJournal(Utils.Utils.cleApi);
 			
 			System.out.println("Consultation du journal :\n");
-			System.out.println(String.format("%10s", "IDZONE") + String.format("%10s", "IDPORTE") + String.format("%10s", "PHOTO") + String.format("%10s", "STATUT") + String.format("%10s", "TYPE") + " " + String.format("%10s", "DATE"));
+			System.out.println(String.format("%20s", "IDZONE") + String.format("%20s", "IDPORTE") + String.format("%20s", "PHOTO") + String.format("%10s", "STATUT") + String.format("%20s", "TYPE") + " " + String.format("%20s", "DATE"));
 			for(int i=0;i<journal.length;i++)
 			{	
-				//System.out.println(String.format("%4d", journal[i].idZone));
 				Date date = new Date((long) journal[i].dateAcces);
-				System.out.println(String.format("%10d", journal[i].idZone) + String.format("%10d", journal[i].idPorte) + String.format("%10s", journal[i].photoP) + String.format("%10s", journal[i].statut) + String.format("%10s", journal[i].typeAcces) + "\t" + String.format("%30s", date.toString()));
+				System.out.println(String.format("%20d", journal[i].idZone) + String.format("%20d", journal[i].idPorte) + String.format("%20s", journal[i].photoP) + String.format("%20s", journal[i].statut) + String.format("%20s", journal[i].typeAcces) + "\t" + String.format("%30s", date.toString()));
+			}
+			
+		} catch (CleInconnue e) {
+			System.out.println(e.message);
+		}
+		
+
+	}
+		
+	
+	public void afficherAutorisationsZone() throws ZoneInconnue{
+		
+		String [] args = {};
+		Scanner sc = new Scanner(System.in);
+		String str = "1";
+		
+		System.out.println("Affichage des autorisations d'une zone");
+
+		System.out.println("Entrez le numéro de la zone concernée");
+		
+		str=sc.nextLine();
+		int numZone = Integer.parseInt(str);
+		
+		Zone z = listeZones.get(numZone);
+		
+		if (z==null)
+			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
+		
+		
+		int idPorte = z.listeIdPortes[0];
+		
+		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,numZone,idPorte);
+		
+		System.out.println("Gestion autorisation récupéré");
+		
+		try {
+			// Affichage des autorisations permanentes
+			AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPerm(numZone,Utils.Utils.cleApi);
+			
+			System.out.println("Liste des autorisations permanentes de la zone " + numZone + " :\n");
+			System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%20s", "HEURE_DEBUT") + String.format("%20s", "HEURE_FIN") );
+			for(int i=0;i<listeAP.length;i++)
+			{	
+				System.out.println(String.format("%20d", listeAP[i].idPersonne) + String.format("%20s", listeAP[i].heureDebut) + String.format("%20s", listeAP[i].heureFin) );
+			}
+			
+			// Affichage des autorisations temporaires
+			AutorisationTemporaire[] listeAT = gestionAutorisation.listeAutorisationsTemp(numZone,Utils.Utils.cleApi);
+			
+			System.out.println("Liste des autorisations temporaires de la zone " + numZone + " :\n");
+			System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%30s", "DATE_DEBUT") + String.format("%30s", "DATE_FIN") );
+			for(int i=0;i<listeAT.length;i++)
+			{	
+				Date dateDebut = new Date((long) listeAT[i].dateDebut);
+				Date dateFin = new Date((long) listeAT[i].dateFin);
+				System.out.println(String.format("%20d", listeAT[i].idPersonne) + String.format("%30s", dateDebut.toString()) + String.format("%30s", dateFin.toString()) );
 			}
 			
 		} catch (CleInconnue e) {
@@ -672,10 +727,9 @@ public class AdministrationClient {
 		}
 		
 		
-		
-		
 	}
-		
+	
+	
 	public void menuAdmin() {
 		
 		// Main de l'admin
@@ -688,7 +742,7 @@ public class AdministrationClient {
 			
 			System.out.println("\nBienvenue sur le menu Administrateur. Veuillez choisir l'action à réaliser. (0 pour quitter)\n");
 			
-			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal");
+			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal\n4. Afficher l'ensemble des autorisations d'une zone\n");
 			
 			str = sc.nextLine();
 			
@@ -709,6 +763,16 @@ public class AdministrationClient {
 			case "3":
 				consultationJournal();
 				
+				break;
+				
+			case "4":
+				try {
+					afficherAutorisationsZone();
+				} catch (ZoneInconnue e) {
+					System.out.println("Erreur : Cette zone n'existe pas\n");
+				}
+				
+				break;
 			default:
 				
 				break;
