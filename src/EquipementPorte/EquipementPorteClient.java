@@ -57,7 +57,8 @@ public class EquipementPorteClient {
 		return null;
 	}
 	
-	public void accederZone(){
+	//type = 1 pour entrer et type = 2 pour sortir
+	public void entreeSortieZone(int type){
 		
 		String photo;
 		String empreinte;
@@ -70,29 +71,29 @@ public class EquipementPorteClient {
 		Scanner sc = new Scanner(System.in);
 		String str = "1";
 		
-		System.out.println("Ok, met ta face devant la caméra. C'est bon? Non, sourit pas comme un débile, tu veux entrer ou tu veux pas entrer?");
+		System.out.println("Positionnez-vous devant la caméra pour que l'équipement vous prenne en photo.");
 		photo = sc.nextLine();
 		
-		System.out.println("Bon, t'a pas l'air très futé toi... Maintenant met ton putain de doigt sur le lecteur d'empreinte. \nL'index gauche. L'autre tu peux te le carrer ailleurs, rien à foutre.");
+		System.out.println("Veuillez maintenant positionner votre doigt sur le capteur.");
 		empreinte = sc.nextLine();
 		
 		
 		try{
 			
-			msg = envoiDonnees.accederZone(empreinte, photo, Utils.Utils.cleApi);
+			//Accéder zone si type = 1 sinon sortir Zone
+			if (type == 1) {
+				msg = envoiDonnees.accederZone(empreinte, photo, Utils.Utils.cleApi);
+				System.out.println("Accès autorisé : " + msg);
+			} else {
+				msg = envoiDonnees.sortirZone(empreinte, photo, Utils.Utils.cleApi);
+				System.out.println("Sortie autorisée : " + msg);
+			}
 			
-			System.out.println("Non, en fait tu passeras pas, va chier boloss.\n");
-			
-			Thread.sleep(5000);
-			
-			System.out.println("C'est bon je deeeeeeeeeeeec, entre, viens on est bien.\n\n");
 			
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		} catch (ErreurEnvoi e) {
-			System.out.println("Erreur : erreur d'envoi");
-		} catch (InterruptedException e) {
-
+			System.out.println("Erreur lors de l'envoi des données");
 		} catch (ErreurAuthentification e) {
 			System.out.println("Accès refusé : Photo non reconnue");
 		} catch (EmpreinteInconnue e) {
@@ -124,12 +125,12 @@ public class EquipementPorteClient {
 		
 		switch (str){
 		case "1":
-			accederZone();
+			entreeSortieZone(1);
 			
 			
 			break;
 		case "2":
-			
+			entreeSortieZone(2);
 			
 			break;
 
@@ -159,11 +160,6 @@ public class EquipementPorteClient {
 		System.out.println("EnvoiDonneesCapteurs récupéré");
 		
 		ep.menuPorte();
-		
-		
-		
-		
-		
 		
 	}
 	

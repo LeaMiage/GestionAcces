@@ -26,7 +26,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		Hashtable annuaire = Helpers.GestionFichiers.lireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt");
 		
 		if (!annuaire.containsKey(idPersonne)){
-			throw new PersonneInconnue("L'employé numéro "+idPersonne+" ne possède aucune empreinte. Veuillez lui en ajouter une.");
+			throw new PersonneInconnue("Aucune empreinte n'est actuellement enregistrée pour vous. Veuillez en ajouter une pour la modifier.");
 		}
 		if (empreinte.isEmpty()){
 			throw new ChampVide("L'empreinte doit être renseignée.");

@@ -198,11 +198,12 @@ public class GestionnaireComptesClient {
 					break;
 				case "2":
 					
-					System.out.println("Saisir l'identifiant du collaborateur pour lequel supprimer l'empreinte");
-					str=sc.nextLine();
-					idPersonne = Integer.parseInt(str);
-					System.out.println("\n");
 					try {
+						System.out.println("Saisir l'identifiant du collaborateur pour lequel supprimer l'empreinte");
+						str=sc.nextLine();
+						idPersonne = Integer.parseInt(str);
+						System.out.println("\n");
+						
 						int type = verifierPersonne(idPersonne);
 						if (type == 1) {
 							supprimerEmpreinte(idPersonne);
@@ -212,6 +213,9 @@ public class GestionnaireComptesClient {
 							System.out.println("Impossible de supprimer l'empreinte d'un collaborateur permanent.");
 							str="2";
 						}
+					} catch (NumberFormatException e) {
+						System.out.println("L'indentifiant du collaborateur doit être un nombre.");
+						str="2";
 					} catch (PersonneInconnue personneInconnue) {
 						System.out.println(personneInconnue.message);
 						str="2";
@@ -223,7 +227,7 @@ public class GestionnaireComptesClient {
 					break;
 					
 				default:
-					System.out.println(str);
+					
 					break;
 				}
 			}
@@ -274,17 +278,21 @@ public class GestionnaireComptesClient {
 					break;
 				case "2":
 					
-					System.out.println("Saisir l'identifiant du collaborateur à rechercher");
-					str=sc.nextLine();
-					idPersonne = Integer.parseInt(str);
-					System.out.println("\n");
 					try {
+						System.out.println("Saisir l'identifiant du collaborateur à rechercher");
+						str=sc.nextLine();
+						idPersonne = Integer.parseInt(str);
+						System.out.println("\n");
+						
 						identite = rechercherSalarie(idPersonne);
 						System.out.println("Information du collaborateur "+idPersonne+" :");
 						System.out.println("Nom : "+identite.nomP);
 						System.out.println("Prénom : "+identite.prenomP);
 						System.out.println("Photo : "+identite.photoP);
 						str="1";
+					} catch (NumberFormatException e){
+						System.out.println("L'indentifiant du collaborateur doit être un nombre.");
+						str="2";
 					} catch (PersonneInconnue personneInconnue) {
 						System.out.println(personneInconnue.message);
 						str="2";
@@ -296,7 +304,7 @@ public class GestionnaireComptesClient {
 					break;
 					
 				default:
-					System.out.println(str);
+					
 					break;
 				}
 			}
