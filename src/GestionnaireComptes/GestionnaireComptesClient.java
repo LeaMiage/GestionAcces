@@ -141,10 +141,7 @@ public class GestionnaireComptesClient {
 		gestionEmpreinte.supprimerEmpreinte(idPersonne, Utils.Utils.cleApi);
 		
 	}
-	public static void main(String[] args) {
-		GestionnaireComptesClient gestionnaireComptesClient = new GestionnaireComptesClient();
-		gestionnaireComptesClient.menuPrincipal(args);
-	}
+	
 	
 	public void menuPrincipal(String[] args) {
 		
@@ -307,4 +304,11 @@ public class GestionnaireComptesClient {
 		}
 		
 	}
+	
+	public static void main(String[] args) {
+		GestionnaireComptesClient gestionnaireComptesClient = new GestionnaireComptesClient();
+		gestionnaireComptesClient.menuPrincipal(args);
+	}
+	
+	
 }
