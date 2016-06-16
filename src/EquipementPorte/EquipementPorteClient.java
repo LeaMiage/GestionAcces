@@ -156,16 +156,9 @@ public class EquipementPorteClient {
 	
 	
 	public static void main(String[] args) {
-		
-		String msg;
-		
-		System.out.println("Test d'accès aux zones");
-		
+
 		EquipementPorteClient ep = new EquipementPorteClient(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
-		
-		
-		System.out.println("EnvoiDonneesCapteurs récupéré");
-		
+
 		ep.menuPorte();
 		
 	}

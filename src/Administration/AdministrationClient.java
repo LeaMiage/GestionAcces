@@ -78,8 +78,6 @@ public class AdministrationClient {
 
 	        // Recherche aupres du naming service
 	        org.omg.CORBA.Object distantGestionAutorisations = nameRoot.resolve(nameToFind);
-	        System.out.println("Objet '" + idObj + "' trouve aupres du service de noms. IOR de l'objet :");
-	        System.out.println(orb.object_to_string(distantGestionAutorisations));
 	        
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.GestionAutorisation gestionAutorisations = GestionEntreeSortie.GestionAutorisationHelper.narrow(distantGestionAutorisations);
@@ -401,29 +399,36 @@ public class AdministrationClient {
 				
 				System.out.println("Ajout d'une autorisation permanente");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
-				hdeb = sc.nextLine();
-				
-				System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
-				hfin = sc.nextLine();
-				
-				
-				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
-				
-				
-				try {
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+
+					System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
+					hdeb = sc.nextLine();
+					
+					System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
+					hfin = sc.nextLine();
+					
+					
+					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
+					
 					ajouterAutorisationPermanente(numZone,ap);
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
+				
+				
+				
+			
 
 				break;
 				
@@ -432,35 +437,41 @@ public class AdministrationClient {
 
 				System.out.println("Modification d'une autorisation permanente");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez l'ancienne heure de début de l'autorisation (au format hh:mm)");
-				hdeb = sc.nextLine();
-				
-				System.out.println("Entrez l'ancienne heure de fin de l'autorisation (au format hh:mm)");
-				hfin = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle heure de début de l'autorisation (au format hh:mm)");
-				hdeb_new = sc.nextLine();
-				
-				System.out.println("Entrez la nouvelle heure de fin de l'autorisation (au format hh:mm)");
-				hfin_new = sc.nextLine();
-				
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+					System.out.println("Entrez l'ancienne heure de début de l'autorisation (au format hh:mm)");
+					hdeb = sc.nextLine();
+					
+					System.out.println("Entrez l'ancienne heure de fin de l'autorisation (au format hh:mm)");
+					hfin = sc.nextLine();
+					
+					System.out.println("Entrez la nouvelle heure de début de l'autorisation (au format hh:mm)");
+					hdeb_new = sc.nextLine();
+					
+					System.out.println("Entrez la nouvelle heure de fin de l'autorisation (au format hh:mm)");
+					hfin_new = sc.nextLine();
+					
 
-				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
-				ap_new = new AutorisationPermanente(idPersonne,hdeb_new,hfin_new);
-				
-				try {
+					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
+					ap_new = new AutorisationPermanente(idPersonne,hdeb_new,hfin_new);
+					
 					modifierAutorisationPermanente(numZone,ap,ap_new);
+					
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
+				
+				
 				
 				
 				
@@ -471,29 +482,33 @@ public class AdministrationClient {
 
 				System.out.println("Suppression d'une autorisation permanente");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
-				hdeb = sc.nextLine();
-				
-				System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
-				hfin = sc.nextLine();
-				
-				
-				ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
-				
-				
-				try {
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+					System.out.println("Entrez l'heure de début de l'autorisation (au format hh:mm)");
+					hdeb = sc.nextLine();
+					
+					System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
+					hfin = sc.nextLine();
+					
+					
+					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
+					
 					supprimerAutorisationPermanente(numZone,ap);
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
+				
+				
 				
 				
 				break;
@@ -529,33 +544,38 @@ public class AdministrationClient {
 			switch (str){
 			case "1":
 				
+				
 				System.out.println("Ajout d'une autorisation temporaire");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-			    c.setTime(df.parse(res));
-			    timestamp_deb = c.getTimeInMillis();
-				
-				System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_fin = c.getTimeInMillis();
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+					System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+				    c.setTime(df.parse(res));
+				    timestamp_deb = c.getTimeInMillis();
+					
+					System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_fin = c.getTimeInMillis();
 
-				at = new AutorisationTemporaire(idPersonne, timestamp_deb, timestamp_fin);
-
-				try {
+					at = new AutorisationTemporaire(idPersonne, timestamp_deb, timestamp_fin);
+					
 					ajouterAutorisationTemporaire(numZone,at);
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
+
 
 				break;
 				
@@ -564,40 +584,44 @@ public class AdministrationClient {
 
 				System.out.println("Modification d'une autorisation temporaire");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez l'ancienne date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_deb = c.getTimeInMillis();
-				
-				System.out.println("Entrez l'ancienne date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_fin = c.getTimeInMillis();
-				
-				System.out.println("Entrez la nouvelle date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-			    c.setTime(df.parse(res));
-			    timestamp_deb_new = c.getTimeInMillis();
-				
-				System.out.println("Entrez la nouvelle date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_fin_new = c.getTimeInMillis();
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+					System.out.println("Entrez l'ancienne date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_deb = c.getTimeInMillis();
+					
+					System.out.println("Entrez l'ancienne date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_fin = c.getTimeInMillis();
+					
+					System.out.println("Entrez la nouvelle date et heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+				    c.setTime(df.parse(res));
+				    timestamp_deb_new = c.getTimeInMillis();
+					
+					System.out.println("Entrez la nouvelle date et heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_fin_new = c.getTimeInMillis();
 
 
-				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
-				at_new = new AutorisationTemporaire(idPersonne,timestamp_deb_new,timestamp_fin_new);
-				
-				try {
+					at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
+					at_new = new AutorisationTemporaire(idPersonne,timestamp_deb_new,timestamp_fin_new);
+					
 					modifierAutorisationTemporaire(numZone,at,at_new);
+					
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
@@ -610,32 +634,38 @@ public class AdministrationClient {
 
 				System.out.println("Suppression d'une autorisation temporaire");
 				
-				System.out.println("Entrez le numéro du collaborateur concerné");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez le numéro de la zone concernée");
-				str=sc.nextLine();
-				numZone = Integer.parseInt(str);
-				
-				System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_deb = c.getTimeInMillis();
-				
-				System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
-				res = sc.nextLine();
-				c.setTime(df.parse(res));
-			    timestamp_fin = c.getTimeInMillis();
+				try{
+					System.out.println("Entrez le numéro du collaborateur concerné");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez le numéro de la zone concernée");
+					str=sc.nextLine();
+					numZone = Integer.parseInt(str);
+					
+					System.out.println("Entrez la date et l'heure de début de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_deb = c.getTimeInMillis();
+					
+					System.out.println("Entrez la date et l'heure de fin de l'autorisation (au format jj-mm-aaaa hh:mm)");
+					res = sc.nextLine();
+					c.setTime(df.parse(res));
+				    timestamp_fin = c.getTimeInMillis();
 
-				at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
-				
-				
-				try {
+					at = new AutorisationTemporaire(idPersonne,timestamp_deb,timestamp_fin);
+					
 					supprimerAutorisationTemporaire(numZone,at);
+				}catch(NumberFormatException e){
+					System.out.println("Veuillez saisir un nombre entier");
+					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
 				}
+				
+				
+				
+				
 				
 				
 				break;
@@ -659,7 +689,8 @@ public class AdministrationClient {
 			EntreeJournal[] journal = consultationJournal.consulterJournal(Utils.Utils.cleApi);
 			
 			System.out.println("Consultation du journal :\n");
-			System.out.println(String.format("%20s", "IDZONE") + String.format("%20s", "IDPORTE") + String.format("%20s", "PHOTO") + String.format("%10s", "STATUT") + String.format("%20s", "TYPE") + " " + String.format("%20s", "DATE"));
+			System.out.println(String.format("%20s", "IDZONE") + String.format("%20s", "IDPORTE") + String.format("%20s", "PHOTO") + String.format("%20s", "STATUT") + String.format("%20s", "TYPE") + " " + String.format("%20s", "DATE"));
+			
 			for(int i=0;i<journal.length;i++)
 			{	
 				Date date = new Date((long) journal[i].dateAcces);
@@ -680,26 +711,29 @@ public class AdministrationClient {
 		Scanner sc = new Scanner(System.in);
 		String str = "1";
 		
-		System.out.println("Affichage des autorisations d'une zone");
-
-		System.out.println("Entrez le numéro de la zone concernée");
 		
-		str=sc.nextLine();
-		int numZone = Integer.parseInt(str);
-		
-		Zone z = listeZones.get(numZone);
-		
-		if (z==null)
-			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
-		
-		
-		int idPorte = z.listeIdPortes[0];
-		
-		GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,numZone,idPorte);
-		
-		System.out.println("Gestion autorisation récupéré");
 		
 		try {
+			
+			System.out.println("Affichage des autorisations d'une zone");
+
+			System.out.println("Entrez le numéro de la zone concernée");
+			
+			str=sc.nextLine();
+			int numZone = Integer.parseInt(str);
+			
+			Zone z = listeZones.get(numZone);
+			
+			if (z==null)
+				throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
+			
+			
+			int idPorte = z.listeIdPortes[0];
+			
+			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,numZone,idPorte);
+			
+			System.out.println("Gestion autorisation récupéré");
+			
 			// Affichage des autorisations permanentes
 			AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPerm(numZone,Utils.Utils.cleApi);
 			
@@ -724,6 +758,9 @@ public class AdministrationClient {
 			
 		} catch (CleInconnue e) {
 			System.out.println(e.message);
+		}catch(NumberFormatException e){
+			System.out.println("Veuillez saisir un nombre entier");
+			str="1";
 		}
 		
 		

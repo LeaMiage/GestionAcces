@@ -163,7 +163,6 @@ public class GestionnaireEmpreinteClient {
 				break;
 				
 			default:
-				System.out.println(str);
 				break;
 			}
 			
@@ -230,7 +229,6 @@ public class GestionnaireEmpreinteClient {
 				
 				break;
 			default:
-				System.out.println(str);
 				break;
 			}
 		}
@@ -276,7 +274,6 @@ public class GestionnaireEmpreinteClient {
 				break;
 				
 			default:
-				System.out.println(str);
 				break;
 			}
 		}
