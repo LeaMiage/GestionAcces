@@ -17,6 +17,6 @@ public interface EnvoiDonneesCapteursOperations
      * Operation sortirZone
      */
     public String sortirZone(String empreinte, String photoP, String cleAPI)
-        throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue;
+        throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.ErreurAuthentification, GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.NonAutorise, GestionEntreeSortie.ChampVide, GestionEntreeSortie.CleInconnue;
 
 }

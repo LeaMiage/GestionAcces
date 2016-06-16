@@ -113,6 +113,26 @@ public abstract class EnvoiDonneesCapteursPOA extends org.omg.PortableServer.Ser
             _output = handler.createExceptionReply();
             GestionEntreeSortie.ErreurEnvoiHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.ErreurAuthentification _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ErreurAuthentificationHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.EmpreinteInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.EmpreinteInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.NonAutorise _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.NonAutoriseHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.ChampVide _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ChampVideHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();

@@ -107,7 +107,7 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation sortirZone
      */
     public String sortirZone(String empreinte, String photoP, String cleAPI)
-        throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.ErreurEnvoi, GestionEntreeSortie.ErreurAuthentification, GestionEntreeSortie.EmpreinteInconnue, GestionEntreeSortie.NonAutorise, GestionEntreeSortie.ChampVide, GestionEntreeSortie.CleInconnue
     {
         while(true)
         {
@@ -134,6 +134,26 @@ public class _EnvoiDonneesCapteursStub extends org.omg.CORBA.portable.ObjectImpl
                     if (_exception_id.equals(GestionEntreeSortie.ErreurEnvoiHelper.id()))
                     {
                         throw GestionEntreeSortie.ErreurEnvoiHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ErreurAuthentificationHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ErreurAuthentificationHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.EmpreinteInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.EmpreinteInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.NonAutoriseHelper.id()))
+                    {
+                        throw GestionEntreeSortie.NonAutoriseHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.ChampVideHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ChampVideHelper.read(_exception.getInputStream());
                     }
 
                     if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))

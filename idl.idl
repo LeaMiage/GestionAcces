@@ -158,6 +158,10 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises (
             ErreurEnvoi,
+            ErreurAuthentification,
+            EmpreinteInconnue,
+            NonAutorise,
+            ChampVide,
             CleInconnue
         );
     };
