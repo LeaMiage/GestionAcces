@@ -95,16 +95,23 @@ public class EquipementPorteClient {
 		} catch (ErreurEnvoi e) {
 			System.out.println("Erreur lors de l'envoi des données");
 		} catch (ErreurAuthentification e) {
-			System.out.println("Accès refusé : Photo non reconnue");
+			if (type == 1)
+				System.out.println("Accès refusé : Photo non reconnue");
+			else
+				System.out.println("Sortie refusée : Photo non reconnue");
 		} catch (EmpreinteInconnue e) {
-			System.out.println("Accès refusé : Empreinte non reconnue");
+			if (type == 1)
+				System.out.println("Accès refusé : Empreinte non reconnue");
+			else
+				System.out.println("Sortie refusée : Empreinte non reconnue");
 		} catch (ChampVide e) {
 			System.out.println("Erreur : Champ vide détecté");
 		} catch (NonAutorise e) {
-			System.out.println("Accès refusé : Vous n'avez pas l'autorisation d'accéder à cette zone");
+			if (type == 1)
+				System.out.println("Accès refusé : Vous n'avez pas l'autorisation d'accéder à cette zone");
+			else
+				System.out.println("Sortie refusée : Vous n'avez pas l'autorisation de sortir de cette zone");
 		}
-		
-		
 	}
 	
 	public void menuPorte(){
