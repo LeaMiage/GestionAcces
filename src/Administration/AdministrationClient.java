@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
 
+import GestionEntreeSortie.AjoutAPImpossible;
 import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
@@ -140,7 +141,7 @@ public class AdministrationClient {
 	
 	
 
-	public void ajouterAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue{
+	public void ajouterAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue, AjoutAPImpossible, AutorisationInconnue, AutorisationExistante, PersonneInconnue, CleInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
@@ -159,28 +160,18 @@ public class AdministrationClient {
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
-			
 
-			try {
-				System.out.println("Tentative d'ajout d'autorisation");
-				gestionAutorisation.ajouterAutorisationPermanente(ap,Utils.Utils.cleApi);
-				System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
-			} catch (AutorisationInconnue e) {
-				System.out.println(e.message);
-			} catch (CleInconnue e) {
-				System.out.println(e.message);
-			} catch (AutorisationExistante e) {
-				System.out.println(e.message);
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			System.out.println("Tentative d'ajout d'autorisation");
+			gestionAutorisation.ajouterAutorisationPermanente(ap,Utils.Utils.cleApi);
+			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
+			
 			
 		}
 		
 		
 	}
 	
-	public void modifierAutorisationPermanente(int idZone, AutorisationPermanente ap, AutorisationPermanente np) throws ZoneInconnue{
+	public void modifierAutorisationPermanente(int idZone, AutorisationPermanente ap, AutorisationPermanente np) throws ZoneInconnue, AutorisationInconnue, AutorisationExistante, PersonneInconnue, CleInconnue{
 			
 	
 		String [] args = {};
@@ -201,25 +192,17 @@ public class AdministrationClient {
 			System.out.println("Gestion autorisation récupéré");
 			
 			
-			try {
-				System.out.println("Tentative de modification d'autorisation");
-				gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
-				System.out.println("Modification d'autorisation réussie");
-			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
-			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
-			} catch (AutorisationExistante e) {
-				System.out.println(e.message);
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			
+			System.out.println("Tentative de modification d'autorisation");
+			gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
+			System.out.println("Modification d'autorisation réussie");
+
 			
 		}
 	}
 	
 	
-	public void supprimerAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue{
+	public void supprimerAutorisationPermanente(int idZone, AutorisationPermanente ap) throws ZoneInconnue, AutorisationInconnue, PersonneInconnue, CleInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
@@ -240,17 +223,10 @@ public class AdministrationClient {
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
 	
-			try {
-				System.out.println("Tentative de suppression d'autorisation");
-				gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
-				System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
-			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
-			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			System.out.println("Tentative de suppression d'autorisation");
+			gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
+			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
+
 			
 		}
 		
@@ -260,7 +236,7 @@ public class AdministrationClient {
 	
 	
 	
-	public void ajouterAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue{
+	public void ajouterAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue, AutorisationInconnue, AutorisationExistante, PersonneInconnue, CleInconnue{
 		
 		String [] args = {};
 		int idPorte = 0;
@@ -281,26 +257,18 @@ public class AdministrationClient {
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
 	
-			try {
-				System.out.println("Tentative d'ajout d'autorisation");
-				gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
-				System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
-			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
-			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
-			} catch (AutorisationExistante e) {
-				System.out.println(e.message);
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			
+			System.out.println("Tentative d'ajout d'autorisation");
+			gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
+			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
+			
 			
 		}
 		
 		
 	}
 	
-	public void modifierAutorisationTemporaire(int idZone, AutorisationTemporaire at, AutorisationTemporaire at_new) throws ZoneInconnue{
+	public void modifierAutorisationTemporaire(int idZone, AutorisationTemporaire at, AutorisationTemporaire at_new) throws ZoneInconnue, AutorisationInconnue, AutorisationExistante, PersonneInconnue, CleInconnue{
 		
 	
 		String [] args = {};
@@ -321,25 +289,17 @@ public class AdministrationClient {
 			System.out.println("Gestion autorisation récupéré");
 			
 			
-			try {
-				System.out.println("Tentative de modification d'autorisation");
-				gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
-				System.out.println("Modification d'autorisation réussie");
-			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
-			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
-			} catch (AutorisationExistante e) {
-				System.out.println(e.message);
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			
+			System.out.println("Tentative de modification d'autorisation");
+			gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
+			System.out.println("Modification d'autorisation réussie");
+
 			
 		}
 	}
 
 
-	public void supprimerAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue{
+	public void supprimerAutorisationTemporaire(int idZone, AutorisationTemporaire at) throws ZoneInconnue, AutorisationInconnue, PersonneInconnue, CleInconnue{
 	
 		String [] args = {};
 		int idPorte = 0;
@@ -360,17 +320,10 @@ public class AdministrationClient {
 			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
 		
-			try {
-				System.out.println("Tentative de suppression d'autorisation");
-				gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
-				System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
-			} catch (AutorisationInconnue e) {
-				System.out.println("Erreur : Autorisation inconnue");
-			} catch (CleInconnue e) {
-				System.out.println("Erreur : Cle inconnue");
-			} catch (PersonneInconnue e) {
-				System.out.println(e.message);
-			}
+			System.out.println("Tentative de suppression d'autorisation");
+			gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
+			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
+
 			
 		}
 	
@@ -424,6 +377,16 @@ public class AdministrationClient {
 					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
+				} catch (AjoutAPImpossible e) {
+					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationExistante e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
+					System.out.println(e.message);
 				}
 				
 				
@@ -469,12 +432,17 @@ public class AdministrationClient {
 					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationExistante e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
+					System.out.println(e.message);
 				}
 				
-				
-				
-				
-				
+
 				break;
 				
 			case "3":
@@ -505,6 +473,12 @@ public class AdministrationClient {
 					System.out.println("Veuillez saisir un nombre entier");
 					str="1";
 				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
 					System.out.println(e.message);
 				}
 				
@@ -574,6 +548,14 @@ public class AdministrationClient {
 					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationExistante e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
+					System.out.println(e.message);
 				}
 
 
@@ -624,6 +606,14 @@ public class AdministrationClient {
 					str="1";
 				} catch (ZoneInconnue e) {
 					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationExistante e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
+					System.out.println(e.message);
 				}
 				
 				
@@ -660,6 +650,12 @@ public class AdministrationClient {
 					System.out.println("Veuillez saisir un nombre entier");
 					str="1";
 				} catch (ZoneInconnue e) {
+					System.out.println(e.message);
+				} catch (AutorisationInconnue e) {
+					System.out.println(e.message);
+				} catch (PersonneInconnue e) {
+					System.out.println(e.message);
+				} catch (CleInconnue e) {
 					System.out.println(e.message);
 				}
 				

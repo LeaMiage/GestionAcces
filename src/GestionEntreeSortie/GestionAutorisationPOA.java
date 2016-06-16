@@ -84,6 +84,11 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createExceptionReply();
             GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
         }
+        catch (GestionEntreeSortie.AjoutAPImpossible _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.AjoutAPImpossibleHelper.write(_output,_exception);
+        }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {
             _output = handler.createExceptionReply();

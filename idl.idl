@@ -17,6 +17,7 @@ module GestionEntreeSortie {
     exception ZoneInconnue {string message;};
     exception AutorisationExistante {string message;};
     exception NonAutorise {string message;};
+    exception AjoutAPImpossible {string message;};
     
     struct AutorisationTemporaire {
 		long idPersonne;
@@ -174,6 +175,7 @@ module GestionEntreeSortie {
             AutorisationInconnue,
             AutorisationExistante,
             PersonneInconnue,
+            AjoutAPImpossible,
             CleInconnue
         );
 

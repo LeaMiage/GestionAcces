@@ -3,6 +3,7 @@ package Porte;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import GestionEntreeSortie.AjoutAPImpossible;
 import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
@@ -30,11 +31,12 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 
 	/********Autorisations Permanentes
-	 * @throws PersonneInconnue *********/
+	 * @throws PersonneInconnue 
+	 * @throws AjoutAPImpossible *********/
 	
 	@Override
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
-			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante {
+			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante, AjoutAPImpossible {
 
 		
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
@@ -52,7 +54,12 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		
 		
 		try {
-			gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
+			
+			int retour = gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
+			
+			if (retour==1){
+				throw new  AjoutAPImpossible("Impossible d'ajouter une autorisation permanente pour un collaborateur temporaire");
+			}
 			
 			System.out.println("Personne vérifiée");
 			
@@ -122,6 +129,8 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			System.out.println("Erreur : Personne inconnue");
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
+		} catch (AjoutAPImpossible e) {
+			System.out.println(e.message);
 		}
 		
 		

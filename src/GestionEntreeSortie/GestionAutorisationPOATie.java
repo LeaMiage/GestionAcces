@@ -66,7 +66,7 @@ public class GestionAutorisationPOATie extends GestionAutorisationPOA
      * Operation ajouterAutorisationPermanente
      */
     public void ajouterAutorisationPermanente(GestionEntreeSortie.AutorisationPermanente ap, String cleAPI)
-        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.AjoutAPImpossible, GestionEntreeSortie.CleInconnue
     {
         _tie.ajouterAutorisationPermanente( ap,  cleAPI);
     }
