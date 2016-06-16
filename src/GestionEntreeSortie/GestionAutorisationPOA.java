@@ -37,6 +37,10 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
                 return _invoke_ajouterAutorisationPermanente(_is, handler);
         } else if (opName.equals("ajouterAutorisationTemporaire")) {
                 return _invoke_ajouterAutorisationTemporaire(_is, handler);
+        } else if (opName.equals("listeAutorisationsPerm")) {
+                return _invoke_listeAutorisationsPerm(_is, handler);
+        } else if (opName.equals("listeAutorisationsTemp")) {
+                return _invoke_listeAutorisationsTemp(_is, handler);
         } else if (opName.equals("modifierAutorisationPermanente")) {
                 return _invoke_modifierAutorisationPermanente(_is, handler);
         } else if (opName.equals("modifierAutorisationTemporaire")) {
@@ -256,6 +260,62 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
         {
             _output = handler.createExceptionReply();
             GestionEntreeSortie.PersonneInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.CleInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
+        }
+        return _output;
+    }
+
+    private org.omg.CORBA.portable.OutputStream _invoke_listeAutorisationsPerm(
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler) {
+        org.omg.CORBA.portable.OutputStream _output;
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
+
+        try
+        {
+            GestionEntreeSortie.AutorisationPermanente[] _arg_result = listeAutorisationsPerm(arg0_in, arg1_in);
+
+            _output = handler.createReply();
+            GestionEntreeSortie.listeAutorisationsPermanentesHelper.write(_output,_arg_result);
+
+        }
+        catch (GestionEntreeSortie.ZoneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ZoneInconnueHelper.write(_output,_exception);
+        }
+        catch (GestionEntreeSortie.CleInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
+        }
+        return _output;
+    }
+
+    private org.omg.CORBA.portable.OutputStream _invoke_listeAutorisationsTemp(
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler) {
+        org.omg.CORBA.portable.OutputStream _output;
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
+
+        try
+        {
+            GestionEntreeSortie.AutorisationTemporaire[] _arg_result = listeAutorisationsTemp(arg0_in, arg1_in);
+
+            _output = handler.createReply();
+            GestionEntreeSortie.listeAutorisationsTemporairesHelper.write(_output,_arg_result);
+
+        }
+        catch (GestionEntreeSortie.ZoneInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.ZoneInconnueHelper.write(_output,_exception);
         }
         catch (GestionEntreeSortie.CleInconnue _exception)
         {

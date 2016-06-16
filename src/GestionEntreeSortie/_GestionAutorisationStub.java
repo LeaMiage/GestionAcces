@@ -444,4 +444,128 @@ public class _GestionAutorisationStub extends org.omg.CORBA.portable.ObjectImpl
         }
     }
 
+    /**
+     * Operation listeAutorisationsPerm
+     */
+    public GestionEntreeSortie.AutorisationPermanente[] listeAutorisationsPerm(int idZone, String cleAPI)
+        throws GestionEntreeSortie.ZoneInconnue, GestionEntreeSortie.CleInconnue
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("listeAutorisationsPerm",true);
+                    _output.write_long(idZone);
+                    _output.write_string(cleAPI);
+                    _input = this._invoke(_output);
+                    GestionEntreeSortie.AutorisationPermanente[] _arg_ret = GestionEntreeSortie.listeAutorisationsPermanentesHelper.read(_input);
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    if (_exception_id.equals(GestionEntreeSortie.ZoneInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ZoneInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("listeAutorisationsPerm",_opsClass);
+                if (_so == null)
+                   continue;
+                GestionEntreeSortie.GestionAutorisationOperations _self = (GestionEntreeSortie.GestionAutorisationOperations) _so.servant;
+                try
+                {
+                    return _self.listeAutorisationsPerm( idZone,  cleAPI);
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
+    /**
+     * Operation listeAutorisationsTemp
+     */
+    public GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTemp(int idZone, String cleAPI)
+        throws GestionEntreeSortie.ZoneInconnue, GestionEntreeSortie.CleInconnue
+    {
+        while(true)
+        {
+            if (!this._is_local())
+            {
+                org.omg.CORBA.portable.InputStream _input = null;
+                try
+                {
+                    org.omg.CORBA.portable.OutputStream _output = this._request("listeAutorisationsTemp",true);
+                    _output.write_long(idZone);
+                    _output.write_string(cleAPI);
+                    _input = this._invoke(_output);
+                    GestionEntreeSortie.AutorisationTemporaire[] _arg_ret = GestionEntreeSortie.listeAutorisationsTemporairesHelper.read(_input);
+                    return _arg_ret;
+                }
+                catch(org.omg.CORBA.portable.RemarshalException _exception)
+                {
+                    continue;
+                }
+                catch(org.omg.CORBA.portable.ApplicationException _exception)
+                {
+                    String _exception_id = _exception.getId();
+                    if (_exception_id.equals(GestionEntreeSortie.ZoneInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.ZoneInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    if (_exception_id.equals(GestionEntreeSortie.CleInconnueHelper.id()))
+                    {
+                        throw GestionEntreeSortie.CleInconnueHelper.read(_exception.getInputStream());
+                    }
+
+                    throw new org.omg.CORBA.UNKNOWN("Unexpected User Exception: "+ _exception_id);
+                }
+                finally
+                {
+                    this._releaseReply(_input);
+                }
+            }
+            else
+            {
+                org.omg.CORBA.portable.ServantObject _so = _servant_preinvoke("listeAutorisationsTemp",_opsClass);
+                if (_so == null)
+                   continue;
+                GestionEntreeSortie.GestionAutorisationOperations _self = (GestionEntreeSortie.GestionAutorisationOperations) _so.servant;
+                try
+                {
+                    return _self.listeAutorisationsTemp( idZone,  cleAPI);
+                }
+                finally
+                {
+                    _servant_postinvoke(_so);
+                }
+            }
+        }
+    }
+
 }
