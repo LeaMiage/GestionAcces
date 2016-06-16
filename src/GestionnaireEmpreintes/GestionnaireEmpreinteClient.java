@@ -126,15 +126,16 @@ public class GestionnaireEmpreinteClient {
 			
 			switch (str){
 			case "1":
-				System.out.println("Entrez votre identifiant");
-				str=sc.nextLine();
-				idPersonne = Integer.parseInt(str);
-				
-				System.out.println("Entrez votre mot de passe");
-				str=sc.nextLine();
-				mdp = str;
-				System.out.println("\n");
 				try {
+					System.out.println("Entrez votre identifiant");
+					str=sc.nextLine();
+					idPersonne = Integer.parseInt(str);
+					
+					System.out.println("Entrez votre mot de passe");
+					str=sc.nextLine();
+					mdp = str;
+					System.out.println("\n");
+					
 					int type = authentifierCompte(idPersonne, mdp);
 					switch (type) {
 					case 0:
@@ -149,6 +150,9 @@ public class GestionnaireEmpreinteClient {
 					default:
 						break;
 					}
+				} catch (NumberFormatException e) {
+					System.out.println("Veuillez saisir un nombre entier.");
+					str="1";
 				} catch (ErreurAuthentification erreurAuthentification) {
 					System.out.println(erreurAuthentification.message);
 					str = "1";

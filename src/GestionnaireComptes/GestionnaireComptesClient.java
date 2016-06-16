@@ -214,7 +214,7 @@ public class GestionnaireComptesClient {
 							str="2";
 						}
 					} catch (NumberFormatException e) {
-						System.out.println("L'indentifiant du collaborateur doit être un nombre.");
+						System.out.println("Veuillez saisir un nombre entier.");
 						str="2";
 					} catch (PersonneInconnue personneInconnue) {
 						System.out.println(personneInconnue.message);
@@ -290,8 +290,8 @@ public class GestionnaireComptesClient {
 						System.out.println("Prénom : "+identite.prenomP);
 						System.out.println("Photo : "+identite.photoP);
 						str="1";
-					} catch (NumberFormatException e){
-						System.out.println("L'indentifiant du collaborateur doit être un nombre.");
+					} catch (NumberFormatException e) {
+						System.out.println("Veuillez saisir un nombre entier.");
 						str="2";
 					} catch (PersonneInconnue personneInconnue) {
 						System.out.println(personneInconnue.message);
