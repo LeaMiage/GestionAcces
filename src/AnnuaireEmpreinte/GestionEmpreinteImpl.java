@@ -78,7 +78,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 	        
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
-	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object(Utils.Utils.corbaloc));
 
 	        
 	        // Recherche aupres du naming service

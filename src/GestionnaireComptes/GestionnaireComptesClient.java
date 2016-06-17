@@ -26,7 +26,7 @@ public class GestionnaireComptesClient {
 
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
-	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object(Utils.Utils.corbaloc));
 
 	        // Construction du nom a rechercher
 	        org.omg.CosNaming.NameComponent[] nameToFind = new org.omg.CosNaming.NameComponent[1];
@@ -60,7 +60,7 @@ public class GestionnaireComptesClient {
 	        
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
-	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object(Utils.Utils.corbaloc));
 
 	        
 	        // Recherche aupres du naming service
@@ -90,7 +90,7 @@ public class GestionnaireComptesClient {
 	        
 	        // Recuperation du naming service
 	        org.omg.CosNaming.NamingContext nameRoot =
-	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.resolve_initial_references("NameService"));
+	        		org.omg.CosNaming.NamingContextHelper.narrow(orb.string_to_object(Utils.Utils.corbaloc));
 	        
 	        // Recherche aupres du naming service
 	        org.omg.CORBA.Object distantGestionEmpreinte = nameRoot.resolve(nameToFind3);

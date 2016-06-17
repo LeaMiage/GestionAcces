@@ -1,3 +1,1 @@
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./empreintes-serveur.jar
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./salaries-serveur.jar
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./journalisation-serveur.jar
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./administration-client.jar

@@ -1,7 +1,3 @@
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./porte-serveur.jar 1 1
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./porte-serveur.jar 1 2
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./porte-serveur.jar 2 1
-
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./equipement-porte-client.jar 1 1
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./equipement-porte-client.jar 1 2
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./equipement-porte-client.jar 2 1
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./empreintes-serveur.jar
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./salaries-serveur.jar
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./journalisation-serveur.jar
