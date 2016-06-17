@@ -134,4 +134,22 @@ public class GestionAutorisationPOATie extends GestionAutorisationPOA
         return _tie.listeAutorisationsTemp( idZone,  cleAPI);
     }
 
+    /**
+     * Operation listeAutorisationsPermPersonne
+     */
+    public GestionEntreeSortie.AutorisationPermanente[] listeAutorisationsPermPersonne(int idPersonne, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue
+    {
+        return _tie.listeAutorisationsPermPersonne( idPersonne,  cleAPI);
+    }
+
+    /**
+     * Operation listeAutorisationsTempPersonne
+     */
+    public GestionEntreeSortie.AutorisationTemporaire[] listeAutorisationsTempPersonne(int idPersonne, String cleAPI)
+        throws GestionEntreeSortie.CleInconnue
+    {
+        return _tie.listeAutorisationsTempPersonne( idPersonne,  cleAPI);
+    }
+
 }
