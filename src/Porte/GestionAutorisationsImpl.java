@@ -341,4 +341,79 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		
 	}
 
+
+	@Override
+	public AutorisationPermanente[] listeAutorisationsPermPersonne(int idPersonne, String cleAPI)
+			throws CleInconnue {
+
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
+		}
+		
+		Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDPerm);
+		
+		Hashtable<String,AutorisationPermanente> listeTemp = new Hashtable<String,AutorisationPermanente>();
+
+		
+		Enumeration e = annuaireAutorisations.elements();
+		
+		while (e.hasMoreElements()){
+			
+			AutorisationPermanente ap = (AutorisationPermanente) e.nextElement();
+			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
+			
+			if(ap.idPersonne==idPersonne)			
+				listeTemp.put(idAutorisation, ap);
+		}
+		
+		AutorisationPermanente[] listeAP = new AutorisationPermanente[listeTemp.size()];
+		
+		Enumeration e1 = listeTemp.elements();
+		int i=0;
+		while (e1.hasMoreElements()){
+			listeAP[i] = (AutorisationPermanente) e1.nextElement();
+			i++;
+		}
+		
+		return listeAP;
+	}
+
+
+	@Override
+	public AutorisationTemporaire[] listeAutorisationsTempPersonne(int idPersonne, String cleAPI)
+			throws CleInconnue {
+		
+		if (!cleAPI.equals(Utils.Utils.cleApi)){
+			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
+		}
+		
+		Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDTemp);
+		
+		Hashtable<String,AutorisationTemporaire> listeTemp = new Hashtable<String,AutorisationTemporaire>();
+
+		
+		Enumeration e = annuaireAutorisations.elements();
+		
+		while (e.hasMoreElements()){
+			
+			AutorisationTemporaire at = (AutorisationTemporaire) e.nextElement();
+			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
+			
+			if(at.idPersonne==idPersonne)			
+				listeTemp.put(idAutorisation, at);
+		}
+		
+		AutorisationTemporaire[] listeAT = new AutorisationTemporaire[listeTemp.size()];
+		
+		Enumeration e1 = listeTemp.elements();
+		int i=0;
+		while (e1.hasMoreElements()){
+			listeAT[i] = (AutorisationTemporaire) e1.nextElement();
+			i++;
+		}
+		
+		
+		return listeAT;
+	}
+
 }

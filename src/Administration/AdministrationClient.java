@@ -9,23 +9,19 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Vector;
+import java.util.Set;
 
 import org.omg.CORBA.ORBPackage.InvalidName;
 
 import GestionEntreeSortie.AjoutAPImpossible;
-import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
 import GestionEntreeSortie.CleInconnue;
-import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.ConsultationJournal;
 import GestionEntreeSortie.EntreeJournal;
 import GestionEntreeSortie.GestionAutorisation;
-import GestionEntreeSortie.GestionSalaries;
-import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
 import GestionEntreeSortie.ZoneInconnue;
 
@@ -755,6 +751,82 @@ public class AdministrationClient {
 	}
 	
 	
+
+	public void afficherAutorisationsCollaborateur(){
+		
+		String [] args = {};
+		Scanner sc = new Scanner(System.in);
+		String str = "1";
+
+		try {
+			System.out.println("Affichage des autorisations d'un collaborateur");
+
+			System.out.println("Entrez le numéro du collaborateur concerné");
+			
+			str=sc.nextLine();
+			int idPersonne = Integer.parseInt(str);
+
+			System.out.println("Liste des autorisations du collaborateur " + idPersonne + " :\n");
+			
+
+			boolean AutorisationTrouvee = false;
+				
+			// Parcours de toutes les zones
+
+			for(int i=1;i<listeZones.size();i++){
+
+				Zone z = listeZones.get(i);
+				
+				// on ne récupère que la liste d'une seule porte de la zone courante
+				int idPorte = z.listeIdPortes[0];
+
+				GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,z.idZone,idPorte);
+				
+				// Liste des autorisations de la porte courante
+				AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPermPersonne(idPersonne,Utils.Utils.cleApi);
+				AutorisationTemporaire[] listeAT = gestionAutorisation.listeAutorisationsTempPersonne(idPersonne,Utils.Utils.cleApi);
+				
+				// Affichage des autorisations si elles existent
+				
+				if (listeAP.length!=0)
+				{
+					AutorisationTrouvee = true;
+					System.out.println("\n\tZone " + i + " - Autorisations Permanentes :\n");
+					System.out.println(String.format("%20s", "HEURE_DEBUT") + String.format("%20s", "HEURE_FIN") );
+					for(int j=0;j<listeAP.length;j++)
+					{	
+						System.out.println(String.format(String.format("%20s", listeAP[j].heureDebut) + String.format("%20s", listeAP[j].heureFin) ));
+					}
+				}
+				
+				if (listeAT.length!=0)
+				{
+					AutorisationTrouvee = true;
+					System.out.println("\n\tZone " + i + " - Autorisations Temporaires :\n");
+					System.out.println(String.format("%30s", "DATE_DEBUT") + String.format("%30s", "DATE_FIN") );
+					for(int k=0;k<listeAT.length;k++)
+					{	
+						Date dateDebut = new Date((long) listeAT[k].dateDebut);
+						Date dateFin = new Date((long) listeAT[k].dateFin);
+						System.out.println(String.format("%30s", dateDebut.toString()) + " |" +  String.format("%30s", dateFin.toString()) );
+					}
+				}
+	
+			}
+			
+			if (!AutorisationTrouvee)
+				System.out.println("Ce collaborateur ne possède aucune autorisations d'accès aux zones\n");
+
+		} catch(NumberFormatException e){
+			System.out.println("Veuillez saisir un nombre entier");
+			str="1";
+		} catch (CleInconnue e) {
+			System.out.println(e.message);
+		}
+			
+
+	}
+	
 	public void menuAdmin() {
 		
 		// Main de l'admin
@@ -767,7 +839,7 @@ public class AdministrationClient {
 			
 			System.out.println("\nBienvenue sur le menu Administrateur. Veuillez choisir l'action à réaliser. (0 pour quitter)\n");
 			
-			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal\n4. Afficher l'ensemble des autorisations d'une zone\n");
+			System.out.println("1. Gérer les autorisations permanentes\n2. Gérer les autorisations temporaires\n3. Consultation du journal\n4. Afficher l'ensemble des autorisations d'une zone\n5. Afficher l'ensemble des autorisations d'un collaborateur\n");
 			
 			str = sc.nextLine();
 			
@@ -794,10 +866,17 @@ public class AdministrationClient {
 				try {
 					afficherAutorisationsZone();
 				} catch (ZoneInconnue e) {
-					System.out.println("Erreur : Cette zone n'existe pas\n");
+					System.out.println(e.message);
 				}
 				
 				break;
+				
+			case "5":
+				afficherAutorisationsCollaborateur();
+				
+				
+				break;
+				
 			default:
 				
 				break;

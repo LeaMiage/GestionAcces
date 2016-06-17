@@ -238,6 +238,20 @@ module GestionEntreeSortie {
             CleInconnue
         );
         
+        listeAutorisationsPermanentes listeAutorisationsPermPersonne(
+            in long idPersonne,
+            in string cleAPI
+        ) raises(
+            CleInconnue
+        );
+        
+         listeAutorisationsTemporaires listeAutorisationsTempPersonne(
+            in long idPersonne,
+            in string cleAPI
+        ) raises(
+            CleInconnue
+        );
+        
     };
     interface GestionEmpreinte {
         void ajouterEmpreinte(

@@ -28,30 +28,43 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
         return _ids_list;
     }
 
+    private static final java.util.Map operationMap = new java.util.HashMap();
+
+    static {
+            operationMap.put("ajouterAutorisationPermanente",
+                    new Operation_ajouterAutorisationPermanente());
+            operationMap.put("ajouterAutorisationTemporaire",
+                    new Operation_ajouterAutorisationTemporaire());
+            operationMap.put("listeAutorisationsPerm",
+                    new Operation_listeAutorisationsPerm());
+            operationMap.put("listeAutorisationsPermPersonne",
+                    new Operation_listeAutorisationsPermPersonne());
+            operationMap.put("listeAutorisationsTemp",
+                    new Operation_listeAutorisationsTemp());
+            operationMap.put("listeAutorisationsTempPersonne",
+                    new Operation_listeAutorisationsTempPersonne());
+            operationMap.put("modifierAutorisationPermanente",
+                    new Operation_modifierAutorisationPermanente());
+            operationMap.put("modifierAutorisationTemporaire",
+                    new Operation_modifierAutorisationTemporaire());
+            operationMap.put("supprimerAutorisationPermanente",
+                    new Operation_supprimerAutorisationPermanente());
+            operationMap.put("supprimerAutorisationTemporaire",
+                    new Operation_supprimerAutorisationTemporaire());
+    }
+
     public final org.omg.CORBA.portable.OutputStream _invoke(final String opName,
             final org.omg.CORBA.portable.InputStream _is,
             final org.omg.CORBA.portable.ResponseHandler handler)
     {
 
-        if (opName.equals("ajouterAutorisationPermanente")) {
-                return _invoke_ajouterAutorisationPermanente(_is, handler);
-        } else if (opName.equals("ajouterAutorisationTemporaire")) {
-                return _invoke_ajouterAutorisationTemporaire(_is, handler);
-        } else if (opName.equals("listeAutorisationsPerm")) {
-                return _invoke_listeAutorisationsPerm(_is, handler);
-        } else if (opName.equals("listeAutorisationsTemp")) {
-                return _invoke_listeAutorisationsTemp(_is, handler);
-        } else if (opName.equals("modifierAutorisationPermanente")) {
-                return _invoke_modifierAutorisationPermanente(_is, handler);
-        } else if (opName.equals("modifierAutorisationTemporaire")) {
-                return _invoke_modifierAutorisationTemporaire(_is, handler);
-        } else if (opName.equals("supprimerAutorisationPermanente")) {
-                return _invoke_supprimerAutorisationPermanente(_is, handler);
-        } else if (opName.equals("supprimerAutorisationTemporaire")) {
-                return _invoke_supprimerAutorisationTemporaire(_is, handler);
-        } else {
+        final AbstractOperation operation = (AbstractOperation)operationMap.get(opName);
+
+        if (null == operation) {
             throw new org.omg.CORBA.BAD_OPERATION(opName);
         }
+
+        return operation.invoke(this, _is, handler);
     }
 
     // helper methods
@@ -328,6 +341,160 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
         }
         return _output;
+    }
+
+    private org.omg.CORBA.portable.OutputStream _invoke_listeAutorisationsPermPersonne(
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler) {
+        org.omg.CORBA.portable.OutputStream _output;
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
+
+        try
+        {
+            GestionEntreeSortie.AutorisationPermanente[] _arg_result = listeAutorisationsPermPersonne(arg0_in, arg1_in);
+
+            _output = handler.createReply();
+            GestionEntreeSortie.listeAutorisationsPermanentesHelper.write(_output,_arg_result);
+
+        }
+        catch (GestionEntreeSortie.CleInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
+        }
+        return _output;
+    }
+
+    private org.omg.CORBA.portable.OutputStream _invoke_listeAutorisationsTempPersonne(
+            final org.omg.CORBA.portable.InputStream _is,
+            final org.omg.CORBA.portable.ResponseHandler handler) {
+        org.omg.CORBA.portable.OutputStream _output;
+        int arg0_in = _is.read_long();
+        String arg1_in = _is.read_string();
+
+        try
+        {
+            GestionEntreeSortie.AutorisationTemporaire[] _arg_result = listeAutorisationsTempPersonne(arg0_in, arg1_in);
+
+            _output = handler.createReply();
+            GestionEntreeSortie.listeAutorisationsTemporairesHelper.write(_output,_arg_result);
+
+        }
+        catch (GestionEntreeSortie.CleInconnue _exception)
+        {
+            _output = handler.createExceptionReply();
+            GestionEntreeSortie.CleInconnueHelper.write(_output,_exception);
+        }
+        return _output;
+    }
+
+    // operation classes
+    private abstract static class AbstractOperation {
+        protected abstract org.omg.CORBA.portable.OutputStream invoke(
+                GestionAutorisationPOA target,
+                org.omg.CORBA.portable.InputStream _is,
+                org.omg.CORBA.portable.ResponseHandler handler);
+    }
+
+    private static final class Operation_ajouterAutorisationPermanente extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_ajouterAutorisationPermanente(_is, handler);
+        }
+    }
+
+    private static final class Operation_modifierAutorisationPermanente extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_modifierAutorisationPermanente(_is, handler);
+        }
+    }
+
+    private static final class Operation_supprimerAutorisationPermanente extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_supprimerAutorisationPermanente(_is, handler);
+        }
+    }
+
+    private static final class Operation_ajouterAutorisationTemporaire extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_ajouterAutorisationTemporaire(_is, handler);
+        }
+    }
+
+    private static final class Operation_modifierAutorisationTemporaire extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_modifierAutorisationTemporaire(_is, handler);
+        }
+    }
+
+    private static final class Operation_supprimerAutorisationTemporaire extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_supprimerAutorisationTemporaire(_is, handler);
+        }
+    }
+
+    private static final class Operation_listeAutorisationsPerm extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_listeAutorisationsPerm(_is, handler);
+        }
+    }
+
+    private static final class Operation_listeAutorisationsTemp extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_listeAutorisationsTemp(_is, handler);
+        }
+    }
+
+    private static final class Operation_listeAutorisationsPermPersonne extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_listeAutorisationsPermPersonne(_is, handler);
+        }
+    }
+
+    private static final class Operation_listeAutorisationsTempPersonne extends AbstractOperation
+    {
+        protected org.omg.CORBA.portable.OutputStream invoke(
+                final GestionAutorisationPOA target,
+                final org.omg.CORBA.portable.InputStream _is,
+                final org.omg.CORBA.portable.ResponseHandler handler) {
+            return target._invoke_listeAutorisationsTempPersonne(_is, handler);
+        }
     }
 
 }
