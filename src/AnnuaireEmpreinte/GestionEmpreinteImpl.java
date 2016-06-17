@@ -37,7 +37,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 		
-		System.out.println("Test : modifierEmpreinte");
+		
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 		
-		System.out.println("Test : supprimerEmpreinte");
+		
 	}
 	
 	public static GestionSalaries getGestionSalaries(String args[]){
@@ -119,7 +119,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 		
-		System.out.println("Test : modifierEmpreinte");
+		
 		
 	}
 

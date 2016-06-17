@@ -27,7 +27,6 @@ import GestionEntreeSortie.GestionAutorisation;
 import GestionEntreeSortie.GestionSalaries;
 import GestionEntreeSortie.IdentiteCollaborateur;
 import GestionEntreeSortie.PersonneInconnue;
-import GestionEntreeSortie.Zone;
 import GestionEntreeSortie.ZoneInconnue;
 
 public class AdministrationClient {
@@ -112,8 +111,6 @@ public class AdministrationClient {
 
 	        // Recherche aupres du naming service
 	        org.omg.CORBA.Object distantConsultationJournal = nameRoot.resolve(nameToFind);
-	        System.out.println("Objet '" + idObj + "' trouve aupres du service de noms. IOR de l'objet :");
-	        System.out.println(orb.object_to_string(distantConsultationJournal));
 	        
 	        // Casting des objets CORBA
 	        GestionEntreeSortie.ConsultationJournal consultationJournal = GestionEntreeSortie.ConsultationJournalHelper.narrow(distantConsultationJournal);
@@ -658,11 +655,7 @@ public class AdministrationClient {
 				} catch (CleInconnue e) {
 					System.out.println(e.message);
 				}
-				
-				
-				
-				
-				
+					
 				
 				break;
 
@@ -679,14 +672,13 @@ public class AdministrationClient {
 		String [] args = {};
 		
 		ConsultationJournal consultationJournal = getServiceConsultationJournal(args);
-		System.out.println("ConsultationJournal récupéré");
-		
+
 		try {
 			EntreeJournal[] journal = consultationJournal.consulterJournal(Utils.Utils.cleApi);
 			
 			System.out.println("Consultation du journal :\n");
 			System.out.println(String.format("%20s", "IDZONE") + String.format("%20s", "IDPORTE") + String.format("%20s", "PHOTO") + String.format("%20s", "STATUT") + String.format("%20s", "TYPE") + " " + String.format("%20s", "DATE"));
-			
+			System.out.println("______________________________________________________________________________________________________________________________________\n");
 			for(int i=0;i<journal.length;i++)
 			{	
 				Date date = new Date((long) journal[i].dateAcces);
@@ -749,7 +741,7 @@ public class AdministrationClient {
 			{	
 				Date dateDebut = new Date((long) listeAT[i].dateDebut);
 				Date dateFin = new Date((long) listeAT[i].dateFin);
-				System.out.println(String.format("%20d", listeAT[i].idPersonne) + String.format("%30s", dateDebut.toString()) + String.format("%30s", dateFin.toString()) );
+				System.out.println(String.format("%20d", listeAT[i].idPersonne) + " |" +  String.format("%30s", dateDebut.toString()) + "|" +  String.format("%30s", dateFin.toString()) );
 			}
 			
 		} catch (CleInconnue e) {
