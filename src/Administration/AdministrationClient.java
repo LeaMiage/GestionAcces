@@ -151,10 +151,7 @@ public class AdministrationClient {
 			
 
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
-			
-			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 
-			System.out.println("Tentative d'ajout d'autorisation");
 			gestionAutorisation.ajouterAutorisationPermanente(ap,Utils.Utils.cleApi);
 			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
 			
@@ -182,11 +179,7 @@ public class AdministrationClient {
 			
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
-			System.out.println("Gestion autorisation récupéré");
-			
-			
-			
-			System.out.println("Tentative de modification d'autorisation");
+
 			gestionAutorisation.modifierAutorisationPermanente(ap, np,Utils.Utils.cleApi);
 			System.out.println("Modification d'autorisation réussie");
 
@@ -213,10 +206,7 @@ public class AdministrationClient {
 	
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
-			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
-			
-	
-			System.out.println("Tentative de suppression d'autorisation");
+
 			gestionAutorisation.supprimerAutorisationPermanente(ap,Utils.Utils.cleApi);
 			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
 
@@ -247,11 +237,7 @@ public class AdministrationClient {
 	
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
-			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
-			
-	
-			
-			System.out.println("Tentative d'ajout d'autorisation");
+
 			gestionAutorisation.ajouterAutorisationTemporaire(at,Utils.Utils.cleApi);
 			System.out.println("Ajout d'autorisation réussie sur la porte "+ idPorte);
 			
@@ -279,11 +265,7 @@ public class AdministrationClient {
 			
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
-			System.out.println("Gestion autorisation récupéré");
-			
-			
-			
-			System.out.println("Tentative de modification d'autorisation");
+
 			gestionAutorisation.modifierAutorisationTemporaire(at, at_new,Utils.Utils.cleApi);
 			System.out.println("Modification d'autorisation réussie");
 
@@ -310,10 +292,7 @@ public class AdministrationClient {
 		
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,idZone,idPorte);
 			
-			System.out.println("Gestion autorisation de la porte " + idPorte + " récupéré");
 			
-		
-			System.out.println("Tentative de suppression d'autorisation");
 			gestionAutorisation.supprimerAutorisationTemporaire(at,Utils.Utils.cleApi);
 			System.out.println("Suppression d'autorisation réussie sur la porte "+ idPorte);
 
@@ -334,7 +313,7 @@ public class AdministrationClient {
 		
 		while(!str.equals("0"))
 		{
-			System.out.println("Menu de gestion des autorisations permanentes. Veuillez choisir l'action à réaliser. (0 pour quitter)");
+			System.out.println("\nMenu de gestion des autorisations permanentes. Veuillez choisir l'action à réaliser. (0 pour quitter)");
 			System.out.println("1. Ajouter une autorisation permanente\n2. Modifier une autorisation permanente\n3. Supprimer une autorisation permanente\n"
 								+ "\n");
 			
@@ -502,7 +481,7 @@ public class AdministrationClient {
 		
 		while(!str.equals("0"))
 		{
-			System.out.println("Menu de gestion des autorisations temporaire. Veuillez choisir l'action à réaliser. (0 pour quitter)");
+			System.out.println("\nMenu de gestion des autorisations temporaire. Veuillez choisir l'action à réaliser. (0 pour quitter)");
 			System.out.println("1. Ajouter une autorisation temporaire\n2. Modifier une autorisation temporaire\n3. Supprimer une autorisation temporaire\n"
 								+ "4. \n");
 			
@@ -715,8 +694,6 @@ public class AdministrationClient {
 			int idPorte = z.listeIdPortes[0];
 			
 			GestionAutorisation gestionAutorisation = getServiceGestionAutorisations(args,numZone,idPorte);
-			
-			System.out.println("Gestion autorisation récupéré");
 			
 			// Affichage des autorisations permanentes
 			AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPerm(numZone,Utils.Utils.cleApi);
