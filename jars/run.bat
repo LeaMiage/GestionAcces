@@ -1,3 +1,3 @@
-for %%cmds in ("`cat %1.txt`") do (
-  start "`%cmds%`"
+﻿FOR /f %%cmds IN ("cat %1.txt") DO (
+start "`%cmds%`"
 )
