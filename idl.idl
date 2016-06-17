@@ -57,13 +57,6 @@ module GestionEntreeSortie {
         string empreinte;
     };
     
-    typedef sequence<long> IdPortes;
-    
-    struct Zone {
-        long idZone;
-        string libelleZone;
-        IdPortes listeIdPortes;
-    };
 
     struct EntreeJournal {
         long idZone;

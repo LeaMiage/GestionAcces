@@ -16,10 +16,6 @@ import java.util.Hashtable;
 
 public class GestionFichiers {
 
-	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
-	}
-	
 	public static void ecrireFichier(String nomFichier, Hashtable contenu){
 		FileOutputStream fs = null;
         BufferedOutputStream bs = null;
