@@ -1,7 +1,10 @@
 package Journalisation;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.ConsultationJournalPOA;
@@ -21,15 +24,16 @@ public class ConsultationJournalImpl extends ConsultationJournalPOA{
 		
 		Hashtable journal = Helpers.GestionFichiers.lireFichier("src/Journalisation/Journal.txt");
 		
-		EntreeJournal[] entreesJournal = new EntreeJournal[journal.size()];
-		Enumeration e = journal.elements();
 		
-		while (e.hasMoreElements()){
-			entreesJournal[i] = (EntreeJournal) e.nextElement();
+		EntreeJournal[] entreesJournal = new EntreeJournal[journal.size()];
+		List<Integer> listeTriee = new ArrayList<Integer>(journal.keySet());
+	    Collections.sort(listeTriee);
+	    
+	    for (int key = listeTriee.size()-1; key>=0; key--) {
+	    	entreesJournal[i] = (EntreeJournal) journal.get(key);
 			i++;
 		}
-
-
+	    
 		return entreesJournal;
 	}
 
