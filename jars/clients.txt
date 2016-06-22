@@ -1,5 +1,5 @@
 java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/administration-client.jar
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-compte-client.jar RH
-java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-compte-client.jar Accueil
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-comptes-client.jar RH
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-comptes-client.jar Accueil
 java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-empreintes-client.jar
 java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./jars/gestionnaire-empreintes-client.jar
