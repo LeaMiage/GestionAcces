@@ -1,0 +1,1 @@
+java -Dorg.omg.CORBA.ORBClass=org.openorb.CORBA.ORB -jar ./empreintes-serveur.jar
