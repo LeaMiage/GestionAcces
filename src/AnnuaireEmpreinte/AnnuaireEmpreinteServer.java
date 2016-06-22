@@ -24,6 +24,7 @@ public class AnnuaireEmpreinteServer {
 	        // Creation du servant
 	        //*********************
 	        GestionEmpreinteImpl servantGestionEmpreinte = new GestionEmpreinteImpl();
+	        servantGestionEmpreinte.initialisation();
 
 	        VerificationEmpreinteImpl servantVerificationEmpreinte = new VerificationEmpreinteImpl();
 	       

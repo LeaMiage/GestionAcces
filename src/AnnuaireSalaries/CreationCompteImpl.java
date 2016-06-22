@@ -93,5 +93,31 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 		}
 		return trouve;
 	}
+	
+	public void initialisation() {
+		try {
+			Hashtable annuaire = new Hashtable<>();
+			
+			//Initialisation des fichiers à vide
+			Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt", annuaire);
+			Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt", annuaire);
+			
+			creerCT("Toto", "To", "testToto", "photoToto", Utils.Utils.cleApi);
+			creerCT("Titi", "Ti", "testTiti", "photoTiti", Utils.Utils.cleApi);
+			creerCP("Chéoux", "Léa", "lcheoux", "photoLéa", Utils.Utils.cleApi);
+			creerCP("Chevalier", "Théo", "tchevalier", "photoThéo", Utils.Utils.cleApi);
+			creerCP("Movia", "Bastien", "bmovia", "photoBastien", Utils.Utils.cleApi);
+			
+		} catch (CleInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonneExistante e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ChampVide e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

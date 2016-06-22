@@ -17,35 +17,6 @@ import GestionEntreeSortie.PersonneInconnue;
 
 public class GestionnaireEmpreinteClient {
 	
-	public GestionnaireEmpreinteClient(){
-		
-	}
-	
-	public void initialisation(){
-		Hashtable annuaire = new Hashtable<>();
-		
-		//Initialisation des fichiers à vide
-		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
-		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
-		
-		try {
-			ajouterEmpreinte(1, "empreinteTiti");
-			ajouterEmpreinte(2, "empreinteLéa");
-			ajouterEmpreinte(3, "empreinteThéo");
-			ajouterEmpreinte(4, "empreinteBastien");
-		} catch (CleInconnue e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ChampVide e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EmpreinteExistante e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	}
 	public static Authentification getServiceAuthentification(String args[]){
 		try {
 			// Intialisation de l'orb

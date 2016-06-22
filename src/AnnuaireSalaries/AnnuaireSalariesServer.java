@@ -21,8 +21,9 @@ public class AnnuaireSalariesServer {
 	        // Creation du servant
 	        //*********************
 	        AuthentificationImpl servantAuthentification = new AuthentificationImpl();
-
+	        
 	        CreationCompteImpl servantCreationCompte = new CreationCompteImpl();
+	        servantCreationCompte.initialisation();
 	        
 	        GestionSalariesImpl servantGestionSalaries = new GestionSalariesImpl();
 	       
@@ -89,6 +90,8 @@ public class AnnuaireSalariesServer {
 	        // Lancement de l'ORB et mise en attente de requete
 	        //**************************************************
 	        orb.run();
+	        
+	        
 
 	    }
 		catch (Exception e) {
