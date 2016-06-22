@@ -104,8 +104,8 @@ public class CreationCompteImpl extends GestionEntreeSortie.CreationComptePOA{
 			
 			creerCT("Toto", "To", "testToto", "photoToto", Utils.Utils.cleApi);
 			creerCT("Titi", "Ti", "testTiti", "photoTiti", Utils.Utils.cleApi);
-			creerCP("Chéoux", "Léa", "lcheoux", "photoLéa", Utils.Utils.cleApi);
-			creerCP("Chevalier", "Théo", "tchevalier", "photoThéo", Utils.Utils.cleApi);
+			creerCP("Cheoux", "Lea", "lcheoux", "photoLea", Utils.Utils.cleApi);
+			creerCP("Chevalier", "Theo", "tchevalier", "photoTheo", Utils.Utils.cleApi);
 			creerCP("Movia", "Bastien", "bmovia", "photoBastien", Utils.Utils.cleApi);
 			
 		} catch (CleInconnue e) {
