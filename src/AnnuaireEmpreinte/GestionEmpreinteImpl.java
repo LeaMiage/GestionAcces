@@ -128,12 +128,11 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 
 		//Initialisation des fichiers à vide
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
-		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 
 		try {
 			ajouterEmpreinte(1, "empreinteTiti", Utils.Utils.cleApi);
-			ajouterEmpreinte(2, "empreinteLéa", Utils.Utils.cleApi);
-			ajouterEmpreinte(3, "empreinteThéo", Utils.Utils.cleApi);
+			ajouterEmpreinte(2, "empreinteLea", Utils.Utils.cleApi);
+			ajouterEmpreinte(3, "empreinteTheo", Utils.Utils.cleApi);
 			ajouterEmpreinte(4, "empreinteBastien", Utils.Utils.cleApi);
 		} catch (CleInconnue e) {
 			// TODO Auto-generated catch block
