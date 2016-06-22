@@ -27,6 +27,17 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		this.idPorte=idPorte;
 		this.locationBDPerm="src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Perm.txt";
 		this.locationBDTemp="src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Temp.txt";
+		
+		initialisation();
+	}
+	
+	public void initialisation(){
+		
+		Hashtable annuaire = new Hashtable<>();
+		
+		//Initialisation des fichiers à vide
+		Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaire);
+		Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaire);
 	}
 
 

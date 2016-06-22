@@ -1,10 +1,12 @@
 package GestionnaireComptes;
 
+import java.util.Hashtable;
 import java.util.Scanner;
 
 import GestionEntreeSortie.Authentification;
 import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
+import GestionEntreeSortie.Collaborateur;
 import GestionEntreeSortie.CreationCompte;
 import GestionEntreeSortie.ErreurAuthentification;
 import GestionEntreeSortie.GestionEmpreinte;
@@ -15,6 +17,36 @@ import GestionEntreeSortie.PersonneInconnue;
 import GestionnaireEmpreintes.GestionnaireEmpreinteClient;
 
 public class GestionnaireComptesClient {
+	
+	public GestionnaireComptesClient(){
+		initialisation();
+	}
+	
+	public void initialisation() {
+		try {
+			Hashtable annuaire = new Hashtable<>();
+			
+			//Initialisation des fichiers à vide
+			Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt", annuaire);
+			Helpers.GestionFichiers.ecrireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt", annuaire);
+			
+			creerCT("Toto", "To", "testToto", "photoToto");
+			creerCT("Titi", "Ti", "testTiti", "photoTiti");
+			creerCP("Chéoux", "Léa", "lcheoux", "photoLéa");
+			creerCP("Chevalier", "Théo", "tchevalier", "photoThéo");
+			creerCP("Movia", "Bastien", "bmovia", "photoBastien");
+			
+		} catch (CleInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonneExistante e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ChampVide e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static CreationCompte getCreationCompte(String args[]){
 		try {

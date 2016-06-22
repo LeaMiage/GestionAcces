@@ -52,7 +52,40 @@ public class AdministrationClient {
 		
 		Helpers.GestionFichiers.ecrireFichier("src/Administration/BD_Zones.txt", listeZones);
 		
-		System.out.println("Création des zones et affectation des portes effectué");		
+		System.out.println("Création des zones et affectation des portes effectué");
+		
+		
+		try {
+			AutorisationPermanente AP1 = new AutorisationPermanente(2, "09:00", "12:00");
+			ajouterAutorisationPermanente(2, AP1);
+			
+			AutorisationPermanente AP2 = new AutorisationPermanente(2, "14:30", "17:00");
+			ajouterAutorisationPermanente(2, AP2);
+			
+			AutorisationPermanente AP3 = new AutorisationPermanente(3, "14:00", "18:00");
+			ajouterAutorisationPermanente(3, AP3);
+			
+			AutorisationPermanente AP4 = new AutorisationPermanente(4, "10:30", "15:00");
+			ajouterAutorisationPermanente(4, AP4);
+		} catch (ZoneInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AjoutAPImpossible e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AutorisationInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (AutorisationExistante e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonneInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (CleInconnue e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 	
 	public static GestionAutorisation getServiceGestionAutorisations(String args[], int idZone, int idPorte){
