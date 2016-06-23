@@ -246,7 +246,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			else
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
 			
-			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
+			Helpers.GestionFichiers.ecrireFichier(locationBDTemp, annuaireAutorisations);
 			
 			System.out.println("Autorisation permanente modifiée");
 			
