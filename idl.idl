@@ -177,8 +177,7 @@ module GestionEntreeSortie {
             in AutorisationPermanente np,
             in string cleAPI
         ) raises(
-            AutorisationInconnue,
-            AutorisationExistante, 
+            AutorisationInconnue, 
             PersonneInconnue,
             CleInconnue
         );

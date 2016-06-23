@@ -106,7 +106,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	*/
 	@Override
 	public void modifierAutorisationPermanente(AutorisationPermanente ap, AutorisationPermanente np, String cleAPI)
-			throws AutorisationInconnue, CleInconnue, AutorisationExistante, PersonneInconnue {
+			throws AutorisationInconnue, CleInconnue, PersonneInconnue {
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
@@ -125,23 +125,19 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
-			// Suppression de l'ancienne autorisation si elle existe
+			// Remplacement de l'ancienne autorisation si elle existe
 			if (annuaireAutorisations.containsKey(idAutorisation))
-				supprimerAutorisationPermanente(ap, cleAPI);
+				annuaireAutorisations.put(idAutorisation, ap);
 			else
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
 			
-			ajouterAutorisationPermanente(np, cleAPI);		
+			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
 			
-			// Pas d'écriture dans le fichier BD, car les méthodes supprimer et ajouter le font déjà
+			System.out.println("Autorisation permanente modifiée");
 			
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
-		} catch (CleInconnue e) {
+		}catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
-		} catch (AjoutAPImpossible e) {
-			System.out.println(e.message);
 		}
 		
 		
@@ -151,7 +147,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 	@Override
 	public void supprimerAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws AutorisationInconnue, PersonneInconnue, CleInconnue {
 
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
@@ -179,8 +175,6 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
 			
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
 		} catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		}
