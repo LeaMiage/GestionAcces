@@ -249,7 +249,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDTemp);
 
-			String idAutorisation_new = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
+			String idAutorisation_new = nt.idPersonne + "_" + nt.dateDebut + "_" + nt.dateFin;
 			
 			// Ajout de la nouvelle autorisation
 			annuaireAutorisations.put(idAutorisation_new, nt);
