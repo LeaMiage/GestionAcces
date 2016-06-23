@@ -287,7 +287,15 @@ public class GestionnaireComptesClient {
 						System.out.println("\n");
 						
 						identite = rechercherSalarie(idPersonne);
+						int type = verifierPersonne(idPersonne);
+						
 						System.out.println("Information du collaborateur "+idPersonne+" :");
+						System.out.print("Type du collaborateur : ");
+						if (type == 1) {
+							System.out.println("Temporaire");
+						} else {
+							System.out.println("Permanent");
+						}
 						System.out.println("Nom : "+identite.nomP);
 						System.out.println("Prénom : "+identite.prenomP);
 						System.out.println("Photo : "+identite.photoP);
