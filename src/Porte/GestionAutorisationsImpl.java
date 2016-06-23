@@ -123,7 +123,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			// Suppression de l'ancienne autorisation
 			try{
-				supprimerAutorisationPermanente(ap, idAutorisation);
+				supprimerAutorisationPermanente(ap, cleAPI);
 			}catch(AutorisationInconnue e){
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
 			}
@@ -242,7 +242,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			
 			// Suppression de l'ancienne autorisation
 			try{
-				supprimerAutorisationTemporaire(at, idAutorisation);
+				supprimerAutorisationTemporaire(at, cleAPI);
 			}catch(AutorisationInconnue e){
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
 			}
