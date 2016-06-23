@@ -11,7 +11,7 @@ public interface GestionAutorisationOperations
      * Operation ajouterAutorisationPermanente
      */
     public void ajouterAutorisationPermanente(GestionEntreeSortie.AutorisationPermanente ap, String cleAPI)
-        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.AjoutAPImpossible, GestionEntreeSortie.CleInconnue;
+        throws GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.AjoutAPImpossible, GestionEntreeSortie.CleInconnue;
 
     /**
      * Operation modifierAutorisationPermanente
@@ -29,7 +29,7 @@ public interface GestionAutorisationOperations
      * Operation ajouterAutorisationTemporaire
      */
     public void ajouterAutorisationTemporaire(GestionEntreeSortie.AutorisationTemporaire at, String cleAPI)
-        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue;
+        throws GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue;
 
     /**
      * Operation modifierAutorisationTemporaire

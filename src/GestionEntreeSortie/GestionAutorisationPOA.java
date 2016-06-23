@@ -82,11 +82,6 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
             _output = handler.createReply();
 
         }
-        catch (GestionEntreeSortie.AutorisationInconnue _exception)
-        {
-            _output = handler.createExceptionReply();
-            GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
-        }
         catch (GestionEntreeSortie.AutorisationExistante _exception)
         {
             _output = handler.createExceptionReply();
@@ -188,11 +183,6 @@ public abstract class GestionAutorisationPOA extends org.omg.PortableServer.Serv
 
             _output = handler.createReply();
 
-        }
-        catch (GestionEntreeSortie.AutorisationInconnue _exception)
-        {
-            _output = handler.createExceptionReply();
-            GestionEntreeSortie.AutorisationInconnueHelper.write(_output,_exception);
         }
         catch (GestionEntreeSortie.AutorisationExistante _exception)
         {

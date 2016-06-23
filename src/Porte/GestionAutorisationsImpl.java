@@ -47,7 +47,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	
 	@Override
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
-			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante, AjoutAPImpossible {
+			throws CleInconnue, PersonneInconnue, AutorisationExistante, AjoutAPImpossible {
 
 		
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
@@ -186,7 +186,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 	@Override
 	public void ajouterAutorisationTemporaire(AutorisationTemporaire at, String cleAPI)
-			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante {
+			throws CleInconnue, PersonneInconnue, AutorisationExistante {
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
