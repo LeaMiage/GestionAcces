@@ -152,10 +152,10 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 					    if (trouve) {
 							System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
 							
-							journalisation.journaliser(idZone, idPorte, photoP, "Autorisé", "Entrée", timestamp, cleAPI);
+							journalisation.journaliser(idZone, idPorte, photoP, "Autorisation", "Entrer", timestamp, cleAPI);
 							msg = "Bienvenue " + ic.prenomP + " " + ic.nomP;
 					    } else {   	
-					    	journalisation.journaliser(idZone, idPorte, photoP, "Refusé", "Entrée", timestamp, cleAPI);
+					    	journalisation.journaliser(idZone, idPorte, photoP, "Refus", "Sortir", timestamp, cleAPI);
 					    	msg = "Accès refusé";
 					    	throw new NonAutorise("Accès refusé : vous n'avez pas l'autorisation d'accéder à cette zone");
 					    }
@@ -166,7 +166,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			
 			System.out.println(e.message);
 			try {
-				journalisation.journaliser(idZone, idPorte, photoP, "Refusé", "Entrée", timestamp, cleAPI);
+				journalisation.journaliser(idZone, idPorte, photoP, "Refus", "Entrer", timestamp, cleAPI);
 			} catch (JournalisationImpossible e1) {
 				System.out.println(e1.message);
 			}
@@ -176,7 +176,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 			
 			System.out.println(e.message);
 			try {
-				journalisation.journaliser(idZone, idPorte, photoP, "Refusé", "Entrée", timestamp, cleAPI);
+				journalisation.journaliser(idZone, idPorte, photoP, "Refus", "Entrer", timestamp, cleAPI);
 			} catch (JournalisationImpossible e1) {
 				System.out.println(e1.message);
 			}
@@ -319,10 +319,10 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 					    if (trouve) {
 							System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
 							
-							journalisation.journaliser(idZone, idPorte, photoP, "Autorisé", "Sortie", timestamp, cleAPI);
+							journalisation.journaliser(idZone, idPorte, photoP, "Autorisation", "Sortir", timestamp, cleAPI);
 							msg = "Au revoir " + ic.prenomP + " " + ic.nomP;
 					    } else {   	
-					    	journalisation.journaliser(idZone, idPorte, photoP, "Refusé", "Sortie", timestamp, cleAPI);
+					    	journalisation.journaliser(idZone, idPorte, photoP, "Refus", "Sortir", timestamp, cleAPI);
 					    	msg = "Sortie refusée";
 					    	throw new NonAutorise("Sortie refusée : vous n'avez pas l'autorisation de sortir de cette zone");
 					    }
