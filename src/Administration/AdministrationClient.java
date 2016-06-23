@@ -705,6 +705,7 @@ public class AdministrationClient {
 			// Affichage des autorisations permanentes
 			AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPerm(numZone,Utils.Utils.cleApi);
 
+
 			if(listeAP.length != 0) {
 				System.out.println("Liste des autorisations permanentes de la zone " + numZone + " :\n");
 				System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%20s", "HEURE_DEBUT") + String.format("%20s", "HEURE_FIN") );
@@ -714,10 +715,13 @@ public class AdministrationClient {
 					System.out.println(String.format("%20d", listeAP[i].idPersonne) + String.format("%20s", listeAP[i].heureDebut) + String.format("%20s", listeAP[i].heureFin) );
 				}
 
+
 			}
+
 
 			// Affichage des autorisations temporaires
 			AutorisationTemporaire[] listeAT = gestionAutorisation.listeAutorisationsTemp(numZone,Utils.Utils.cleApi);
+
 
 			if (listeAT.length != 0) {
 				System.out.println("Liste des autorisations temporaires de la zone " + numZone + " :\n");
@@ -730,9 +734,10 @@ public class AdministrationClient {
 				}
 			}
 			
-			if (listeAP.length == 0 && listeAT.length == 0) {
-				System.out.println("Aucune autorisation pour cette zone");
-			}
+
+			if (listeAP.length == 0 && listeAT.length == 0)
+				System.out.println("Cette zone ne possède aucune autorisations");
+				
 
 		} catch (CleInconnue e) {
 			System.out.println(e.message);
