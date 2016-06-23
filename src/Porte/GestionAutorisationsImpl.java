@@ -119,18 +119,22 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		try {
 			gestionSalaries.verifierPersonne(ap.idPersonne, cleAPI);
 			
-			/* Vérification autorisation */
-			
-			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDPerm);
-			
 			String idAutorisation = ap.idPersonne + "_" + ap.heureDebut + "_" + ap.heureFin ;
 			
-			// Remplacement de l'ancienne autorisation si elle existe
-			if (annuaireAutorisations.containsKey(idAutorisation))
-				annuaireAutorisations.put(idAutorisation, ap);
-			else
+			// Suppression de l'ancienne autorisation
+			try{
+				supprimerAutorisationPermanente(ap, idAutorisation);
+			}catch(AutorisationInconnue e){
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
+			}
 			
+			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDPerm);
+
+			String idAutorisation_new = np.idPersonne + "_" + np.heureDebut + "_" + np.heureFin ;
+			
+			// Ajout de la nouvelle autorisation
+			annuaireAutorisations.put(idAutorisation_new, np);
+
 			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
 			
 			System.out.println("Autorisation permanente modifiée");
@@ -234,18 +238,22 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		try {
 			gestionSalaries.verifierPersonne(at.idPersonne, cleAPI);
 			
-			/* Vérification autorisation */
+			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin ;
 			
+			// Suppression de l'ancienne autorisation
+			try{
+				supprimerAutorisationTemporaire(at, idAutorisation);
+			}catch(AutorisationInconnue e){
+				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
+			}
+
 			Hashtable annuaireAutorisations = Helpers.GestionFichiers.lireFichier(locationBDTemp);
 
-			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
+			String idAutorisation_new = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
-			// Remplacement de l'ancienne autorisation si elle existe
-			if (annuaireAutorisations.containsKey(idAutorisation))
-				annuaireAutorisations.put(idAutorisation, at);
-			else
-				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
-			
+			// Ajout de la nouvelle autorisation
+			annuaireAutorisations.put(idAutorisation_new, nt);
+
 			Helpers.GestionFichiers.ecrireFichier(locationBDTemp, annuaireAutorisations);
 			
 			System.out.println("Autorisation permanente modifiée");
