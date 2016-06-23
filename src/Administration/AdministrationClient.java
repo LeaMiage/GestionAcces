@@ -704,25 +704,35 @@ public class AdministrationClient {
 			// Affichage des autorisations permanentes
 			AutorisationPermanente[] listeAP = gestionAutorisation.listeAutorisationsPerm(numZone,Utils.Utils.cleApi);
 			
-			System.out.println("Liste des autorisations permanentes de la zone " + numZone + " :\n");
-			System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%20s", "HEURE_DEBUT") + String.format("%20s", "HEURE_FIN") );
-			for(int i=0;i<listeAP.length;i++)
-			{	
-				System.out.println(String.format("%20d", listeAP[i].idPersonne) + String.format("%20s", listeAP[i].heureDebut) + String.format("%20s", listeAP[i].heureFin) );
+			if (listeAP.length != 0){
+				System.out.println("Liste des autorisations permanentes de la zone " + numZone + " :\n");
+				System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%20s", "HEURE_DEBUT") + String.format("%20s", "HEURE_FIN") );
+				for(int i=0;i<listeAP.length;i++)
+				{	
+					System.out.println(String.format("%20d", listeAP[i].idPersonne) + String.format("%20s", listeAP[i].heureDebut) + String.format("%20s", listeAP[i].heureFin) );
+				}
 			}
+			
 			
 			// Affichage des autorisations temporaires
 			AutorisationTemporaire[] listeAT = gestionAutorisation.listeAutorisationsTemp(numZone,Utils.Utils.cleApi);
 			
-			System.out.println("Liste des autorisations temporaires de la zone " + numZone + " :\n");
-			System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%30s", "DATE_DEBUT") + String.format("%30s", "DATE_FIN") );
-			for(int i=0;i<listeAT.length;i++)
-			{	
-				Date dateDebut = new Date((long) listeAT[i].dateDebut);
-				Date dateFin = new Date((long) listeAT[i].dateFin);
-				System.out.println(String.format("%20d", listeAT[i].idPersonne) + " |" +  String.format("%30s", dateDebut.toString()) + "|" +  String.format("%30s", dateFin.toString()) );
+			if (listeAT.length != 0){
+				System.out.println("Liste des autorisations temporaires de la zone " + numZone + " :\n");
+				System.out.println(String.format("%20s", "IDPERSONNE") + String.format("%30s", "DATE_DEBUT") + String.format("%30s", "DATE_FIN") );
+				for(int i=0;i<listeAT.length;i++)
+				{	
+					Date dateDebut = new Date((long) listeAT[i].dateDebut);
+					Date dateFin = new Date((long) listeAT[i].dateFin);
+					System.out.println(String.format("%20d", listeAT[i].idPersonne) + " |" +  String.format("%30s", dateDebut.toString()) + "|" +  String.format("%30s", dateFin.toString()) );
+				}
 			}
 			
+			if (listeAP.length == 0 && listeAT.length == 0)
+				System.out.println("Cette zone ne possède aucune autorisations");
+				
+				
+				
 		} catch (CleInconnue e) {
 			System.out.println(e.message);
 		}catch(NumberFormatException e){
