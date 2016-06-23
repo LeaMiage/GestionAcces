@@ -736,7 +736,7 @@ public class AdministrationClient {
 			
 
 			if (listeAP.length == 0 && listeAT.length == 0)
-				System.out.println("Cette zone ne possède aucune autorisations");
+				System.out.println("Cette zone ne possède aucune autorisation");
 				
 
 		} catch (CleInconnue e) {
@@ -814,7 +814,7 @@ public class AdministrationClient {
 			}
 
 			if (!AutorisationTrouvee)
-				System.out.println("Ce collaborateur ne possède aucune autorisations d'accès aux zones\n");
+				System.out.println("Ce collaborateur ne possède aucune autorisation d'accès aux zones\n");
 
 		} catch(NumberFormatException e){
 			System.out.println("Veuillez saisir un nombre entier");
