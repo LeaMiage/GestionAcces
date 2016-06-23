@@ -308,7 +308,7 @@ public class _GestionAutorisationStub extends org.omg.CORBA.portable.ObjectImpl
      * Operation modifierAutorisationTemporaire
      */
     public void modifierAutorisationTemporaire(GestionEntreeSortie.AutorisationTemporaire at, GestionEntreeSortie.AutorisationTemporaire nt, String cleAPI)
-        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
     {
         while(true)
         {
@@ -334,11 +334,6 @@ public class _GestionAutorisationStub extends org.omg.CORBA.portable.ObjectImpl
                     if (_exception_id.equals(GestionEntreeSortie.AutorisationInconnueHelper.id()))
                     {
                         throw GestionEntreeSortie.AutorisationInconnueHelper.read(_exception.getInputStream());
-                    }
-
-                    if (_exception_id.equals(GestionEntreeSortie.AutorisationExistanteHelper.id()))
-                    {
-                        throw GestionEntreeSortie.AutorisationExistanteHelper.read(_exception.getInputStream());
                     }
 
                     if (_exception_id.equals(GestionEntreeSortie.PersonneInconnueHelper.id()))

@@ -102,7 +102,7 @@ public class GestionAutorisationPOATie extends GestionAutorisationPOA
      * Operation modifierAutorisationTemporaire
      */
     public void modifierAutorisationTemporaire(GestionEntreeSortie.AutorisationTemporaire at, GestionEntreeSortie.AutorisationTemporaire nt, String cleAPI)
-        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.AutorisationExistante, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
+        throws GestionEntreeSortie.AutorisationInconnue, GestionEntreeSortie.PersonneInconnue, GestionEntreeSortie.CleInconnue
     {
         _tie.modifierAutorisationTemporaire( at,  nt,  cleAPI);
     }

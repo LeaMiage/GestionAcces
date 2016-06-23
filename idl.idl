@@ -207,7 +207,6 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
-            AutorisationExistante,
             PersonneInconnue,
             CleInconnue
         );
