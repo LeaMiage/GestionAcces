@@ -198,7 +198,7 @@ public class GestionnaireEmpreinteClient {
 				
 				try {
 					ajouterEmpreinte(idPersonne, empreinte);
-					System.out.println("Votre emrpeinte a bien été ajoutée.");
+					System.out.println("Votre empreinte a bien été ajoutée.");
 				}  catch (CleInconnue cleInconnue){
 					System.out.println(cleInconnue.message);
 					str="0";
@@ -218,7 +218,7 @@ public class GestionnaireEmpreinteClient {
 
 				try {
 					modifierEmpreinte(idPersonne, empreinte);
-					System.out.println("Votre emrpeinte a bien été modifiée.");
+					System.out.println("Votre empreinte a bien été modifiée.");
 				}  catch (PersonneInconnue personneInconnue){
 					System.out.println(personneInconnue.message);
 				} catch (CleInconnue cleInconnue){

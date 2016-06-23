@@ -27,6 +27,7 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 		
 		Collaborateur collaborateur = null;
 		
+		// Récupération des deux types de collaborateurs pour vérifier leur type et le mot de passe
 		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
 		
@@ -65,6 +66,7 @@ public class AuthentificationImpl extends GestionEntreeSortie.AuthentificationPO
 			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		
+		// Récuplwration de l’ensemble des collaborateurs pour comparer la photo transmise avec la photo enregistrée
 		Hashtable annuairePerm = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Perm.txt");
 		Hashtable annuaireTemp = Helpers.GestionFichiers.lireFichier("src/AnnuaireSalaries/BD_Salaries_Temp.txt");
 		

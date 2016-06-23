@@ -129,6 +129,7 @@ public class GestionEmpreinteImpl extends GestionEntreeSortie.GestionEmpreintePO
 		//Initialisation des fichiers à vide
 		Helpers.GestionFichiers.ecrireFichier("src/AnnuaireEmpreinte/BD_Empreintes.txt", annuaire);
 
+		// Ajout des empreintes par défaut
 		try {
 			ajouterEmpreinte(1, "empreinteTiti", Utils.Utils.cleApi);
 			ajouterEmpreinte(2, "empreinteLea", Utils.Utils.cleApi);

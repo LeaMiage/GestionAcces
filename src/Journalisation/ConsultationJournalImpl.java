@@ -16,10 +16,11 @@ public class ConsultationJournalImpl extends ConsultationJournalPOA{
 	public EntreeJournal[] consulterJournal(String cleAPI) throws CleInconnue {
 		
 
-		if (!cleAPI.equals(Utils.Utils.cleApi)){
+		if (! cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		
+		// Lecture + tri du fichier de journalisation
 		int i = 0;
 		
 		Hashtable journal = Helpers.GestionFichiers.lireFichier("src/Journalisation/Journal.txt");
