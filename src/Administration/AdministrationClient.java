@@ -143,7 +143,8 @@ public class AdministrationClient {
 
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
-
+		
+		// Envoi de l’autorisation à toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 
@@ -171,7 +172,8 @@ public class AdministrationClient {
 
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
-
+		
+		// Envoi de la nouvelle autorisation à toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 
@@ -198,6 +200,8 @@ public class AdministrationClient {
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 
+		
+		// Suppression de l’autorisation sur toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 
@@ -229,6 +233,7 @@ public class AdministrationClient {
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
 
+		// Envoi de l’autorisation à toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 
@@ -257,7 +262,8 @@ public class AdministrationClient {
 
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
-
+		
+		// Envoi de la nouvelle autorisation à toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 
@@ -283,7 +289,8 @@ public class AdministrationClient {
 
 		if (z==null)
 			throw new ZoneInconnue("Erreur : cette zone n'existe pas\n");
-
+		
+		// Suppression de l’autorisation sur toutes les portes de la zone
 		for(int i=0;i<z.listeIdPortes.length;i++)
 		{
 

@@ -165,7 +165,6 @@ module GestionEntreeSortie {
             in AutorisationPermanente ap,
             in string cleAPI
         ) raises(
-            AutorisationInconnue,
             AutorisationExistante,
             PersonneInconnue,
             AjoutAPImpossible,
@@ -195,7 +194,6 @@ module GestionEntreeSortie {
             in AutorisationTemporaire at,
             in string cleAPI
         ) raises(
-            AutorisationInconnue,
             AutorisationExistante,
             PersonneInconnue,
             CleInconnue
@@ -207,7 +205,6 @@ module GestionEntreeSortie {
             in string cleAPI
         ) raises(
             AutorisationInconnue,
-            AutorisationExistante,
             PersonneInconnue,
             CleInconnue
         );

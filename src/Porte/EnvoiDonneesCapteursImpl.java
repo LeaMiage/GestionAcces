@@ -148,7 +148,7 @@ public class EnvoiDonneesCapteursImpl extends GestionEntreeSortie.EnvoiDonneesCa
 						}
 					    System.out.println("Fin du parcours des autorisations temporaires");
 					    
-					    
+					    // On vérifie si une autorisation valide a été trouvée ou non et on journalise
 					    if (trouve) {
 							System.out.println("Identité confirmée. Bienvenue " + ic.prenomP + " " + ic.nomP);
 							

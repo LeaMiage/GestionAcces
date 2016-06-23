@@ -30,7 +30,7 @@ public class VerificationEmpreinteImpl extends GestionEntreeSortie.VerificationE
 		}
 		
 		if(!annuaire.get(idPersonne).equals(empreinte)) {
-			throw new EmpreinteInconnue("Erreur : l'empreinte ne correspnd pas à l'employé.");
+			throw new EmpreinteInconnue("Erreur : l'empreinte ne correspond pas à l'employé.");
 		}
 		
 		System.out.println("Test : verifierEmpreinte");

@@ -47,7 +47,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	
 	@Override
 	public void ajouterAutorisationPermanente(AutorisationPermanente ap, String cleAPI)
-			throws AutorisationInconnue, CleInconnue, PersonneInconnue, AutorisationExistante, AjoutAPImpossible {
+			throws CleInconnue, PersonneInconnue, AutorisationExistante, AjoutAPImpossible {
 
 		
 		System.out.println("Demande d'ajout d'autorisation pour le salarié " + ap.idPersonne);
@@ -183,11 +183,10 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 	
 	
 	
-	/********Autorisations Temporaires*********/
 
 	@Override
 	public void ajouterAutorisationTemporaire(AutorisationTemporaire at, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws CleInconnue, PersonneInconnue, AutorisationExistante {
 		
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
@@ -206,15 +205,16 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
-			// Ajout si la clé n'existe pas déjà
-			annuaireAutorisations.putIfAbsent(idAutorisation, at);
+			// Ajout si l'autorisation n'existe pas déjà
+			if (annuaireAutorisations.containsKey(idAutorisation))
+				throw new AutorisationExistante("Erreur : l'autorisation existe déjà\n");
+						
+			annuaireAutorisations.put(idAutorisation, at);
 			
 			Helpers.GestionFichiers.ecrireFichier(locationBDTemp, annuaireAutorisations);
 			
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
-		} catch (CleInconnue e) {
+		}catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		}
 		
@@ -222,7 +222,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 	@Override
 	public void modifierAutorisationTemporaire(AutorisationTemporaire at, AutorisationTemporaire nt, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws AutorisationInconnue, CleInconnue, PersonneInconnue {
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
 			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
@@ -240,19 +240,17 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 			String idAutorisation = at.idPersonne + "_" + at.dateDebut + "_" + at.dateFin;
 			
-			// Suppression de l'ancienne autorisation si elle existe
+			// Remplacement de l'ancienne autorisation si elle existe
 			if (annuaireAutorisations.containsKey(idAutorisation))
-				supprimerAutorisationTemporaire(at, cleAPI);
+				annuaireAutorisations.put(idAutorisation, at);
 			else
 				throw new AutorisationInconnue("L'autorisation à modifier est inconnue.");
 			
-			ajouterAutorisationTemporaire(nt, cleAPI);		
+			Helpers.GestionFichiers.ecrireFichier(locationBDPerm, annuaireAutorisations);
 			
-			// Pas d'écriture dans le fichier BD, car les méthodes supprimer et ajouter le font déjà
+			System.out.println("Autorisation permanente modifiée");
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
-		} catch (CleInconnue e) {
+		}catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		}
 		
@@ -260,7 +258,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 
 	@Override
 	public void supprimerAutorisationTemporaire(AutorisationTemporaire at, String cleAPI)
-			throws AutorisationInconnue, CleInconnue {
+			throws AutorisationInconnue, CleInconnue, PersonneInconnue {
 
 
 		if (!cleAPI.equals(Utils.Utils.cleApi)){
@@ -288,9 +286,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 			Helpers.GestionFichiers.ecrireFichier(locationBDTemp, annuaireAutorisations);
 			
 			
-		} catch (PersonneInconnue e) {
-			System.out.println("Erreur : Personne inconnue");
-		} catch (CleInconnue e) {
+		}catch (CleInconnue e) {
 			System.out.println("Erreur : clé inconnue");
 		}
 		

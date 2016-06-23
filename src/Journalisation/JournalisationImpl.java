@@ -18,7 +18,8 @@ public class JournalisationImpl extends GestionEntreeSortie.JournalisationPOA{
 			throw new CleInconnue("Erreur système, veuillez réessayer plus tard.");
 		}
 		
-		if (idZone==-1 | idPorte == -1 | photoP.equals("") | statut.equals("") | typeAcces.equals("")) {
+		// Vérification au cas où l’exception n’a pas été levée plus tôt
+		if (idZone==-1 || idPorte == -1 || photoP.equals("") || statut.equals("") || typeAcces.equals("")) {
 			throw new JournalisationImpossible("Journalisation impossible.");
 		}
 		Hashtable journal = Helpers.GestionFichiers.lireFichier("src/Journalisation/Journal.txt");
