@@ -28,7 +28,7 @@ public class GestionAutorisationsImpl extends GestionEntreeSortie.GestionAutoris
 		this.locationBDPerm="src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Perm.txt";
 		this.locationBDTemp="src/Porte/BD_Portes/BD_Autorisations_" + idZone + "_" + idPorte + "_Temp.txt";
 		
-		initialisation();
+		//initialisation();
 	}
 	
 	public void initialisation(){
