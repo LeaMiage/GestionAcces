@@ -18,6 +18,7 @@ import GestionEntreeSortie.AutorisationExistante;
 import GestionEntreeSortie.AutorisationInconnue;
 import GestionEntreeSortie.AutorisationPermanente;
 import GestionEntreeSortie.AutorisationTemporaire;
+import GestionEntreeSortie.ChampVide;
 import GestionEntreeSortie.CleInconnue;
 import GestionEntreeSortie.ConsultationJournal;
 import GestionEntreeSortie.EntreeJournal;
@@ -347,7 +348,9 @@ public class AdministrationClient {
 					System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
 					hfin = sc.nextLine();
 
-
+					if (hdeb.equals("") || hfin.equals(""))
+						throw new ChampVide("Un des champs est vide");						
+						
 					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 
 					ajouterAutorisationPermanente(numZone,ap);
@@ -365,6 +368,8 @@ public class AdministrationClient {
 				} catch (PersonneInconnue e) {
 					System.out.println(e.message);
 				} catch (CleInconnue e) {
+					System.out.println(e.message);
+				} catch (ChampVide e) {
 					System.out.println(e.message);
 				}
 
@@ -401,6 +406,9 @@ public class AdministrationClient {
 					hfin_new = sc.nextLine();
 
 
+					if (hdeb.equals("") || hfin.equals("") || hdeb_new.equals("") || hfin_new.equals(""))
+						throw new ChampVide("Un des champs est vide");						
+						
 					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 					ap_new = new AutorisationPermanente(idPersonne,hdeb_new,hfin_new);
 
@@ -418,6 +426,8 @@ public class AdministrationClient {
 				} catch (PersonneInconnue e) {
 					System.out.println(e.message);
 				} catch (CleInconnue e) {
+					System.out.println(e.message);
+				} catch (ChampVide e) {
 					System.out.println(e.message);
 				}
 
@@ -444,7 +454,9 @@ public class AdministrationClient {
 					System.out.println("Entrez l'heure de fin de l'autorisation (au format hh:mm)");
 					hfin = sc.nextLine();
 
-
+					if (hdeb.equals("") || hfin.equals(""))
+						throw new ChampVide("Un des champs est vide");						
+						
 					ap = new AutorisationPermanente(idPersonne,hdeb,hfin);
 
 					supprimerAutorisationPermanente(numZone,ap);
@@ -459,9 +471,9 @@ public class AdministrationClient {
 					System.out.println(e.message);
 				} catch (CleInconnue e) {
 					System.out.println(e.message);
+				} catch (ChampVide e) {
+					System.out.println(e.message);
 				}
-
-
 
 
 				break;
